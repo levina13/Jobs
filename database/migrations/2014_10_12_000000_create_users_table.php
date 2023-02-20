@@ -18,7 +18,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('telepon')->unique();
+            $table->timestamp('telepon_verified_at')->nullable();
+            // Role=> A untuk pencari loker, B untuk pembuat loker
+            $table->char('role', 1);
+            // Status tervirifikasi (0=> belum, 1=> telepon, 2=>email, 3=> lengkap)
+            $table->char('status', 1);
             $table->string('password');
+    
             $table->rememberToken();
             $table->timestamps();
         });
