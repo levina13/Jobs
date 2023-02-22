@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('lokers', function (Blueprint $table) {
             $table->id();
             $table->string('judul_loker');
-            $table->foreign('id_pekerjaan')->references('id')->on('pekerjaans');
+            $table->integer('id_pekerjaan');
+            // $table->foreign('id_pekerjaan')->references('id')->on('pekerjaans');
             $table->date('tanggal_awal');
             $table->date('tanggal_akhir');
-            $table->foreign('id_perusahaan')->references('id')->on('perusahaans');
+            $table->integer('id_perusahaan');
+            // $table->foreign('id_perusahaan')->references('id')->on('perusahaans');
             $table->text('deskripsi');
             $table->timestamps();
         });
