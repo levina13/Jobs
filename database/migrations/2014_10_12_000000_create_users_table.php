@@ -23,7 +23,7 @@ return new class extends Migration
             // Role=> A untuk pencari loker, B untuk pembuat loker
             $table->char('role', 1);
             // Status tervirifikasi (0=> belum, 1=> telepon, 2=>email, 3=> lengkap)
-            $table->char('status', 1);
+            $table->char('status', 1)->default('0');
             $table->string('password');
     
             $table->rememberToken();
