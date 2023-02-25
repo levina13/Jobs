@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'telepon' => 'required|numeric|unique:users,telepon|digits_between:9,12',
             'role'=>'required'
         ]);
-
+        
         if ($validator->fails()) {
             // return $this->sendError('Validation Error.', $validator->errors());
             return $validator->errors();
@@ -47,14 +47,28 @@ class RegisterController extends Controller
      */
     public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            $success['name'] =  $user->name;
-
-            // return $this->sendResponse($success, 'User login successfully.');
-        } else {
-            // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+        // Cek telepon atau email
+        $inputan= (is_numeric($request->email_telepon)? 'telepon':'email');
+        // Cek apakah ada user tersebut
+        $status=User::where($inputan, $request->email_telepon)
+                            ->first();
+        // Cek apakah ada user dgn email/telepon tersebut
+        if(isset($status->id))
+        {
+            if (Auth::attempt([$inputan => $request->email_telepon, 'password' => $request->password])) {
+                $user = Auth::user();
+                $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+                $success['name'] =  $user->name;
+                return 'berhasil login';
+                // return $this->sendResponse($success, 'User login successfully.');
+            } else {
+                // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+                return 'Unauthorised';
+            }
+        }else
+        {
+            return 'tidak ada pengguna';
         }
+
     }
 }
