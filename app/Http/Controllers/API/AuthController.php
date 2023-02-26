@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Password as PasswordFacade;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
-class RegisterController extends Controller
+class AuthController extends Controller
 {
     public function register(Request $request)
     {
