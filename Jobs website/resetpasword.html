@@ -12,12 +12,22 @@
 </head>
 <body style="background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); display: grid;
 height: 100%;
-width: 100%;
-place-items: center;">
+place-items: center;
+margin: 100px;
+        margin-top: 80px;
+        margin-right: 100px ;
+        margin-bottom: 80px;
+        margin-left: 100px;">
  <div class="form-gap"></div>
- <div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
+ <div class="container" >
+	<div class="row" >
+		<div class="col-md-4 col-md-offset-4" style="overflow: hidden;
+        max-width: 390px;
+        background: #fff;
+        padding: 0px;
+        border-radius: 15px;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        place-items: center;" >
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="text-center">
@@ -45,7 +55,9 @@ place-items: center;">
                           </div>
                       </div>
                       <div class="form-group">
-                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" style="background:#4125bc;" value="Reset Password" type="submit">
+                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6);
+                        border-radius: 15px;
+                        transition: all 0.4s ease;" value="Reset Password" type="submit">
                       </div>
 
                       <input type="hidden" class="hide" name="token" id="token" value="">
