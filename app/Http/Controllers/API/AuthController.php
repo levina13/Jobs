@@ -29,7 +29,7 @@ class AuthController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            // return $this->sendError('Validation Error.', $validator->errors());
             return $validator->errors();
 
         }
@@ -40,7 +40,7 @@ class AuthController extends Controller
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
 
-        return $this->sendResponse($success, 'User register successfully.');
+        // return $this->sendResponse($success, 'User register successfully.');
         return $success;
     }
 
@@ -63,15 +63,15 @@ class AuthController extends Controller
                 $user = Auth::user();
                 $success['token'] =  $user->createToken('MyApp')->plainTextToken;
                 $success['name'] =  $user->name;
-                return $this->sendResponse($success, 'User login successfully.');
+                // return $this->sendResponse($success, 'User login successfully.');
                 return 'berhasil login';
             } else {
-                return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+                // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
                 return 'Unauthorised';
             }
         }else
         {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
             return 'tidak ada pengguna';
         }
 
