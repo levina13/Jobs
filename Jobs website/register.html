@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Akun</title>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <div>
+          <img src="images/logojobs.png" >
+        </div>
+        <div class="form-container">
+          <div class="slide-controls">
+            <input type="radio" name="slide" id="login" checked>
+            <input type="radio" name="slide" id="signup">
+            <label for="login" class="slide login">Applicant</label>
+            <label for="signup" class="slide signup">Company</label>
+            <div class="slider-tab"></div>
+          </div>
+          
+          
+          <div class="form-inner">
+            <form action="{{url('api/login')}}" method="POST" class="login">
+              <pre>
+              </pre>
+              <div class="field">
+                  <input type="text" placeholder="Name" name="name" required>
+                </div>
+                <div class="field">
+                  <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="field">
+                  <input type="text" placeholder="Phone Number" name="telepon" required>
+                </div>
+                <div class="field">
+                  <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <div class="field">
+                  <input type="password" placeholder="Confirm Password" name="confirm password" required>
+                </div>
+                <div class="field btn">
+                  <div class="btn-layer"></div>
+                  <input type="submit" value="Sign Up">
+                </div>
+                <div class="signup-link">Already have an account? <a href="">Login</a></div>
+            </form>
+
+            <form action="#" class="signup">
+                <div class="field">
+                  <input type="text" placeholder="Company Name" required>
+                </div>
+                <div class="field">
+                  <input type="email" placeholder="Email" required>
+                </div>
+                <div class="field">
+                    <input type="text" placeholder="Phone Number" name="telepon" required>
+                  </div>
+                <div class="field">
+                  <input type="password" placeholder="Password" required>
+                </div>
+                <div class="field">
+                  <input type="text" placeholder="Company Address" required>
+                </div>
+                <div class="select-menu">
+                    <div class="select-btn">
+                        <span class="sBtn-text">Select Company Sector</span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+            
+                    <ul class="options">
+                        <li class="option">
+                            <span class="option-text">Construction and Real Esttate</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Finance</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Technology</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Advertisement</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Medice</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="field btn">
+                  <div class="btn-layer"></div>
+                  <input type="submit" value="Sign Up">
+                </div>
+                <div class="signup-link">Already have an account? <a href="">Login</a></div>
+              </form>
+            </div>
+          </div>
+        </div>
+            
+      <script  src="./assets/js/Authscript.js"></script>
+
+    </body>
+    </html>  
