@@ -9,8 +9,10 @@
 </head>
 <body>
     <div class="wrapper">
-        <div>
-          <img src="images/logojobs.png" >
+        <div class="logo">
+            <center>
+                <img src="assets/img/logojobs.png" alt="Image" style="width: auto;height:100px;">
+            </center>
         </div>
         <div class="form-container">
           <div class="slide-controls">
@@ -20,12 +22,8 @@
             <label for="signup" class="slide signup">Company</label>
             <div class="slider-tab"></div>
           </div>
-          
-          
           <div class="form-inner">
             <form action="{{url('api/login')}}" method="POST" class="login">
-              <pre>
-              </pre>
               <div class="field">
                   <input type="text" placeholder="Name" name="name" required>
                 </div>
