@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/coba', 'auth.logReg');
+Route::view('/login', 'auth.login');
+Route::view('/registrasi', 'auth.registrasi');
+Route::view('/registrasiUser', 'auth.registrasiUser');
+
+
 // Route::prefix('auth')->group(function(){
 //     Route::controller()
 // });
