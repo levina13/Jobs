@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::view('/coba', 'coba');
+Route::view('/coba', 'auth.logReg');
 // Route::prefix('auth')->group(function(){
 //     Route::controller()
 // });
@@ -25,6 +25,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
+
 Route::controller(ForgotPasswordController::class)->group(function(){
     Route::get('forget-password','showEmailForm')->name('forget.password.get');
     Route::post('forget-password', 'submitEmailForm')->name('forget.password.post');
