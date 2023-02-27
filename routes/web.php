@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/coba', 'auth.logReg');
-Route::view('/login', 'auth.login');
-Route::view('/registrasi', 'auth.registrasi');
-Route::view('/registrasiUser', 'auth.registrasiUser');
+Route::view('/loginView', 'auth.login');
+Route::view('/registrasiView', 'auth.registrasi');
+Route::view('/registrasiUserView', 'auth.registrasiUser');
 
 
 // Route::prefix('auth')->group(function(){
