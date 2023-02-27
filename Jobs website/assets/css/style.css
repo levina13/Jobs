@@ -1417,6 +1417,7 @@ html,body{
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
+
 .wrapper .title-text{
   display: flex;
   width: 200%;
@@ -1503,6 +1504,7 @@ input[type="radio"]{
   width: 100%;
   margin-top: 20px;
 }
+
 .form-inner form .field input{
   height: 100%;
   width: 100%;
