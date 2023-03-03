@@ -10,7 +10,7 @@
           <h1>Find the perfect job that fits you well.</h1>
           <h2>Find your next flexible, hybrid, or work from home job</h2>
           <div>
-            <a href="#findjobs" class="btn-get-started scrollto">Get Started</a>
+            <a href="{{route('page.login')}}" class="btn-get-started scrollto">Get Started</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">

@@ -18,7 +18,7 @@ class ForgotPasswordController extends Controller
     public function showEmailForm()
     {
         // Form submit email
-        // return view();
+        return view('auth.forgetPassword');
     }
 
     // Olah email yg dikirim
@@ -40,14 +40,14 @@ class ForgotPasswordController extends Controller
             $message->subject('Reset Password');
         });
 
-        return "Email terkirim". $token;
+        return "Email terkirim";
         
     }
 
     // Membuka form inputan password baru
     public function showResetPasswordForm($token)
     {
-        return view('auth.forgetPasswordLink',
+        return view('auth.resetPassword',
             ['token' => $token]
         );
     }
@@ -58,7 +58,7 @@ class ForgotPasswordController extends Controller
         $validator = Validator::make($request->all(),[
             'email' => 'required|email|exists:users',
             'password' => ['required', Password::min(8)],
-            'token'=>'required'
+            'tokens'=>'required'
         ]);
         if ($validator->fails())
         {
@@ -69,20 +69,21 @@ class ForgotPasswordController extends Controller
         $updatePassword = DB::table('password_resets')
                             ->where([
                                 'email' => $request->email,
-                                'token' => $request->token
+                                'token' => $request->tokens
                             ])->first();
 
         if (!$updatePassword) {
             // return back()->withInput()->with('error', 'Invalid token!');
-            return "gagal, token salah".$request->token;
+            return "gagal, token salah";
         };
 
         $user = User::where('email', $request->email)
-            ->update(['password' => bcrypt($request)]);
+            ->update(['password' => bcrypt($request->password)]);
 
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-        return "berhasil ganti password";
+        // return "berhasil ganti password";
+        return redirect()->route('page.login')->with('status', "Reset Password Succesfully");
         // return redirect('/login')->with('message', 'Your password has been changed!');
     }
 

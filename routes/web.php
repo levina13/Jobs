@@ -16,25 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 Route::view('/coba', 'auth.logReg');
-Route::view('/loginView', 'auth.login');
-Route::view('/registrasiView', 'auth.registrasi');
-Route::view('/registrasiUserView', 'auth.registrasiUser');
-
+Route::view('/loginView', 'auth.login')->name('page.login');
+Route::view('/registrasiView', 'auth.registrasi')->name('page.registrasiPerusahaan');
+Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
+Route::view('/cobalintang', 'coba.coba');
 
 // Route::prefix('auth')->group(function(){
 //     Route::controller()
 // });
-Route::controller(AuthController::class)->group(function () {
-    Route::post('register', 'register');
-    Route::post('login', 'login');
-});
 
-Route::controller(ForgotPasswordController::class)->group(function(){
-    Route::get('forget-password','showEmailForm')->name('forget.password.get');
-    Route::post('forget-password', 'submitEmailForm')->name('forget.password.post');
-    Route::get('reset-password/{token}', 'showResetPasswordForm')->name('reset.password.get');
-    Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
+Route::get('forget-password', [ForgotPasswordController::class,'showEmailForm'])->name('forget.password.get');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 
-});
+// Route::controller(ForgotPasswordController::class)->group(function(){
+//     Route::get('/forget-password','showEmailForm')->name('forget.password.get');
+//     Route::get('/reset-password/{token}', 'showResetPasswordForm')->name('reset.password.get');
+// });

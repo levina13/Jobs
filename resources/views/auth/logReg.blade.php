@@ -1,5 +1,7 @@
 @extends('layouts.auth')
-
+@section('title')
+    LoginRegister
+@endsection
 @section('content')
 
 <div class="wrapper">

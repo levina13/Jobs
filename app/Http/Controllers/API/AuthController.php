@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Password as PasswordFacade;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Routing\Redirector;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     public function register(Request $request)
     {
@@ -29,8 +30,8 @@ class AuthController extends Controller
         ]);
         
         if ($validator->fails()) {
-            // return $this->sendError('Validation Error.', $validator->errors());
-            return $validator->errors();
+            return $this->sendError('Validation Error.', $validator->errors());
+            // return $validator->errors();
 
         }
 
@@ -40,8 +41,8 @@ class AuthController extends Controller
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
 
-        // return $this->sendResponse($success, 'User register successfully.');
-        return $success;
+        return $this->sendResponse($success, 'User register successfully.');
+        // return redirect()->route('home')->with ("status", "Welcome, Success to register!!");
     }
 
     /**
@@ -63,15 +64,17 @@ class AuthController extends Controller
                 $user = Auth::user();
                 $success['token'] =  $user->createToken('MyApp')->plainTextToken;
                 $success['name'] =  $user->name;
-                // return $this->sendResponse($success, 'User login successfully.');
-                return 'berhasil login';
+                return redirect()->route('home')->with('status', 'User login successfully.');
+                // return 'berhasil login';
             } else {
-                // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+                return redirect()->route('page.login')->with('status', 'Gagal login.');
+                return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
                 return 'Unauthorised';
             }
         }else
         {
-            // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return redirect()->route('page.login')->with('status', 'Gagal login.');
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
             return 'tidak ada pengguna';
         }
 
