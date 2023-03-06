@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lokers', function (Blueprint $table) {
+        Schema::create('lamarans', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_loker');
-            // $table->foreign('id_pekerjaan')->references('id')->on('pekerjaans');
-            $table->date('tanggal_awal');
-            $table->date('tanggal_akhir');
-            $table->text('deskripsi');
-            $table->unsignedBigInteger('id_perusahaan');
-            $table->unsignedBigInteger('id_pekerjaan');
+            // Status 0 jika belum diputuskan, 1 jika diterima, 2 jika ditolak
+            $table->char('status', 1);
+            $table->unsignedBigInteger('id_pelamar');
+            $table->unsignedBigInteger('id_loker');
             $table->timestamps();
+
         });
+        
+
     }
 
     /**
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lokers');
+        Schema::dropIfExists('lamarans');
     }
 };

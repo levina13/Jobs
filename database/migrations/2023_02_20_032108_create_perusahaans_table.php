@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('perusahaans', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
-            $table->integer("id_owner");
-            $table->integer("id_jenis_perusahaan");
-            // Alamat di maps
             $table->decimal('latitude', 11, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
-
+            $table->unsignedBigInteger("id_owner");
+            $table->unsignedBigInteger("id_jenis_perusahaan");
+            // Alamat di maps
             $table->timestamps();
+
         });
+        
     }
 
     /**
