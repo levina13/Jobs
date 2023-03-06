@@ -15,11 +15,13 @@ margin: 100px;
         margin-left: 100px;">
 
 <div class="wrapper">
-    <div class="logo">
-        <center>
-            <img src="{{asset('assets/img/logojobs.png')}}" alt="Image" style="width: auto;height:100px;">
-        </center>
-    </div>
+    <a href="{{route('home')}}">
+        <div class="logo">
+            <center>
+                <img src="{{asset('assets/img/logojobs.png')}}" alt="Image" style="width: auto;height:100px;">
+            </center>
+        </div>
+    </a>
     <p style="margin:20;"></p>
     <span
     style="display:inline-block; 
@@ -37,19 +39,19 @@ margin: 100px;
         <div class="form-group">
             <input type="hidden" name="tokens" value="{{$token}}">
 
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue" style="border-radius: 5px;"></i></span>
-            <input id="email" name="email" placeholder="email address" class="form-control"  type="email" style="height: 100%;
-            width: 100%;
-            outline: none;
-            padding-left: 15px;
-            border-radius: 5px;
-            border: 1px solid lightgrey;
-            border-bottom-width: 2px;
-            font-size: 17px;
-            transition: all 0.3s ease;" 
-            required>
-        </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue" style="border-radius: 5px;"></i></span>
+                <input id="email" name="email" placeholder="email address" class="form-control"  type="email" style="height: 100%;
+                width: 100%;
+                outline: none;
+                padding-left: 15px;
+                border-radius: 5px;
+                border: 1px solid lightgrey;
+                border-bottom-width: 2px;
+                font-size: 17px;
+                transition: all 0.3s ease;" 
+                required>
+            </div>
         
         <p style="margin:20;"></p>
         <div class="input-group">

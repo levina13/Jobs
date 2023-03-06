@@ -59,7 +59,14 @@
           <li><a class="nav-link scrollto" href="#team">Login</a></li>
           -->
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#home">Get Started</a></li>
+          @guest
+          <li><a class="getstarted scrollto" href="{{route('loginView')}}">Get Started</a></li>
+          @else
+          <li>
+            <a class="getstarted scrollto"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >{{ __('Logout') }}</a>
+            <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
+          </li>
+          @endguest
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

@@ -17,6 +17,18 @@ use Illuminate\Routing\Redirector;
 
 class AuthController extends BaseController
 {
+    // Open View
+    public function regisView()
+    {
+        return view('auth.registrasi');
+    }
+
+    public function loginView()
+    {
+        return view('auth.login');
+    }
+
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -30,6 +42,11 @@ class AuthController extends BaseController
         ]);
         
         if ($validator->fails()) {
+            $alert=[
+                'type'=>'danger',
+                'message'=>'Failed to Login.'
+            ];
+            return back()->withInput()->with('alert', $alert);
             return $this->sendError('Validation Error.', $validator->errors());
             // return $validator->errors();
 
@@ -40,9 +57,12 @@ class AuthController extends BaseController
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
-
+        $alert = [
+            'type' => 'success',
+            'message' => 'Register Successfully.'
+        ];
+        return redirect()->route('loginView')->with ("alert", $alert);
         return $this->sendResponse($success, 'User register successfully.');
-        // return redirect()->route('home')->with ("status", "Welcome, Success to register!!");
     }
 
     /**
@@ -60,23 +80,41 @@ class AuthController extends BaseController
         // Cek apakah ada user dgn email/telepon tersebut
         if(isset($status->id))
         {
-            if (Auth::attempt([$inputan => $request->email_telepon, 'password' => $request->password])) {
-                $user = Auth::user();
-                $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-                $success['name'] =  $user->name;
-                return redirect()->route('home')->with('status', 'User login successfully.');
-                // return 'berhasil login';
-            } else {
-                return redirect()->route('page.login')->with('status', 'Gagal login.');
-                return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
-                return 'Unauthorised';
+            Auth::attempt([$inputan => $request->email_telepon, 'password' => $request->password]);
+            if (Auth::check())
+            {
+                $request->session()->regenerate();
+                if(Auth::user()->role=='B')
+                {
+                    // return redirect()->route('admin-page');
+                }elseif (Auth::user()->role=='A') {
+                    return redirect()->route('home')->with('status', 'User login successfully.');
+                }
             }
+            $alert = [
+                'type'=>'danger',
+                'message'=>'Failed to Login, ID and password dont match.'
+            ];
+            // return $alert;
+            return back()->withInput()->with('alert',$alert);
         }else
         {
-            return redirect()->route('page.login')->with('status', 'Gagal login.');
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
-            return 'tidak ada pengguna';
+            $alert = [
+                'type' => 'danger',
+                'message' => 'User Not found.'
+            ];
+            // return $alert;
+            return back()->withInput()->with('alert', $alert);
         }
 
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }

@@ -4,12 +4,22 @@
 @endsection
 @section('content')
   <div class="wrapper">
-        <div class="logo">
-            <center>
-                <img src="assets/img/logojobs.png" alt="Image" style="width: auto;height:100px;">
-            </center>
-        </div>
+        <a href="{{route('home')}}">
+          <div class="logo">
+              <center>
+                  <img src="{{asset('assets/img/logojobs.png')}}" alt="Image" style="width: auto;height:100px;">
+              </center>
+          </div>
+        </a>
         <div class="form-container">
+            @if (session('alert'))
+                <div class="form-group mb-4">
+                    <x-alert type="{{ session('alert.type') }}" :dismissible="'true'">
+                        {{ session('alert.message') }}
+                    </x-alert>
+                </div>
+            @endif
+
           <div class="slide-controls">
             <input type="radio" name="slide" id="login" checked>
             <input type="radio" name="slide" id="signup">

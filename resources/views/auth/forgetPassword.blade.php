@@ -14,11 +14,13 @@ margin: 100px;
         margin-left: 100px;">
  
  <div class="wrapper">
-                    <div class="logo">
-                        <center>
-                            <img src="{{asset('assets/img/logojobs.png')}}" alt="Image" style="width: auto;height:100px;">
-                        </center>
-                    </div>
+                    <a href="{{route('home')}}">
+                      <div class="logo">
+                          <center>
+                              <img src="{{asset('assets/img/logojobs.png')}}" alt="Image" style="width: auto;height:100px;">
+                          </center>
+                      </div>
+                    </a>
                     <p style="margin:20;"></p>
                     <span 
                     style="display:inline-block; 

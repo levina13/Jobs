@@ -9,9 +9,11 @@
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1>Find the perfect job that fits you well.</h1>
           <h2>Find your next flexible, hybrid, or work from home job</h2>
+          @guest
           <div>
-            <a href="{{route('page.login')}}" class="btn-get-started scrollto">Get Started</a>
+            <a href="{{route('loginView')}}" class="btn-get-started scrollto">Get Started</a>
           </div>
+          @endguest
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
           <img src="assets/img/hero-img.svg" class="img-fluid animated" alt="">
