@@ -1,6 +1,6 @@
 @extends('layouts.forgetPassword')
 @section('title')
-    Reset Password
+    Forget Password
 @endsection
 
 @section('content')
@@ -35,8 +35,6 @@ margin: 100px;
                 </center>
                 <div class="text-center">
                   <div class="panel-body">
-                    <form id="register-form" role="form" autocomplete="off" class="form" action="{{route('forget.password.post')}}" method="post">
-                        @csrf
                       <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue" style="border-radius: 5px;"></i></span>
@@ -53,13 +51,12 @@ margin: 100px;
                         </div>
                         <p style="margin:20px;"></p>
                       <div class="form-group">
-                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6);
+                        <button name="recover-submit" class="btn-sendEmail btn btn-lg btn-primary btn-block" style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6);
                         border-radius: 15px;
-                        transition: all 0.4s ease;" value="Reset Password" type="submit">
+                        transition: all 0.4s ease;" value="Reset Password" >Reset Password</button>
                       </div>
 
                       <input type="hidden" class="hide" name="token" id="token" value="">
-                    </form>
 
                   </div>
                 </div>
@@ -68,5 +65,56 @@ margin: 100px;
           </div>
 	</div>
 </div>
+@section('layout_script')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $(document).on('click', '.btn-sendEmail', function (e) { 
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('forget.password.post')}}",
+                type: 'DELETE',
+                dataType: 'html',
+                data: {
+                  method: '_DELETE', 
+                  submit: true,
+                  "email": $("#email").val(),
+                },
+
+                success: function(data) {
+                    if (data == true) {
+                        Swal.fire({
+                            title: 'Email is sent successfully!',
+                            text: 'Open your email to get the reset password link.',
+                            icon: 'success',
+                            showConfirmButton: true,
+                        }).then(function(){
+                          window.location="{{route('home')}}";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Email is not sent!',
+                            text: 'Failed to send the email',
+                            icon: 'error',
+                            showConfirmButton: true,
+                        });
+                    }
+                },
+                error: function(){
+                    Swal.fire({
+                        title: 'Email is not sent!',
+                        text: 'Failed to send the email',
+                        icon: 'error',
+                        showConfirmButton: true,
+                    });
+                }
+            });
+        });
+    </script>
+@endsection
 </body>
 @endsection

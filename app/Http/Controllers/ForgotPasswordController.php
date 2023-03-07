@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,23 +25,42 @@ class ForgotPasswordController extends Controller
     // Olah email yg dikirim
     public function submitEmailForm(Request $request)
     {
-        $request->validate([
+        $validator=Validator::make($request->all(),[
             'email'=>'required|email|exists:users',
         ]);
+
+        if($validator->fails()){
+            return false;
+        }
         $token = Str::random(64);
 
-        DB::table('password_resets')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
+        try {
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+            try {
+                Mail::send('email.forgetPassword', ['token'=>$token], function($message) use($request){
+                    $message->to($request->email);
+                    $message->subject('Reset Password');
+                });
+                return true;
+            } catch (\Throwable $th) {
+                // return Response::send(['data' => true]);
 
-        Mail::send('email.forgetPassword', ['token'=>$token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
+                return false;
 
-        return "Email terkirim";
+            }
+        } catch (\Throwable $th) {
+            // return Response::send(['data' => true]);
+
+            return false;
+        }
+        // return Response::send(['data' => true]);
+
+
+        return false;
         
     }
 

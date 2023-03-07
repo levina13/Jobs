@@ -46,8 +46,9 @@ class AuthController extends BaseController
                 'type'=>'danger',
                 'message'=>'Failed to Login.'
             ];
-            return back()->withInput()->with('alert', $alert);
-            return $this->sendError('Validation Error.', $validator->errors());
+            return false;
+            // return back()->withInput()->with('alert', $alert);
+            // return $this->sendError('Validation Error.', $validator->errors());
             // return $validator->errors();
 
         }
@@ -61,6 +62,7 @@ class AuthController extends BaseController
             'type' => 'success',
             'message' => 'Register Successfully.'
         ];
+        return true;
         return redirect()->route('loginView')->with ("alert", $alert);
         return $this->sendResponse($success, 'User register successfully.');
     }
@@ -72,6 +74,7 @@ class AuthController extends BaseController
      */
     public function login(Request $request)
     {
+        // nilai return -1 untuk tdk ada pengguna, -2 u/inputan tidak cocok, 1 untuk pencari loker, 2 untuk company
         // Cek telepon atau email
         $inputan= (is_numeric($request->email_telepon)? 'telepon':'email');
         // Cek apakah ada user tersebut
@@ -87,7 +90,20 @@ class AuthController extends BaseController
                 if(Auth::user()->role=='B')
                 {
                     // return redirect()->route('admin-page');
+                    return response()->json([
+                        'status'=> 'success',
+                        'role'=>    'company',
+                        'message' =>'Successfully login as company'
+                    ]);
+                    return 2;
                 }elseif (Auth::user()->role=='A') {
+                    // nilai return 0 untuk gagal, 1 untuk pencari loker, 2 untuk company
+                    return response()->json([
+                        'status' => 'success',
+                        'role'=>'applicant',
+                        'message' => 'Successfully login as applicant'
+                    ]);
+                    return 1;
                     return redirect()->route('home')->with('status', 'User login successfully.');
                 }
             }
@@ -96,14 +112,24 @@ class AuthController extends BaseController
                 'message'=>'Failed to Login, ID and password dont match.'
             ];
             // return $alert;
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Failed to login, ID and password dont match'
+            ]);
+            return -2;
             return back()->withInput()->with('alert',$alert);
         }else
         {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Failed to login, user not found'
+            ]);
             $alert = [
                 'type' => 'danger',
                 'message' => 'User Not found.'
             ];
             // return $alert;
+            return -1;
             return back()->withInput()->with('alert', $alert);
         }
 

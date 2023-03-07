@@ -95,3 +95,7 @@ margin: 100px;
 </div>
 </body>
 @endsection
+
+@section('layout_script')
+
+@endsection

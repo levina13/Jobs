@@ -22,11 +22,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(AuthController::class)->group(function () {
-    Route::post('register', 'register')->name('submit.register');
-    Route::post('login', 'login')->name('submit.login');
-});
-Route::controller(ForgotPasswordController::class)->group(function () {
-    Route::post('forget-password', 'submitEmailForm')->name('forget.password.post');
-    Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
-});

@@ -14,24 +14,63 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route untuk Halaman Home
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+// Route untuk halaman Forget Password
+Route::controller(ForgotPasswordController::class)->group(function () {
+    Route::delete('forget-password', 'submitEmailForm')->name('forget.password.post');
+    Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
+    Route::get('forget-password', 'showEmailForm')->name('forget.password.get');
+    Route::get('reset-password/{token}', 'showResetPasswordForm')->name('reset.password.get');
+});
+
+
+// Route untuk autentikasi
+Route::middleware(['guest'])->group(function(){
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('register', 'register')->name('submit.register');
+        Route::post('login', 'login')->name('submit.login');
+        Route::get('login', 'loginView')->name('loginView');
+        Route::get('register', 'RegisView')->name('regisView');
+    });
+});
+
+// Route untuk pencari loker yg sudah login
+Route::middleware(['auth'])->group(function(){
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    
+    // Route untuk verifikasi Email & telepon
+    // Melamar pekerjaan
+    // Membuat CV
+    // Edit Profil
+    
+    // Route untuk yang sudah verifikasi telepon & email
+
+
+    // Pembuat Loker
+        // CRUD loker
+        // Menerima/menolak pelamar
+        // Edit profil perusahaan
+
+});
+
+
+
+
+// Route untuk pembuat loker
+
 Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
 Route::post('/alert', function () {
     
 });
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::middleware(['guest'])->group(function(){
-    Route::get('/login',[AuthController::class, 'loginView'])->name('loginView');
-    Route::get('/register', [AuthController::class, 'RegisView'])->name('regisView');
-
-});
 
 Route::get('/coba-alert',function(){
     redirect()->route('alert')->with('success', 'alhamdulillah');
@@ -41,8 +80,6 @@ Route::get('/coba-alert',function(){
 //     Route::controller()
 // });
 
-Route::get('forget-password', [ForgotPasswordController::class,'showEmailForm'])->name('forget.password.get');
-Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 
 // Route::controller(ForgotPasswordController::class)->group(function(){
 //     Route::get('/forget-password','showEmailForm')->name('forget.password.get');

@@ -18,8 +18,7 @@
         </a>
 
         <div class="form-inner">
-          <form action="{{route('submit.login')}}" method="POST" class="login">
-            @csrf
+          <form action="" method="" class="login">
             {{-- Alert --}}
             @if (session('alert'))
                 <div class="form-group mb-4">
@@ -31,14 +30,14 @@
             <pre>
             </pre>
             <div class="field">
-              <input type="email" placeholder="Email " name="email_telepon" required>
+              <input type="email" placeholder="Email " id="email_telepon" name="email_telepon" required>
             </div>
             <div class="field">
-              <input type="password" placeholder="Password" name="password" required>
+              <input type="password" placeholder="Password" id="password" name="password" required>
             </div>
             <div class="field btn">
               <div class="btn-layer"></div>
-              <input type="submit" value="Login">
+              <input class="btn-login" type="submit" value="Login">
             </div>
             <div class="signup-link">Don't have an account? <a href="{{route('regisView')}}">Sign Up</a></div>
             <span
@@ -54,3 +53,65 @@
     </div>
 
 @endsection
+@section('layout_script')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $(document).on('click', '.btn-login', function (e) { 
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('submit.login')}}",
+                type: 'POST',
+                method:"POST",
+                data: {
+                  submit: true,
+                  "email_telepon": $("#email_telepon").val(),
+                  "password":$("#password").val()
+                },
+
+                success: function(data) {
+                    if (data.status == 'success') {
+                      if(data.role=='company'){
+                        Swal.fire({
+                            title: 'Company Login Successfully!',
+                            icon: 'success',
+                            showConfirmButton: true,
+                        }).then(function(){
+                          window.location="{{route('home')}}";
+                        });
+                      }else if(data.role=='applicant'){
+                        Swal.fire({
+                            title: 'Login Successfully!',
+                            icon: 'success',
+                            showConfirmButton: true,
+                        }).then(function(){
+                          window.location="{{route('home')}}";
+                        });
+                      }
+                    } 
+                    else if(data.status=='failed'){
+                      Swal.fire({
+                        title: 'Failed to login!',
+                        text:data.message,
+                        icon: 'error',
+                        showConfirmButton: true,
+                      });
+                    }
+                },
+                error: function(){
+                    Swal.fire({
+                        title: 'Failed to login!',
+                        text: "Gagal Login",
+                        icon: 'error',
+                        showConfirmButton: true,
+                    });
+                }
+            });
+        });
+    </script>
+@endsection
+
