@@ -30,7 +30,7 @@
             <pre>
             </pre>
             <div class="field">
-              <input type="email" placeholder="Email " id="email_telepon" name="email_telepon" required>
+              <input type="" placeholder="Email or Phone Number" id="email_telepon" name="email_telepon" required>
             </div>
             <div class="field">
               <input type="password" placeholder="Password" id="password" name="password" required>
@@ -105,7 +105,7 @@
                 error: function(){
                     Swal.fire({
                         title: 'Failed to login!',
-                        text: "Gagal Login",
+                        text: "Failed to send the data",
                         icon: 'error',
                         showConfirmButton: true,
                     });

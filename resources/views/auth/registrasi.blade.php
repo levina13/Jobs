@@ -48,7 +48,7 @@
                   <div class="btn-layer"></div>
                   <input type="submit" value="Sign Up">
                 </div>
-                <div class="signup-link">Already have an account? <a href="{{route('page.login')}}">Login</a></div>
+                <div class="signup-link">Already have an account? <a href="{{route('loginView')}}">Login</a></div>
             </form>
 
             <form action="#" class="signup">
@@ -96,7 +96,7 @@
                   <div class="btn-layer"></div>
                   <input type="submit" value="Sign Up">
                 </div>
-                <div class="signup-link">Already have an account? <a href="{{route('page.login')}}">Login</a></div>
+                <div class="signup-link">Already have an account? <a href="{{route('loginView')}}">Login</a></div>
               </form>
             </div>
           </div>
