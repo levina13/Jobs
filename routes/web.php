@@ -41,13 +41,13 @@ Route::middleware(['guest'])->group(function(){
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
-    
+
+
     // Route untuk verifikasi Email & telepon
     // Melamar pekerjaan
     // Membuat CV
     // Edit Profil
-    
+
     // Route untuk yang sudah verifikasi telepon & email
 
 
@@ -67,7 +67,7 @@ Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
 Route::post('/alert', function () {
-    
+
 });
 
 

@@ -41,9 +41,9 @@
             </div>
             <div class="signup-link">Don't have an account? <a href="{{route('regisView')}}">Sign Up</a></div>
             <span
-            style="display:inline-block; 
-            vertical-align:middle; 
-            margin:10px 0 10px; 
+            style="display:inline-block;
+            vertical-align:middle;
+            margin:10px 0 10px;
             border-bottom:1px solid #cecece; width:330px;"></span>
             <center>
                 <div class="pass-link">Can't remember your password? <a href="{{route('forget.password.get')}}">Forgot Password</a></div>
@@ -56,7 +56,7 @@
 @section('layout_script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      $(document).on('click', '.btn-login', function (e) { 
+      $(document).on('click', '.btn-login', function (e) {
             e.preventDefault();
             $.ajaxSetup({
                 headers: {
@@ -92,7 +92,7 @@
                           window.location="{{route('home')}}";
                         });
                       }
-                    } 
+                    }
                     else if(data.status=='failed'){
                       Swal.fire({
                         title: 'Failed to login!',
