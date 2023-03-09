@@ -13,19 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('perusahaans', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
-            // Alamat lengkap Perusahaan
-            $table->string('address');
-            $table->text('description');
-            $table->unsignedBigInteger("id_owner");
-            $table->unsignedBigInteger("id_jenis_perusahaan");
-            // Alamat di maps
+            $table->string('contract', 30);
             $table->timestamps();
-
         });
-        
     }
 
     /**
@@ -35,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perusahaans');
+        Schema::dropIfExists('contracts');
     }
 };

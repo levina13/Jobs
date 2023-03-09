@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('tanggal_awal');
             $table->date('tanggal_akhir');
             $table->text('deskripsi');
+            $table->unsignedBigInteger('id_contract');
+            $table->unsignedInteger('salary');
             $table->unsignedBigInteger('id_perusahaan');
             $table->unsignedBigInteger('id_pekerjaan');
             $table->timestamps();

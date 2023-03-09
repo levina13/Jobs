@@ -13,19 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('perusahaans', function (Blueprint $table) {
+        Schema::create('cvs', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
-            // Alamat lengkap Perusahaan
-            $table->string('address');
-            $table->text('description');
-            $table->unsignedBigInteger("id_owner");
-            $table->unsignedBigInteger("id_jenis_perusahaan");
-            // Alamat di maps
+            $table->string('source');
+            $table->string('photo');
             $table->timestamps();
-
         });
-        
     }
 
     /**
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perusahaans');
+        Schema::dropIfExists('cvs');
     }
 };
