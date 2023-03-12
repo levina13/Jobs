@@ -1,12 +1,13 @@
+
 span.section-title{
     width: 100%;
     color: rgba(11,7,54,1);
     position: absolute;
-    top: 100px;
+    top: 165px;
     left: 0px;
     font-family: Poppins;
-    font-weight: bold;
-    font-size: 32px;
+    font-weight: bolder;
+    font-size: 34px;
     opacity: 1;
     text-align: center;
 }
@@ -15,7 +16,7 @@ div.text{
     width: 100%;
     color: rgba(11,7,54,1);
     position: absolute;
-    top: 175px;
+    top: 240px;
     left: 0px;
     font-family: Poppins;
     font-weight: Regular;
@@ -24,45 +25,70 @@ div.text{
     text-align: center;
 }
 
-div.button{
-    width: 188px;
-    height: 76px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 275px;
-    left: 580px;
-    overflow: hidden;
-
-}
-
-div.button-section{
-    width: 187px;
-    height: 76px;
-    background: linear-gradient(rgba(0,51,102,1), rgba(0,64,128,1));
-    opacity: 1;
+div#CV.container
+{
     position: relative;
-    top: 0px;
-    left: 0px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    overflow: hidden;
+    top: 350px;
+    min-height: 100vh;
+}
+
+div#CV.container .image-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
 
 }
 
-span.button-text{
-    width: 187px;
-    color: rgba(255,255,255,1);
+div#CV.container .image-container .image{
+    height: 500px;
+    width: auto;
+    box-shadow: 0 5px 15px rgba(11,7,54,1);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+div#CV.container .image-container .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: .2s linear;
+}
+
+div#CV.container .image-container .image:hover img{
+    transform: scale(1.1);
+}
+
+div#CV.container .popup-image{
+    position: fixed;
+    top: 70px; left: 0;
+    background: rgba(0, 0, 0, .9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+}
+
+div#CV.container .popup-image span{
     position: absolute;
-    top: 24px;
-    left: 1px;
-    font-family: Poppins;
-    font-weight: Medium;
-    font-size: 18px;
-    opacity: 1;
-    text-align: center;
+    top: 0; right: 10px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: #ffff;
+    cursor: pointer;
+    z-index: 100;
+}
+
+div#CV.container .popup-image img{
+    position: absolute;
+    top: 48%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    height: 700px;
+    object-fit: cover;
+}
+
+@media (max-width:768px){
+    div#CV.container .popup-image img{
+        width: 95%;
+    }
 }
