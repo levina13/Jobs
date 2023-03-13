@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function(){
 Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
+Route::view('/cvawal', 'auth.cvawal');
 Route::post('/alert', function () {
 
 });

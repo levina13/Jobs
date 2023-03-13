@@ -29,6 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
+
   <!-- =======================================================
   * Template Name: Ninestars - v4.10.0
   * Template URL: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/
