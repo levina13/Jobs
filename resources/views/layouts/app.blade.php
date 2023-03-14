@@ -53,7 +53,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
           <li><a class="nav-link scrollto" href="#myjobs">My Jobs</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">CV</a></li>
+          <li><a class="nav-link" href="{{route('cvawal')}}">CV</a></li>
           <!--
           <li><a class="nav-link scrollto" href="#team">Login</a></li>
           -->
