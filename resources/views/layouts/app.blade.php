@@ -61,9 +61,19 @@
           @guest
           <li><a class="getstarted scrollto" href="{{route('loginView')}}">Get Started</a></li>
           @else
-          <li>
-            <a class="getstarted scrollto"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >{{ __('Logout') }}</a>
-            <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
+          <li class="dropdown">
+            <button class="getstarted dropdown-toggle btn" type="button" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Hi, {{Auth::user()->name}}</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownButton">
+                <a href=""  class="dropdown-item"><i class="bi bi-person-fill mr-2"></i>Edit Profile</a>
+                @if(Auth::user()->role=='B')
+								<a href=""  class="dropdown-item"><i class="bi bi-building-fill-check mr-2"></i>Company Page</a>
+                @endif
+                <a class="dropdown-item "  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" ><i class="bi bi-box-arrow-right"></i>{{ __('Logout') }}</a>
+                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
+						</ul>
+            
+            
           </li>
           @endguest
         </ul>
@@ -147,16 +157,20 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
+      {{-- Jquery --}}
+        <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
+
       <!-- Vendor JS Files -->
       <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
-  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
-  <!-- Template Main JS File -->
-  <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
-  <script src="{{asset('assets/js/main.js')}}"></script>
+      <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+      <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+      <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+      <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+      <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+      <!-- Template Main JS File -->
+      <script src="{{asset('assets/js/main.js')}}"></script>
+
 
     @yield('layout_script')
 </body>
