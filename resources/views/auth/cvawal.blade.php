@@ -52,7 +52,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
           <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
           <li><a class="nav-link scrollto" href="#myjobs">My Jobs</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">CV</a></li>
