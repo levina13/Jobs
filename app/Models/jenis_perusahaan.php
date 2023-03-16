@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class favorite extends Model
+class jenis_perusahaan extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'id_pelamar','id_loker'
+        'jenis_perusahaan'
     ];
 }

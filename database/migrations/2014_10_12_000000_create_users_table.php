@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('headline', 30);
+            $table->string('headline', 30)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('telepon')->unique();
             $table->timestamp('telepon_verified_at')->nullable();
-            $table->unsignedBigInteger('id_city');
-            $table->unsignedBigInteger('id_education');
-            $table->string('photo');
+            $table->unsignedBigInteger('id_city')->nullable();
+            $table->unsignedBigInteger('id_education')->nullable();
+            $table->string('photo')->nullable();
             // Role=> A untuk pencari loker, B untuk pembuat loker
             $table->char('role', 1);
             // Status tervirifikasi (0=> belum, 1=> telepon, 2=>email, 3=> lengkap)

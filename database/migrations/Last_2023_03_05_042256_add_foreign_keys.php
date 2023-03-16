@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function(Blueprint $table){
             $table->foreign('id_city')->references('id')->on('cities');
-            $table->foreign('id_education')->references('id')->on('educations');
+            $table->foreign('id_education')->references('id')->on('education');
         });
         Schema::table('lokers', function (Blueprint $table) {
             // Foreign Key

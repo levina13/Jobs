@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\city;
+use App\Models\contract;
+use App\Models\education;
+use App\Models\jenis_perusahaan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,37 +20,17 @@ class MainSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        DB::table('jenis_perusahaans')->insert(
-            [
-            'jenis_perusahaan'=>'Accounting'
-            ],
-            [
-                'jenis_perusahaan' => 'Marketing'
-            ],
-            [
-                'jenis_perusahaan' => 'Sales'
-            ],
-            [
-                'jenis_perusahaan' => 'Finance'
-            ],
-            [
-                'jenis_perusahaan' => 'International Business'
-            ],
-            [
-                'jenis_perusahaan' => 'Human Resources'
-            ],
-            [
-                'jenis_perusahaan' => 'Health Services administration'
-            ],
-            [
-                'jenis_perusahaan' => 'Management Information System'
-            ],
-            [
-                'jenis_perusahaan' => 'Technology'
-            ],
-            
-        );
+    {   
+        // Jenis Perusahaan
+        $JenisPerusahaanCsvFile = fopen(base_path("database/data/jenis_perusahaan.csv"), "r");
+
+        while (($data = fgetcsv($JenisPerusahaanCsvFile, 2000, ",")) !== FALSE) {
+                jenis_perusahaan::create([
+                    "jenis_perusahaan" => $data['0']
+                ]);
+        }
+
+        fclose($JenisPerusahaanCsvFile);
         // Provinsi
         $ProvinceCsvFile = fopen(base_path("database/data/provinsi.csv"), "r");
 
@@ -73,7 +56,7 @@ class MainSeeder extends Seeder
                 city::create([
                     "id" => $data['0'],
                     "city" => $data['2'],
-                    "id_province"=>$data[1]
+                    "id_province"=>$data['1']
                 ]);
             }
             $firstline = false;
@@ -82,39 +65,24 @@ class MainSeeder extends Seeder
         fclose($CityCsvFile);
 
         // Education
-        DB::table('educations')->insert(
-            [
-                'education' => 'Elementary School'
-            ],
-            [
-                'education' => 'Junior High School'
-            ],
-            [
-                'education' => 'Senior High School'
-            ],
-            [
-                'education' => 'Bachelor Degree'
-            ],
-            [
-                'education' => 'Master Degree'
-            ],
-            [
-                'education' => 'Other'
-            ],
-        );
+        $EducationCsvFile = fopen(base_path("database/data/education.csv"), "r");
+
+        while (($data = fgetcsv($EducationCsvFile, 2000, ",")) !== FALSE) {
+                education::create([
+                    'education'=>$data['0']
+                ]);
+        }
+        fclose($EducationCsvFile);
 
         // Contract
-        DB::table('contracts')->insert(
-            [
-                'contract'=>'Freelance'
-            ],
-            [
-                'contract' => 'Full Time'
-            ],
-            [
-                'contract' => 'Part Time'
-            ]
-        );
+        $ContractCsvFile = fopen(base_path("database/data/education.csv"), "r");
+
+        while (($data = fgetcsv($ContractCsvFile, 2000, ",")) !== FALSE) {
+            contract::create([
+                "contract" => $data['0'],
+            ]);
+        }
+        fclose($ContractCsvFile);
 
     }
 }

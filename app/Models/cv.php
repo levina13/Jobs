@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class cv extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'source','photo'
+    ];
 }
