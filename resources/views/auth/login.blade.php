@@ -54,7 +54,6 @@
 
 @endsection
 @section('layout_script')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       $(document).on('click', '.btn-login', function (e) {
             e.preventDefault();

@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('perusahaans', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
             // Alamat lengkap Perusahaan
             $table->string('address');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger("id_owner");
             $table->unsignedBigInteger("id_jenis_perusahaan");
             // Alamat di maps

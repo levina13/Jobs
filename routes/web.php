@@ -31,7 +31,8 @@ Route::controller(ForgotPasswordController::class)->group(function () {
 // Route untuk autentikasi
 Route::middleware(['guest'])->group(function(){
     Route::controller(AuthController::class)->group(function () {
-        Route::post('register', 'register')->name('submit.register');
+        Route::post('register-user', 'registerUser')->name('submit.register.user');
+        Route::post('register-company', 'registerCompany')->name('submit.register.company');
         Route::post('login', 'login')->name('submit.login');
         Route::get('login', 'loginView')->name('loginView');
         Route::get('register', 'RegisView')->name('regisView');
