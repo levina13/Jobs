@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Coba
+    Route::view('cv-form', 'cv.form');
+
+
 // Route untuk Halaman Home
 Route::get('/', function () {
     return view('index');
@@ -42,7 +46,7 @@ Route::middleware(['guest'])->group(function(){
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+    // Route::view('cv-form', 'cv.form');
 
     // Route untuk verifikasi Email & telepon
     // Melamar pekerjaan

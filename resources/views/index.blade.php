@@ -347,4 +347,6 @@
     </section><!-- End Contact Us Section -->
 
   </main><!-- End #main -->
+  @include('layouts.footer')  
 @endsection
+
