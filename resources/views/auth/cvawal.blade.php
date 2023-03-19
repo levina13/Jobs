@@ -84,11 +84,11 @@
                 <h4>Curious how this template can help you? Check out the various examples of CVs below that will give you inspiration.</h4>
             </center>
         </div>
-        <a href="javascript:void(0);"
+        <a href="{{route('cvform')}}"
         style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6); width: 188px; height: 76px; border-radius: 15px; overflow: hidden; position: relative; top: 300px;
         transition: all 0.4s ease; font-weight:500; margin-top:35px; color:rgba(255,255,255,1); font-family: Poppins; font-weight: Medium; font-size: 18px; opacity: 1;
         text-align: center;padding: 22px 10px;display:inline-block;border-radius:15px;">
-        Build your CV now</a>
+        Build your CV now </a>
     </div>
 
     <div class="container" id="CV">

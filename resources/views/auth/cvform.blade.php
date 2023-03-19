@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Jobs - Index</title>
+  <title>Jobs - CV</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,7 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link href="{{asset('assets/css/cvform)}}" rel="stylesheet">
+  <link href="assets/css/cvform.css" rel="stylesheet">
 
   <script src="assets/js/cvform.js"></script>
 
@@ -54,10 +54,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
-          <li><a class="nav-link scrollto" href="#myjobs">My Jobs</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">CV</a></li>
+            <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
+            <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
+            <li><a class="nav-link scrollto" href="#myjobs">My Jobs</a></li>
+            <li><a class="nav-link scrollto" href="#portfolio">CV</a></li>
           <!--
           <li><a class="nav-link scrollto" href="#team">Login</a></li>
           -->
