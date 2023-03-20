@@ -47,7 +47,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <a href="index.html"><img src="{{asset('assets/img/logojobs.png')}}" alt="Image" class="img-fluid" style="width: auto;height:50px;"></a>
+        <a href="{{route('home')}}"><img src="{{asset('assets/img/logojobs.png')}}" alt="Image" class="img-fluid" style="width: auto;height:50px;"></a>
       </div>
 
       <nav id="navbar" class="navbar">
