@@ -57,6 +57,12 @@ Route::middleware(['auth'])->group(function(){
 
 
     // Pembuat Loker
+    Route::middleware(['company'])->group(function(){
+        Route::prefix('company')->group(function () {
+            Route::view('dashboard', 'admin.dashboard')->name('page.admin.dashboard');
+        });
+    });
+
         // CRUD loker
         // Menerima/menolak pelamar
         // Edit profil perusahaan

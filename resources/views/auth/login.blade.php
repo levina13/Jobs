@@ -80,7 +80,7 @@
                             icon: 'success',
                             showConfirmButton: true,
                         }).then(function(){
-                          window.location="{{route('home')}}";
+                          window.location="{{route('page.admin.dashboard')}}";
                         });
                       }else if(data.role=='applicant'){
                         Swal.fire({
