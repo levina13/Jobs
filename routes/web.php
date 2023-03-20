@@ -59,7 +59,12 @@ Route::middleware(['auth'])->group(function(){
     // Pembuat Loker
     Route::middleware(['company'])->group(function(){
         Route::prefix('company')->group(function () {
-            Route::view('dashboard', 'admin.dashboard')->name('page.admin.dashboard');
+            Route::view('dashboard', 'company.dashboard')->name('view.company.dashboard');
+            Route::view('job-vacancies', 'company.jobVacancies')->name('view.company.jobVacancies');
+            Route::view('applicant', 'company.applicant')->name('view.company.applicant');
+            Route::view('accepted', 'company.accepted')->name('view.company.accepted');
+            Route::view('rejected', 'company.rejected')->name('view.company.rejected');
+
         });
     });
 
