@@ -29,7 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-  <link href="{{asset('css/cvform.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/css/cvform.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Ninestars - v4.10.0
@@ -73,8 +73,8 @@
                 <a class="dropdown-item "  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" ><i class="bi bi-box-arrow-right"></i>{{ __('Logout') }}</a>
                 <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
 						</ul>
-            
-            
+
+
           </li>
           @endguest
         </ul>
