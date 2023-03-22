@@ -18,10 +18,10 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th> company logo </th>
+                <th> Company logo </th>
                 <th> Position </th>
-                <th> Company name </th>
-                <th> Company address </th>
+                <th> Time Start </th>
+                <th> Time End </th>
                 <th>  </th>
               </tr>
             </thead>
@@ -31,8 +31,8 @@
                     <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
                   </td>
                   <td> Sales Marketing </td>
-                  <td> Alibaba </td>
-                  <td> malang </td>
+                  <td> 22/3/2023 </td>
+                  <td> 17/6/2023 </td>
                   <td>
                     <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
                     <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>
@@ -44,8 +44,8 @@
                       <img src="../../assets/images/faces-clipart/pic-2.png" alt="image" />
                     </td>
                     <td> Admin </td>
-                    <td> Alibaba </td>
-                    <td> Malang </td>
+                    <td> 22/3/2023 </td>
+                    <td> 17/6/2023 </td>
                     <td>
                         <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
                       <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>
@@ -57,8 +57,8 @@
                       <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
                     </td>
                     <td> Staf </td>
-                    <td> Alibaba </td>
-                    <td> malang </td>
+                    <td> 22/3/2023 </td>
+                    <td> 17/6/2023 </td>
                     <td>
                       <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
                       <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>
@@ -70,8 +70,8 @@
                       <img src="../../assets/images/faces-clipart/pic-2.png" alt="image" />
                     </td>
                     <td> Manager </td>
-                    <td> Alibaba </td>
-                    <td> Malang </td>
+                    <td> 22/3/2023 </td>
+                    <td> 17/6/2023 </td>
                     <td>
                         <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
                       <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>

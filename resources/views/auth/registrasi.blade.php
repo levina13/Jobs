@@ -58,7 +58,7 @@
             </form>
 
             <form action="#" class="signup">
-                
+
                 <div class="field mb-4 form-group">
                   <input type="text" placeholder="Company Name" id="company_name" required>
                   <span class="d-none text text-danger" errorFor="company_name"><br></span>
@@ -80,14 +80,15 @@
                   <span class="d-none text text-danger" errorFor="company_address"><br></span>
                 </div>
                 <div class="field mb-4 pt-1 form-group">
-                  <select name="company_sector" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected >Select Company Sector</option>
-                      @foreach ($jenis_perusahaan as $item)
-                        <option value="{{$item->id}}">{{$item->jenis_perusahaan}}</option>
-                      @endforeach
-                    </select>                
-                    <span class="d-none text text-danger" errorFor="company_id_jenis_perusahaan"><br></span>
-                </div>
+                    <select name="company_sector" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option selected >Select Company Sector</option>
+                        @foreach ($jenis_perusahaan as $item)
+                          <option value="{{$item->id}}">{{$item->jenis_perusahaan}}</option>
+                        @endforeach
+                      </select>
+                      <span class="d-none text text-danger" errorFor="company_id_jenis_perusahaan"><br></span>
+                  </div>
+
                 <div class="field btn">
                   <div class="btn-layer"></div>
                   <input type="submit" class="btn-regis-company" value="Sign Up">
