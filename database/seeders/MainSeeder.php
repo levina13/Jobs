@@ -75,7 +75,7 @@ class MainSeeder extends Seeder
         fclose($EducationCsvFile);
 
         // Contract
-        $ContractCsvFile = fopen(base_path("database/data/education.csv"), "r");
+        $ContractCsvFile = fopen(base_path("database/data/contract.csv"), "r");
 
         while (($data = fgetcsv($ContractCsvFile, 2000, ",")) !== FALSE) {
             contract::create([

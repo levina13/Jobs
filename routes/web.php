@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\applicant\JobsController;
+use App\Http\Controllers\applicant\UsersController;
 use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +20,18 @@ use Illuminate\Support\Facades\Route;
     Route::view('cv-form', 'cv.form');
 
 
+// Route Global
+
 // Route untuk Halaman Home
 Route::get('/', function () {
     return view('index');
 })->name('home');
+// Find JObs
+Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
+Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
+// Profil User
+Route::get('profil/{id}',[UsersController::class,'showProfile'])->name('show.profile');
+
 
 // Route untuk halaman Forget Password
 Route::controller(ForgotPasswordController::class)->group(function () {
@@ -43,6 +53,7 @@ Route::middleware(['guest'])->group(function(){
     });
 });
 
+
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -61,6 +72,7 @@ Route::middleware(['auth'])->group(function(){
         Route::prefix('company')->group(function () {
             Route::view('dashboard', 'company.dashboard')->name('view.company.dashboard');
             Route::view('job-vacancies', 'company.jobVacancies')->name('view.company.jobVacancies');
+            Route::view('job-vacancies/create','company.addjobvacancies')->name('view.company.jobVacancies.create');
             Route::view('applicant', 'company.applicant')->name('view.company.applicant');
             Route::view('accepted', 'company.accepted')->name('view.company.accepted');
             Route::view('rejected', 'company.rejected')->name('view.company.rejected');
