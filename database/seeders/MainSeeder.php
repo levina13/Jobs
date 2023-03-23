@@ -84,5 +84,14 @@ class MainSeeder extends Seeder
         }
         fclose($ContractCsvFile);
 
+        // Pekerjaan
+        $PekerjaanCsvFile = fopen(base_path("database/data/pekerjaan.csv"),'r');
+        while (($data = fgetcsv($PekerjaanCsvFile, 2000, ",")) !== FALSE) {
+            contract::create([
+                "contract" => $data['0'],
+            ]);
+        }
+        fclose($PekerjaanCsvFile);
+
     }
 }
