@@ -68,7 +68,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownButton">
                 <a href=""  class="dropdown-item"><i class="bi bi-person-fill mr-2"></i>Edit Profile</a>
                 @if(Auth::user()->role=='B')
-								<a href=""  class="dropdown-item"><i class="bi bi-building-fill-check mr-2"></i>Company Page</a>
+								<a href="{{route('view.company.dashboard')}}"  class="dropdown-item"><i class="bi bi-building-fill-check mr-2"></i>Company Page</a>
                 @endif
                 <a class="dropdown-item "  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" ><i class="bi bi-box-arrow-right"></i>{{ __('Logout') }}</a>
                 <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\company;
 
 use App\Http\Controllers\Controller;
+use App\Models\education;
 use App\Models\loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JobVacancies extends Controller
 {
@@ -18,6 +20,23 @@ class JobVacancies extends Controller
             ->get();
         // return $data;
         return view('company.jobVacancies',['jobVacancies'=>$data]);
+    }
+
+    public function viewCreate()
+    {
+        $education = education::select('*')->get();
+        return view('company.addjobvacancies',['education'=>$education]);
+    }
+
+    public function getPositionData(Request $request)
+    {
+        $data = [];
+            $search = $request->q;
+            $data = DB::table("pekerjaans")
+            ->select("id", "pekerjaan")
+            ->where('pekerjaan', 'LIKE', "%$search%")
+            ->get();
+        return response()->json($data);
     }
     public function storeJobVacancy(Request $request)
     {

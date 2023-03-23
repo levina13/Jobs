@@ -74,11 +74,12 @@ Route::middleware(['auth'])->group(function(){
         Route::prefix('company')->group(function () {
             Route::get('', [dashboard::class,'getDashboard'])->name('view.company.dashboard');
             Route::get('job-vacancies', [JobVacancies::class,'index'])->name('view.company.jobVacancies');
-            Route::view('job-vacancies/create','company.addjobvacancies')->name('view.company.jobVacancies.create');
+            Route::get('job-vacancies/create',[JobVacancies::class, 'viewCreate'])->name('view.company.jobVacancies.create');
+            Route::get('job-vacancies/create-position',[JobVacancies::class,'getPositionData'])->name('select-position.JobVacancies');
+            Route::get('job-vacancies/create-education', [JobVacancies::class, 'getEducationData'])->name('select-education.JobVacancies');
             Route::view('applicant', 'company.applicant')->name('view.company.applicant');
             Route::view('accepted', 'company.accepted')->name('view.company.accepted');
             Route::view('rejected', 'company.rejected')->name('view.company.rejected');
-
         });
     });
 
