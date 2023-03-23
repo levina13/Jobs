@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/img/jobsicon.png')}}"/>
+    <!-- Select2 -->
+    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
   </head>
   <body>
     <div class="container-scroller">
@@ -146,6 +148,12 @@
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
     <script src="{{asset('admin/assets/js/todolist.js')}}"></script>
     <!-- End custom js for this page -->
+
+    <!-- Select2 -->
+    <script src="{{asset('js/select2.min.js')}}"></script>
+
+    <!-- CKEditor -->
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 
     @yield('layout_script')
 
