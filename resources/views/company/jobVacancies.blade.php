@@ -7,7 +7,9 @@
 <div class="main-panel">
     <div class="content-wrapper">
         <div>
-            <button type="button" class="btn btn-gradient-info btn-lg btn-block">Add jobs vacancies</button>
+            <a href="{{route('view.company.jobVacancies.create')}}">
+                <button type="button" class="btn btn-gradient-info btn-lg btn-block">Add jobs vacancies</button>
+            </a>
         </div>
         <br>
         <br>
@@ -79,6 +81,9 @@
             </tbody>
         </table>
     </div>
+
+
+
           <!-- content-wrapper ends -->
 
 @endsection
