@@ -26,35 +26,35 @@
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw">Accept</button></td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-md">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-md">Accept</button></td>
                       </tr>
                     <tr>
                         <td>photo</td>
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw">Accept</button></td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-md">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-md">Accept</button></td>
                       </tr>
                     <tr>
                         <td>photo</td>
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw">Accept</button></td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-md">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-md">Accept</button></td>
                       </tr>
                     <tr>
                       <td>photo</td>
                       <td>Peter</td>
                       <td>Engineer</td>
                       <td> --- </td>
-                      <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw">Accept</button></td>
+                      <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-md">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-md">Accept</button></td>
                     </tr>
                     <tr>
                         <td>photo</td>
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw">Accept</button></td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-md">Reject</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-md">Accept</button></td>
                       </tr>
                   </tbody>
                 </table>

@@ -27,35 +27,35 @@
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><label class="badge badge-success">Accepted</label></td>
+                        <td><label class="badge badge-info">Accepted</label></td>
                       </tr>
                     <tr>
                         <td>photo</td>
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><label class="badge badge-success">Accepted</label></td>
+                        <td><label class="badge badge-info">Accepted</label></td>
                       </tr>
                     <tr>
                         <td>photo</td>
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><label class="badge badge-success">Accepted</label></td>
+                        <td><label class="badge badge-info">Accepted</label></td>
                       </tr>
                     <tr>
                       <td>photo</td>
                       <td>Peter</td>
                       <td>Engineer</td>
                       <td> --- </td>
-                      <td><label class="badge badge-success">Accepted</label></td>
+                      <td><label class="badge badge-info">Accepted</label></td>
                     </tr>
                     <tr>
                         <td>photo</td>
                         <td>Peter</td>
                         <td>Engineer</td>
                         <td> --- </td>
-                        <td><label class="badge badge-success">Accepted</label></td>
+                        <td><label class="badge badge-info">Accepted</label></td>
                       </tr>
                   </tbody>
                 </table>
