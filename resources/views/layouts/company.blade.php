@@ -16,7 +16,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{asset('assets/img/jobsicon.png')}}"/>
   </head>
   <body>
     <div class="container-scroller">
@@ -44,7 +44,7 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="mdi mdi-logout me-2 text-primary"></i> Logout 
+                    <i class="mdi mdi-logout me-2 text-primary"></i> Logout
                 </a>
                 <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
               </div>
