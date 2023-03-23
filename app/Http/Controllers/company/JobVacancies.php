@@ -11,14 +11,16 @@ class JobVacancies extends Controller
 {
     public function index()
     {
-        $data = loker::select('*')
+        $data = loker::select('lokers.*', 'pekerjaans.pekerjaan')
             ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
+            ->join('pekerjaans', 'pekerjaans.id','=','lokers.id_pekerjaan')
             ->where('perusahaans.id_owner', '=', Auth::user()->id)
             ->get();
-        return view('company.jobVacancies',['jobVacancies',$data]);
+        // return $data;
+        return view('company.jobVacancies',['jobVacancies'=>$data]);
     }
     public function storeJobVacancy(Request $request)
     {
-        
+
     }
 }
