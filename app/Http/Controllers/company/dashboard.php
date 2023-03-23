@@ -14,25 +14,24 @@ class dashboard extends Controller
     public function getDashboard()
     {
 
-        $jobVacancies= loker::count()
+        $jobVacancies= loker::select('*')
                         ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
-                        ->where('perusahaans.id_owner','=',Auth::user()->id);
-        $applicants= lamaran::count()
+                        ->where('perusahaans.id_owner','=',Auth::user()->id)->count();
+        $applicants= lamaran::select('*')
                         ->join('lokers','lokers.id','=','lamarans.id_loker')
                         ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
-                        ->where('perusahaans.id_owner','=',Auth::user()->id);
-        $accepted = lamaran::count()
+                        ->where('perusahaans.id_owner','=',Auth::user()->id)->count();
+        $accepted = lamaran::select('*')
             ->join('lokers', 'lokers.id', '=', 'lamarans.id_loker')
             ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
             ->where('perusahaans.id_owner', '=', Auth::user()->id)
-            ->andwhere('lamarans.status','=','1');
+            ->where('lamarans.status','=','1')->count();
 
-        $rejected = lamaran::count()
+        $rejected = lamaran::select('*')
             ->join('lokers', 'lokers.id', '=', 'lamarans.id_loker')
             ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
             ->where('perusahaans.id_owner', '=', Auth::user()->id)
-            ->andwhere('lamarans.status', '=', '2');
-
+            ->where('lamarans.status', '=', '2')->count();
         return view('company.dashboard',['jobVacancies'=>$jobVacancies,
                                         'applicants'=>$applicants,
                                         'accepted'=>$accepted,

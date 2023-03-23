@@ -18,7 +18,7 @@
                 <div class="card bg-gradient-warning card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{asset('admin/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">15 <i class="mdi mdi-calendar-check mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">{{$jobVacancies}}<i class="mdi mdi-calendar-check mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Job Vacancies</h2>
                     <h6 class="card-text">Has Successfully Uploaded</h6>
@@ -29,7 +29,7 @@
                 <div class="card bg-gradient-success card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{asset('admin/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">20 <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">{{$applicants}}<i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Applicants</h2>
                     <h6 class="card-text">Have Submitted a Job Application</h6>
@@ -41,7 +41,7 @@
                 <div class="card bg-gradient-info card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{asset('admin/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">2 people <i class="mdi mdi-checkbox-multiple-marked mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">{{$accepted}} people <i class="mdi mdi-checkbox-multiple-marked mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Accepted</h2>
                     <h6 class="card-text">To Work With Us</h6>
@@ -52,7 +52,7 @@
                 <div class="card bg-gradient-danger card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{asset('admin/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">5 people <i class="mdi mdi-close-box mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">{{$rejected}} people <i class="mdi mdi-close-box mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Rejected</h2>
                     <h6 class="card-text">In This Job Vacancy</h6>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\applicant\JobsController;
 use App\Http\Controllers\applicant\UsersController;
+use App\Http\Controllers\company\dashboard;
 use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,7 +71,7 @@ Route::middleware(['auth'])->group(function(){
     // Pembuat Loker
     Route::middleware(['company'])->group(function(){
         Route::prefix('company')->group(function () {
-            Route::view('dashboard', 'company.dashboard')->name('view.company.dashboard');
+            Route::get('dashboard', [dashboard::class,'getDashboard'])->name('view.company.dashboard');
             Route::view('job-vacancies', 'company.jobVacancies')->name('view.company.jobVacancies');
             Route::view('job-vacancies/create','company.addjobvacancies')->name('view.company.jobVacancies.create');
             Route::view('applicant', 'company.applicant')->name('view.company.applicant');
