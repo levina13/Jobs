@@ -163,4 +163,15 @@ class JobVacancies extends Controller
             'error' => "The Job Vacancy is not found!!"
         ]);
     }
+
+    public function detailJobVacancies($id)
+    {
+        return view('company.showjobvacancies');
+        $data = loker::select('lokers.*', 'pekerjaans.pekerjaan')
+        ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
+        ->join('pekerjaans', 'pekerjaans.id', '=', 'lokers.id_pekerjaan')
+        ->where('lokers.id', '=', $id)
+        ->first();
+        return view('company.showjobvacancies',['jobVacancy'=>$data]);
+    }
 }

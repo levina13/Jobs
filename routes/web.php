@@ -82,7 +82,8 @@ Route::middleware(['auth'])->group(function(){
             Route::get('job-vacancies/edit/{id}',[JobVacancies::class,'viewEdit'])->name('view.company.jobVacancies.edit');
             Route::post('job-vacancies/edit/',[JobVacancies::class,'updateJobVacancy'])->name('post.company.jobVacancies.edit');
             Route::post('job-vacancies/delete/{id}',[JobVacancies::class,'deleteJobVacancy'])->name('delete.company.jobVacancies');
-            
+            Route::get('job-vacancies/{id}', [JobVacancies::class,'detailJobVacancies'])->name('detail.company.jobVacancies');
+
             
             Route::view('applicant', 'company.applicant')->name('view.company.applicant');
             Route::view('accepted', 'company.accepted')->name('view.company.accepted');
