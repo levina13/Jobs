@@ -34,8 +34,10 @@
                         <td> {{$item->tanggal_akhir}} </td>
                         <td>
                             <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
-                            <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>
-                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-sm">Delete</button>
+                            <a href="{{route('view.company.jobVacancies.edit',['id'=>$item->id])}}">
+                                <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>
+                            </a>
+                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-sm btn-delete" data-id="{{$item->id}}">Delete</button>
                         </td>
                     </tr>
                 @endforeach
@@ -47,4 +49,62 @@
 
           <!-- content-wrapper ends -->
 
+@endsection
+
+@section('layout_script')
+    <script>
+      $(document).on('click', '.btn-delete', function (e) {
+        var id = $(this).data('id');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure delete the Job Vacancy ?',
+                text: 'The deleted data cannot be stored.',
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/company/job-vacancies/delete/"+id,
+                        type: 'POST',
+                        method:"POST",
+                        data: {submit: true},
+
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                Swal.fire({
+                                    title: 'Successfully Delete a Job Vacancy!!',
+                                    text:data.message,
+                                    icon: 'success',
+                                    showConfirmButton: true,
+                                }).then(function(){
+                                    window.location="{{route('view.company.jobVacancies')}}";
+                                });
+                            }
+                            else if(data.status=='failed'){
+                                Swal.fire({
+                                    title: 'Failed to Edit a Job Vacany!',
+                                    icon: 'error',
+                                    showConfirmButton: true,
+                                });
+                            }
+                        },
+                        error: function(){
+                            Swal.fire({
+                                title: 'Failed to Delete a Job Vacancy!',
+                                icon: 'error',
+                                showConfirmButton: true,
+                            });
+                        }
+                    });
+                }
+            });
+      });
+
+    </script>
 @endsection

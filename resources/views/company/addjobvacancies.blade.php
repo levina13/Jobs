@@ -44,21 +44,6 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Education</label>
-                          <div class="col-sm-9">
-                            <select name="education" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                              <option selected >Select Education Requirement</option>
-                                @foreach ($education as $item)
-                                  <option value="{{$item->id}}">{{$item->education}}</option>
-                                @endforeach
-                            </select>
-                          <span class="d-none text text-danger" errorFor="education"><br></span>
-                          </div>
-                        </div>
-                      </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Contract</label>
                           <div class="col-sm-9">
                             <select name="contract" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -71,23 +56,19 @@
                           </div>
                         </div>
                       </div>
-
-                  </div>
-
-                  <div class="row">
-
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Salary</label>
-                        <div class="col-sm-9">
-                          <input type="number" class="form-control" name="salary" id="salary"/>
-                          <span class="d-none text text-danger" errorFor="salary"><br></span>
+                      
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Salary</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" name="salary" id="salary"/>
+                            <span class="d-none text text-danger" errorFor="salary"><br></span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
 
-                  </div>
+                  </div>    
 
 
 
@@ -177,7 +158,6 @@ $('.position').select2({
       $(document).on('click', '.btn-submit', function (e) {
             $(`[errorFor=job_name]`).html('');
             $(`[errorFor=position]`).html('');
-            $(`[errorFor=education]`).html('');
             $(`[errorFor=contract]`).html('');
             $(`[errorFor=date_start]`).html('');
             $(`[errorFor=date_end]`).html('');
@@ -198,7 +178,6 @@ $('.position').select2({
                   submit: true,
                   "job_name": $('#job_name').val(),
                   "position": $('select[name=position] option').filter(':selected').val(),
-                  "education":$('select[name=education] option').filter(':selected').val(),
                   "contract":$('select[name=contract] option').filter(':selected').val(),
                   "salary":$("#salary").val(),
                   "date_start":$("#date_start").val(),

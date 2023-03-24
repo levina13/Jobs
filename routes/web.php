@@ -73,11 +73,17 @@ Route::middleware(['auth'])->group(function(){
     Route::middleware(['company'])->group(function(){
         Route::prefix('company')->group(function () {
             Route::get('', [dashboard::class,'getDashboard'])->name('view.company.dashboard');
+            // CRUD Job Vacancies
             Route::get('job-vacancies', [JobVacancies::class,'index'])->name('view.company.jobVacancies');
             Route::get('job-vacancies/create',[JobVacancies::class, 'viewCreate'])->name('view.company.jobVacancies.create');
             Route::post('job-vacancies/create', [JobVacancies::class, 'storeJobVacancy'])->name('post.company.jobVacancies.create');
             Route::get('job-vacancies/create-position',[JobVacancies::class,'getPositionData'])->name('select-position.JobVacancies');
             Route::get('job-vacancies/create-education', [JobVacancies::class, 'getEducationData'])->name('select-education.JobVacancies');
+            Route::get('job-vacancies/edit/{id}',[JobVacancies::class,'viewEdit'])->name('view.company.jobVacancies.edit');
+            Route::post('job-vacancies/edit/',[JobVacancies::class,'updateJobVacancy'])->name('post.company.jobVacancies.edit');
+            Route::post('job-vacancies/delete/{id}',[JobVacancies::class,'deleteJobVacancy'])->name('delete.company.jobVacancies');
+            
+            
             Route::view('applicant', 'company.applicant')->name('view.company.applicant');
             Route::view('accepted', 'company.accepted')->name('view.company.accepted');
             Route::view('rejected', 'company.rejected')->name('view.company.rejected');
