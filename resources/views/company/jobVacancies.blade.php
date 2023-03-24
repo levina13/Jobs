@@ -33,7 +33,9 @@
                         <td> {{$item->tanggal_awal}} </td>
                         <td> {{$item->tanggal_akhir}} </td>
                         <td>
-                            <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
+                            <a href="{{route('detail.company.jobVacancies',['id'=>$item->id])}}">
+                                <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm">Show</button>
+                            </a>
                             <a href="{{route('view.company.jobVacancies.edit',['id'=>$item->id])}}">
                                 <button type="button" class="btn btn-gradient-info btn-rounded btn-sm">Edit</button>
                             </a>
