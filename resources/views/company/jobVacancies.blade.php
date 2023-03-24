@@ -28,7 +28,7 @@
             <tbody>
                 @foreach ($jobVacancies as $key=>$item)
                     <tr>
-                        <td>{{$item->judul-loker}}</td>
+                        <td>{{$item->judul_loker}}</td>
                         <td>{{$item->pekerjaan}}</td>
                         <td> {{$item->tanggal_awal}} </td>
                         <td> {{$item->tanggal_akhir}} </td>

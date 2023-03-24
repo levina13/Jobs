@@ -19,6 +19,7 @@
     <link rel="shortcut icon" href="{{asset('assets/img/jobsicon.png')}}"/>
     <!-- Select2 -->
     <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
     <div class="container-scroller">
@@ -153,7 +154,10 @@
     <script src="{{asset('js/select2.min.js')}}"></script>
 
     <!-- CKEditor -->
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
+    <!-- Sweet Alert -->
+      <script  src="{{ asset('js/sweetalert2@11.js') }}"></script>
 
     @yield('layout_script')
 
