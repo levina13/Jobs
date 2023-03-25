@@ -21,6 +21,21 @@ use Illuminate\Support\Facades\Route;
 // Coba
     Route::view('cv-form', 'cv.form');
 
+//Route applicant
+    Route::view('applyform', 'applicant.applyform')->name('applyform');
+    Route::view('detailjobs', 'applicant.detailjobs')->name('detailjobs');
+    Route::view('companyprofile', 'applicant.companyprofile')->name('companyprofile');
+    Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
+    Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
+    Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
+    Route::view('profileapplicant', 'applicant.profileapplicant')->name('profileapplicant');
+    Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
+
+//Route coba company
+    Route::view('profilecompany', 'company.profilecompany')->name('profilecompany');
+    Route::view('editprofilecompany', 'company.editprofilecompany')->name('editprofilecompany');
+
+
 
 // Route Global
 
@@ -84,10 +99,11 @@ Route::middleware(['auth'])->group(function(){
             Route::post('job-vacancies/delete/{id}',[JobVacancies::class,'deleteJobVacancy'])->name('delete.company.jobVacancies');
             Route::get('job-vacancies/{id}', [JobVacancies::class,'detailJobVacancies'])->name('detail.company.jobVacancies');
 
-            
+
             Route::view('applicant', 'company.applicant')->name('view.company.applicant');
             Route::view('accepted', 'company.accepted')->name('view.company.accepted');
             Route::view('rejected', 'company.rejected')->name('view.company.rejected');
+
         });
     });
 
