@@ -21,7 +21,15 @@ class MainSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+        // Delete dulu
+        jenis_perusahaan::truncate();        
+        province::truncate();
+        city::truncate();
+        education::truncate();
+        contract::truncate();
+        pekerjaan::truncate();
+        
         // Jenis Perusahaan
         $JenisPerusahaanCsvFile = fopen(base_path("database/data/jenis_perusahaan.csv"), "r");
 
