@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\applicant\JobsController;
 use App\Http\Controllers\applicant\UsersController;
+use App\Http\Controllers\company\Applicant;
 use App\Http\Controllers\company\dashboard;
 use App\Http\Controllers\company\JobVacancies;
 use App\Http\Controllers\ForgotPasswordController;
@@ -99,11 +100,12 @@ Route::middleware(['auth'])->group(function(){
             Route::post('job-vacancies/delete/{id}',[JobVacancies::class,'deleteJobVacancy'])->name('delete.company.jobVacancies');
             Route::get('job-vacancies/{id}', [JobVacancies::class,'detailJobVacancies'])->name('detail.company.jobVacancies');
 
-
-            Route::view('applicant', 'company.applicant')->name('view.company.applicant');
-            Route::view('accepted', 'company.accepted')->name('view.company.accepted');
-            Route::view('rejected', 'company.rejected')->name('view.company.rejected');
-
+            // CRUD Applicant
+            Route::get('applicant', [Applicant::class,'showApplicant'])->name('view.company.applicant');
+            Route::post('applicant/accept/{id}',[Applicant::class,'acceptApplicant'])->name('accept.company.applicant');
+            Route::post('applicant/reject/{id}', [Applicant::class, 'rejectApplicant'])->name('reject.company.applicant');
+            Route::get('accepted', [Applicant::class,'showAccepted'])->name('view.company.accepted');
+            Route::get('rejected', [Applicant::class,'showRejected'])->name('view.company.rejected');
         });
     });
 

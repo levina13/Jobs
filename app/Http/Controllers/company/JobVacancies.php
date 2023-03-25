@@ -166,12 +166,14 @@ class JobVacancies extends Controller
 
     public function detailJobVacancies($id)
     {
-        return view('company.showjobvacancies');
-        $data = loker::select('lokers.*', 'pekerjaans.pekerjaan')
+        $data = loker::select('lokers.*', 'pekerjaans.pekerjaan', 'users.name as company_name', 'contracts.contract')
         ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
         ->join('pekerjaans', 'pekerjaans.id', '=', 'lokers.id_pekerjaan')
+        ->join('users','users.id','=','perusahaans.id_owner')
+        ->join('contracts','contracts.id','=','lokers.id_contract')
         ->where('lokers.id', '=', $id)
         ->first();
-        return view('company.showjobvacancies',['jobVacancy'=>$data]);
+        return view('company.showjobvacancies', ['jobVacancy' => $data]);
+        // return view('company.showjobvacancies',['jobVacancy'=>$data]);
     }
 }

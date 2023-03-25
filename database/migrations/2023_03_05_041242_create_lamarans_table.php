@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             // Status 0 jika belum diputuskan, 1 jika diterima, 2 jika ditolak
             $table->char('status', 1);
+            $table->string('cv',2083);
             $table->unsignedBigInteger('id_pelamar');
             $table->unsignedBigInteger('id_loker');
             $table->timestamps();

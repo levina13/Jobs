@@ -6,6 +6,7 @@ use App\Models\city;
 use App\Models\contract;
 use App\Models\education;
 use App\Models\jenis_perusahaan;
+use App\Models\pekerjaan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class MainSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+        
         // Jenis Perusahaan
         $JenisPerusahaanCsvFile = fopen(base_path("database/data/jenis_perusahaan.csv"), "r");
 
@@ -87,8 +89,8 @@ class MainSeeder extends Seeder
         // Pekerjaan
         $PekerjaanCsvFile = fopen(base_path("database/data/pekerjaan.csv"),'r');
         while (($data = fgetcsv($PekerjaanCsvFile, 2000, ",")) !== FALSE) {
-            contract::create([
-                "contract" => $data['0'],
+            pekerjaan::create([
+                "pekerjaan" => $data['0'],
             ]);
         }
         fclose($PekerjaanCsvFile);

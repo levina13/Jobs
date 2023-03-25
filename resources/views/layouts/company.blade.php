@@ -96,7 +96,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('view.company.applicant')}}">
-                <span class="menu-title">Applicant</span>
+                <span class="menu-title">New Applicant</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
