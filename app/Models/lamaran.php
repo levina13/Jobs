@@ -9,6 +9,6 @@ class lamaran extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'status','id_pelamar','id_loker'
+        'status','id_pelamar','id_loker','cv'
     ];
 }

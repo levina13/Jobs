@@ -13,6 +13,7 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
+                      <th>No</th>
                       <th>Profile Photos</th>
                       <th>Applicant's Name</th>
                       <th>Position</th>
@@ -21,41 +22,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>photo</td>
-                      <td>Jacob</td>
-                      <td>Engineer</td>
-                      <td> --- </td>
-                      <td><label class="badge badge-danger">Rejected</label></td>
-                    </tr>
-                    <tr>
-                        <td>photo</td>
-                        <td>Jacob</td>
-                        <td>Engineer</td>
-                        <td> --- </td>
-                        <td><label class="badge badge-danger">Rejected</label></td>
-                      </tr>
+                    @foreach($applicant as $key=>$item)
                       <tr>
-                        <td>photo</td>
-                        <td>Jacob</td>
-                        <td>Engineer</td>
-                        <td> --- </td>
-                        <td><label class="badge badge-danger">Rejected</label></td>
+                        <td>{{$key+1}}</td>
+                        <td>
+                          <img class="img" src="{{ asset('uploads/profil_image/'.$item->photo) }}" alt="image here..">    
+                        </td>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->pekerjaan}}</td>
+                        <td> 
+                          <a href="{{$item->cv}}" target="_blank">
+                            Link CV
+                          </a>  
+                        </td>
+                        <td>
+                        <td>
+                          <label class="badge badge-danger">Rejected</label></td>
+                          
+                        </td>
                       </tr>
-                      <tr>
-                        <td>photo</td>
-                        <td>Jacob</td>
-                        <td>Engineer</td>
-                        <td> --- </td>
-                        <td><label class="badge badge-danger">Rejected</label></td>
-                      </tr>
-                      <tr>
-                        <td>photo</td>
-                        <td>Jacob</td>
-                        <td>Engineer</td>
-                        <td> --- </td>
-                        <td><label class="badge badge-danger">Rejected</label></td>
-                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
