@@ -89,7 +89,6 @@ Route::middleware(['auth'])->group(function(){
             Route::get('applicant', [Applicant::class,'showApplicant'])->name('view.company.applicant');
             Route::post('applicant/accept/{id}',[Applicant::class,'acceptApplicant'])->name('accept.company.applicant');
             Route::post('applicant/reject/{id}', [Applicant::class, 'rejectApplicant'])->name('reject.company.applicant');
-
             Route::get('accepted', [Applicant::class,'showAccepted'])->name('view.company.accepted');
             Route::get('rejected', [Applicant::class,'showRejected'])->name('view.company.rejected');
         });
