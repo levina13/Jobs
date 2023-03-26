@@ -25,12 +25,6 @@ use Illuminate\Support\Facades\Route;
     Route::view('cv-form', 'cv.form');
 
 //Route coba company
-    Route::view('profilecompany', 'company.profilecompany')->name('profilecompany');
-    Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
-    Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
-    Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region.company');
-    Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City.company');
-    Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector.company');
 
 
 // Route Global
@@ -78,7 +72,6 @@ Route::middleware(['guest'])->group(function(){
     });
 });
 
-
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -94,8 +87,8 @@ Route::middleware(['auth'])->group(function(){
 
     // Pembuat Loker
     Route::middleware(['company'])->group(function(){
-        Route::prefix('company')->group(function () {
-            Route::get('', [dashboard::class,'getDashboard'])->name('view.company.dashboard');
+        // Route::prefix('company')->group(function () {
+            Route::get('dashboard', [dashboard::class,'getDashboard'])->name('view.company.dashboard');
             // CRUD Job Vacancies
             Route::get('job-vacancies', [JobVacancies::class,'index'])->name('view.company.jobVacancies');
             Route::get('job-vacancies/create',[JobVacancies::class, 'viewCreate'])->name('view.company.jobVacancies.create');
@@ -113,7 +106,16 @@ Route::middleware(['auth'])->group(function(){
             Route::post('applicant/reject/{id}', [Applicant::class, 'rejectApplicant'])->name('reject.company.applicant');
             Route::get('accepted', [Applicant::class,'showAccepted'])->name('view.company.accepted');
             Route::get('rejected', [Applicant::class,'showRejected'])->name('view.company.rejected');
-        });
+
+            // Edit Profil
+            // Route::view('profilecompany', 'company.profilecompany')->name('profilecompany');
+            Route::get('my-profilecompany', [CompanyController::class, 'viewMyProfile'])->name('company.myProfile');
+            Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
+            Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
+            Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region.company');
+            Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City.company');
+            Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector.company');
+        // });
     });
 
         // CRUD loker

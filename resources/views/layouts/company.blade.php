@@ -26,8 +26,8 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="{{asset('admin/assets/images/logojobs.png')}}" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('admin/assets/images/logojobs.png')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="{{route('home')}}"><img src="{{asset('admin/assets/images/logojobs.png')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="{{route('home')}}"><img src="{{asset('admin/assets/images/logojobs.png')}}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -46,10 +46,14 @@
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{route('company.myProfile')}}" >
+                    <i class="mdi mdi-account me-2 text-primary"></i> My Profile
+                </a>
+                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <i class="mdi mdi-logout me-2 text-primary"></i> Logout
                 </a>
-                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
               </div>
             </li>
             <li class="nav-item d-none d-lg-block full-screen-link">

@@ -231,7 +231,7 @@
                       icon: 'success',
                       showConfirmButton: true,
                   }).then(function(){
-                    window.location="{{route('profilecompany')}}";
+                    window.location="{{route('company.myProfile')}}";
                   });
                 }
                 else if(data.status=='failed'){
@@ -272,7 +272,7 @@
           }
         }).then((result) => {
           if (result.isConfirmed) {
-              window.location="{{route('profilecompany')}}";
+              window.location="{{route('company.myProfile')}}";
           } 
         })
       })
