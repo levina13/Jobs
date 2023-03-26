@@ -4,9 +4,11 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\applicant\JobsController;
 use App\Http\Controllers\applicant\UsersController;
 use App\Http\Controllers\company\Applicant;
+use App\Http\Controllers\company\CompanyController;
 use App\Http\Controllers\company\dashboard;
 use App\Http\Controllers\company\JobVacancies;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\pageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,20 +24,13 @@ use Illuminate\Support\Facades\Route;
 // Coba
     Route::view('cv-form', 'cv.form');
 
-//Route applicant
-    Route::view('applyform', 'applicant.applyform')->name('applyform');
-    Route::view('detailjobs', 'applicant.detailjobs')->name('detailjobs');
-    Route::view('companyprofile', 'applicant.companyprofile')->name('companyprofile');
-    Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
-    Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
-    Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
-    Route::view('profileapplicant', 'applicant.profileapplicant')->name('profileapplicant');
-    Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
-
 //Route coba company
     Route::view('profilecompany', 'company.profilecompany')->name('profilecompany');
-    Route::view('editprofilecompany', 'company.editprofilecompany')->name('editprofilecompany');
-
+    Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
+    Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
+    Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region.company');
+    Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City.company');
+    Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector.company');
 
 
 // Route Global
@@ -47,6 +42,18 @@ Route::get('/', function () {
 // Find JObs
 Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
 Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
+
+//Route applicant
+Route::view('applyform', 'applicant.applyform')->name('applyform');
+Route::view('detail-jobs', 'applicant.detailjobs')->name('detailjobs');
+Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
+Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
+Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
+Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
+Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
+Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
+
+
 // Profil User
 Route::get('profil/{id}',[UsersController::class,'showProfile'])->name('show.profile');
 

@@ -8,26 +8,26 @@
 <div class="main-panel">
     <div class="page-header"></div>
     <center>
-    <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
+    <img src="{{ asset('uploads/profil_image/'.$company->photo) }}" alt="image" />
         <br>
-        <h2>Company Name</h2>
-        <h5>Founded Year</h5>
+        <h2>{{$company->name}}</h2>
+        {{-- <h5>Founded Year</h5> --}}
     </center>
         <br>
         <h2>Sector</h2>
-        <h4>Technology</h4>
+        <h4>{{$company->sector}}</h4>
         <br>
         <h2>About</h2>
-        <h4>Kasir Pintar is an SaaS startup focused in empowering small to medium enterprises (SMEs) by providing a mobile-based Point of sales designed to replace a desktop-based cashier system for greater mobility. Since 2016, more than 30.000 merchants trust Kasir Pintar as their POS. As our users grow larger, we need passionate talents to deliver the best product. www.kasirpintar.co.id</h4>
+        <h4>{!!$company->description!!}</h4>
         <br>
         <h2>Location</h2>
-        <h4>Jalan Puri Kencana No.1,
-            RT.6/RW.2, RT.6/RW.2, Kembangan Sel., Kembangan
-            Jakarta Barat, Daerah Khusus Ibu Kota Jakarta 11610, ID</h4>
+        <h4>
+            {{$company->address}}
+        </h4>
         <br>
-        <h2>Company email</h2>
+        <h2>{{$company->email}}</h2>
         <br>
-        <h2>Contact</h2>
+        <h2>Contact- {{$company->telepon}}</h2>
               </div>
             </div>
           </div>
