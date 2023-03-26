@@ -30,7 +30,12 @@ use Illuminate\Support\Facades\Route;
     Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
     Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
     Route::view('profileapplicant', 'applicant.profileapplicant')->name('profileapplicant');
-    Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
+    Route::get('editprofileapplicant/{id}', [UsersController::class,'viewEditProfile'])->name('editprofileapplicant');
+    Route::post('editprofileapplicant', [UsersController::class,'updateProfile'])->name('updateprofileapplicant');
+    Route::get('getRegion',[UsersController::class,'getRegion'])->name('select.Region.user');
+    Route::get('getCity/{id}',[UsersController::class,'getCity'])->name('select.City.user');
+    Route::get('getEducation',[UsersController::class,'getEducation'])->name('select.Education.user');
+    
 
 //Route coba company
     Route::view('profilecompany', 'company.profilecompany')->name('profilecompany');
