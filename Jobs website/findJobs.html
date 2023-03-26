@@ -3,19 +3,31 @@
 <head>
     <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title> Find Jobs </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  
 
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -29,6 +41,15 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/cv.css" rel="stylesheet">
   <link href="assets/css/lightbox.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Ninestars - v4.10.0
@@ -67,13 +88,155 @@
     </div>
   </header><!-- End Header -->
 
-  <body>
-    <div class="section">
+  
+    <div>
+      <div class="section">
         <span class="section-title"> Find Your Job</span>
+      </div>
     </div>
-    
 
-  </body>
+    <!--<div class="col-lg-6 col-6 text-left">
+      <form action="">
+          <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for products">
+              <div class="input-group-append">
+                  <span class="input-group-text bg-transparent text-primary">
+                      <i class="fa fa-search"></i>
+                  </span>
+              </div>
+          </div>
+      </form>
+    </div>-->
+
+  <!-- Navbar Start -->
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container-fluid mb-5">
+      <!--<div class="row border-top px-xl-5">-->
+        <div class="col-lg-3 d-none d-lg-block">
+          <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+            <h6 class="m-0">Categories</h6>
+            <i class="fa fa-angle-down text-dark"></i>
+          </a>
+            <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+              <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                <div class="nav-item dropdown">
+                  <a href="#" class="nav-link" data-toggle="dropdown"> Salary <i class="fa fa-angle-down float-right mt-1"></i></a>
+                  <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                    <a href="" class="dropdown-item"> 1 jt - 3 jt </a>
+                    <a href="" class="dropdown-item"> 4 jt - 6 jt </a>
+                    <a href="" class="dropdown-item"> 7 jt - 10 jt </a>
+                  </div>
+                </div>
+                <div class="nav-item dropdown">
+                  <a href="#" class="nav-link" data-toggle="dropdown"> Contract <i class="fa fa-angle-down float-right mt-1"></i></a>
+                  <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                    <a href="" class="dropdown-item"> Part Time </a>
+                    <a href="" class="dropdown-item"> Full Time </a>
+                  </div>
+                </div>
+                  <a href="" class="nav-item nav-link"> Industry</a>
+                  <a href="" class="nav-item nav-link"> All </a>
+              </div>
+            </nav>
+        </div>
+  </div>
+  <!-- Navbar End -->
+
+  <div class="col-lg-5 col-5 text-left">
+    <form action="">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for jobs">
+            <i class="fa fa-search input-group-text bg-transparent text-primary"></i>
+            <!--<div class="input-group-append">
+              <span class="input-group-text bg-transparent text-primary">
+                <i class="fa fa-search input-group-text text-primary"></i>
+              </span>
+            </div>-->
+        </div>
+    </form>
+  </div>
+  <br>
+  <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="col-lg-36 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title"> Find Your Jobs </h4>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> Company logo </th>
+                      <th> Position </th>
+                      <th> Company name </th>
+                      <th> Category </th>
+                      <th>  </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td><img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /></td>
+                        <td>Marketing</td>
+                        <td>Alibaba</td>
+                        <td>Full Time</td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw"> Apply </button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw"><img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /></button></td>
+                      </tr>
+                    <tr>
+                        <td><img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /></td>
+                        <td>Manager</td>
+                        <td>Alibaba</td>
+                        <td>Full Time</td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw"> Apply</button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw"> <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /> </button></td>
+                      </tr>
+                    <tr>
+                        <td><img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /></td>
+                        <td>Conten Creator</td>
+                        <td>Alibaba</td>
+                        <td>Full Time</td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw"> Apply </button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw"> <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /> </button></td>
+                      </tr>
+                    <tr>
+                      <td><img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /></td>
+                      <td>Staf</td>
+                      <td>Alibaba</td>
+                      <td>Part Time</td>
+                      <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw"> Apply </button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw"> <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /> </button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /></td>
+                        <td>Data Analys</td>
+                        <td>Alibaba</td>
+                        <td>Full Time</td>
+                        <td><button type="button" class="btn btn-gradient-danger btn-rounded btn-fw"> Apply </button>&emsp;<button type="button" class="btn btn-gradient-info btn-rounded btn-fw"> <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" /> </button></td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+    </div>
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Contact Javascript File -->
+  <script src="mail/jqBootstrapValidation.min.js"></script>
+  <script src="mail/contact.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+
+
 </body>
 
 </html>
