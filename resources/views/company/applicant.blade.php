@@ -18,6 +18,7 @@
                       <th>Applicant's Name</th>
                       <th>Position</th>
                       <th>CV</th>
+                      <th>Document</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -26,15 +27,20 @@
                       <tr>
                         <td>{{$key+1}}</td>
                         <td>
-                          <img class="img" src="{{ asset('uploads/profil_image/'.$item->photo) }}" alt="image here..">    
+                          <img class="img" src="{{ asset('uploads/profil_image/'.$item->photo) }}" alt="image here..">
                         </td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->pekerjaan}}</td>
-                        <td> 
+                        <td>
                           <a href="{{$item->cv}}" target="_blank">
                             Link CV
-                          </a>  
+                          </a>
                         </td>
+                        <td>
+                            <a href="{{$item->cv}}" target="_blank">
+                              Link CV
+                            </a>
+                          </td>
                         <td>
                           <button type="button" class="btn btn-gradient-danger btn-rounded btn-md btn-reject" data-id="{{$item->id_lamaran}}" data-name="{{$item->name}}">Reject</button>
                           &emsp;
