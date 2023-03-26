@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- partial -->
-<br><br><br><br><br><br><br>
+<br><br><br><br>
 <div class="main-panel">
     <div class="col-12">
         <div class="card">
@@ -19,6 +19,15 @@
                 <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
               </div>
 
+              <p class="card-description">Additional Document</p>
+              <div class="form-group">
+                <label for="exampleTextarea1">Upload Document</label>
+                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea1">Upload Dokumen</label>
+                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+              </div>
 
 
               <button type="submit" class="btn btn-gradient-primary me-2">Apply Job</button>
