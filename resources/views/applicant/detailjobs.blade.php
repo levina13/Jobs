@@ -33,7 +33,7 @@
                     <a href="">
                         <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
                     </a>
-                    <a href="{{route('applyform')}}">
+                    <a href="{{route('applyform',['id'=>$loker->id])}}">
                         <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg"> Apply </button>
                     </a>
                 </div>

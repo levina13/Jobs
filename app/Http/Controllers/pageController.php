@@ -41,7 +41,7 @@ class pageController extends Controller
         $data = loker::select('lokers.judul_loker as title'
                             , 'users.photo','users.name'
                             , 'pekerjaans.pekerjaan as position'
-                            , 'lokers.deskripsi as description')
+                            , 'lokers.deskripsi as description', 'lokers.id')
                     ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
                     ->join('users','users.id','=','perusahaans.id_owner')
                     ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')

@@ -10,6 +10,8 @@ use App\Models\lamaran;
 use App\Models\loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class JobsController extends Controller
 {
@@ -159,5 +161,57 @@ class JobsController extends Controller
                 ->get();
         return view('applicant.myjobsFavorite',['loker'=>$data]);
     }
+    public function openApply($id)
+    {
+        return view('applicant.applyform',['id_loker'=>$id]);
+    }
+    public function applyJob(Request $request)
+    {
+        // Validate
+        $validator=Validator::make($request->all(),[
+            'cv'=>'required|mimes:pdf'
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'error' => $validator->errors()->toJson()
+            ]);
+        }
+
+        $input=$request->all();
+        // Insert to Lamarans table
+        $lamaran = new lamaran;
+        $lamaran->id_loker=$input['id_loker'];
+        $lamaran->id_pelamar=Auth::user()->id;
+
+        // Insert CV
+        $file = $request->file('cv');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $ext;
+        $file->move('uploads/applyJobDocument/cv/', $filename);
+        $lamaran->cv = $filename;
+
+        if($request->hasFile('additional1')){
+            $file = $request->file('additional1');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/applyJobDocument/additional1/', $filename);
+            $lamaran->cv = $filename;
+        };
+        if ($request->hasFile('additional2')) {
+            $file = $request->file('additional2');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/applyJobDocument/additional2/', $filename);
+            $lamaran->cv = $filename;
+        };
+        $lamaran->save();
+        return response()->json([
+            'status' => 'success',
+        ]);
+        return $validator;
+
+
+    }
 }

@@ -39,7 +39,7 @@ Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{com
 
 //Route applicant
 Route::view('applyform', 'applicant.applyform')->name('applyform');
-Route::view('detail-jobs', 'applicant.detailjobs')->name('detailjobs');
+Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('detailjobs');
 Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
 Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
 Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
@@ -77,6 +77,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('myjobshistory', [JobsController::class,'showHistory'])->name('myjobshistory');
         Route::get('myjobscurrently', [JobsController::class, 'showCurrently'])->name('myjobscurrently');
         Route::get('myjobsfavorite', [JobsController::class, 'showFavorite'])->name('myjobsfavorite');
+        Route::get('applyform/{id}', [JobsController::class,'openApply'])->name('applyform');
+        Route::post('applyform',[JobsController::class, 'applyJob'])->name('post.applyform');
     });
     // Route::view('cv-form', 'cv.form');
     // Route untuk verifikasi Email & telepon
@@ -137,7 +139,7 @@ Route::middleware(['auth'])->group(function(){
 Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
-Route::view('/cvawal', 'auth.cvawal')->name('cvawal');
+Route::view('/cvawal', 'applicant.cvawal')->name('cvawal');
 Route::view('/cvform', 'auth.cvform')->name('cvform');
 Route::post('/alert', function () {
 
