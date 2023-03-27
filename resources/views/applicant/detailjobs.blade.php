@@ -2,38 +2,40 @@
 @section('title','Jobs Detail')
 
 @section('content')
+<style>
+  a{text-decoration: none}
+</style>
+
 
 <!-- partial -->
 <br><br><br><br><br><br><br><br>
 <div class="main-panel">
-    <center><h1>Find Your Job</h1></center>
-    <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
+    <div class="row">
+        <center><h1>{{$loker->title}}</h1></center>
+    </div>
+    <center>
+        <img width="20%" src="{{ asset('uploads/profil_image/'.$loker->photo)}}" alt="image" />
+    </center>
         <br>
-        <h2>Company name</h2>
+        <h2>{{$loker->name}}</h2>
         <br>
-        <h2>Position/role</h2>
+        <h2>{{$loker->position}}</h2>
         <br>
-        <h2>Job Description</h2>
-        <h4>A marketing manager would undertake market research, understand the trends and customer preferences, create marketing strategy and budgets, oversee the creation of marketing materials and content, and perform all other relevant tasks essential for increasing the business's sales.</h4>
+        <h2>Job Vacancy Description</h2>
+        <h4>
+            {!!$loker->description!!}
+        </h4>
         <br>
-        <h2>Recruitment Specifications</h2>
-        <h4>Come from a variety of academic backgrounds, including marketing, communication, business and other fields
-            Bachelors degree
-            Some companies require their marketing managers to have a masters degree
-            7 years of experience
-            Intimate understanding of traditional and emerging marketing channels
-            Excellent communication skills
-            Ability to think creatively and innovatively
-            Budget-management skills and proficiency
-            Professional judgment and discretion that comes from years of experience in the field
-            Analytical skills to forecast and identify trends and challenges
-            Familiarity with the latest trends, technologies and methodologies in graphic design, web design, production, etc.</h4>
         <br>
         <center>
             <div class="col-md-4">
                 <div class="template-demo">
-                    <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
-                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg"> Apply </button>
+                    <a href="">
+                        <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
+                    </a>
+                    <a href="{{route('applyform')}}">
+                        <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg"> Apply </button>
+                    </a>
                 </div>
             </div>
         </center>

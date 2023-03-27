@@ -118,7 +118,7 @@ class JobsController extends Controller
     {
         $data = lamaran::select('users.name as company_name'
                                 , 'pekerjaans.pekerjaan as position'
-                                , 'lamarans.status', 'lamarans.id')
+                                , 'lamarans.status', 'lamarans.id', 'lokers.id as id_loker')
                         ->join('lokers','lokers.id','=','lamarans.id_loker')
                         ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
                         ->join('users','users.id','=','perusahaans.id_owner')
@@ -134,7 +134,8 @@ class JobsController extends Controller
             'users.name as company_name',
             'pekerjaans.pekerjaan as position',
             'lamarans.status',
-            'lamarans.id'
+            'lamarans.id',
+            'lokers.id as id_loker'
         )
         ->join('lokers', 'lokers.id', '=', 'lamarans.id_loker')
         ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
@@ -149,7 +150,7 @@ class JobsController extends Controller
     {
         $data = favorite::select('users.name as company_name'
                                 , 'pekerjaans.pekerjaan as position'
-                                , 'lokers.id')
+                                , 'lokers.id as id_loker')
                 ->join('lokers','lokers.id','=','favorites.id_loker')
                 ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
                 ->join('users','users.id','=','perusahaans.id_owner')

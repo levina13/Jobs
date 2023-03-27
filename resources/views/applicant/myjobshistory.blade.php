@@ -72,7 +72,7 @@
                         </td>
 
                         <td>
-                          <a href="#">
+                          <a href="{{route('detailjobs',['id'=>$item->id_loker])}}">
                             <button class="badge badge-info">Detail Job</button>
                           </a>
                         </td>
