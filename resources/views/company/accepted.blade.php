@@ -18,7 +18,6 @@
                       <th>Profile Photos</th>
                       <th>Applicant's Name</th>
                       <th>Position</th>
-                      <th>CV</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -31,16 +30,11 @@
                         </td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->pekerjaan}}</td>
-                        <td> 
-                          <a href="{{$item->cv}}" target="_blank">
-                            Link CV
-                          </a>  
+
+                        <td>
+                          <label class="badge badge-info">Accepted</label>
                         </td>
-                        <td>
-                        <td>
-                          <label class="badge badge-info">Accepted</label></td>
                           
-                        </td>
                       </tr>
                     @endforeach
                   </tbody>

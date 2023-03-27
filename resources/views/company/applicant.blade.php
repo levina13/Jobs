@@ -18,7 +18,7 @@
                       <th>Applicant's Name</th>
                       <th>Position</th>
                       <th>CV</th>
-                      <th>Document</th>
+                      <th>Addtitional Document</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -32,15 +32,28 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->pekerjaan}}</td>
                         <td>
-                          <a href="{{$item->cv}}" target="_blank">
+                          <a href="{{asset('uploads/applyJobDocument/cv/'.$item->cv)}}" target="_blank">
                             Link CV
                           </a>
                         </td>
                         <td>
-                            <a href="{{$item->cv}}" target="_blank">
-                              Link CV
-                            </a>
-                          </td>
+                          <ul>
+                            @if(!is_null($item->additional1))
+                              <li>
+                                <a href="{{asset('uploads/applyJobDocument/addtitional1/'.$item->addtitional1)}}" target="_blank">
+                                  Additional Document 1
+                                </a>
+                              </li>
+                            @endif
+                            @if(!is_null($item->additional2))
+                              <li>
+                                <a href="{{asset('uploads/applyJobDocument/additional2/'.$item->additional2)}}" target="_blank">
+                                  Additional Document 2
+                                </a>
+                              </li>
+                            @endif
+                          </ul>
+                        </td>
                         <td>
                           <button type="button" class="btn btn-gradient-danger btn-rounded btn-md btn-reject" data-id="{{$item->id_lamaran}}" data-name="{{$item->name}}">Reject</button>
                           &emsp;
@@ -80,7 +93,7 @@
                         }
                     });
                     $.ajax({
-                        url: "/company/applicant/reject/"+id,
+                        url: "/applicant/reject/"+id,
                         type: 'POST',
                         method:"POST",
                         data: {submit: true},
@@ -137,7 +150,7 @@
                         }
                     });
                     $.ajax({
-                        url: "/company/applicant/accept/"+id,
+                        url: "/applicant/accept/"+id,
                         type: 'POST',
                         method:"POST",
                         data: {submit: true},
