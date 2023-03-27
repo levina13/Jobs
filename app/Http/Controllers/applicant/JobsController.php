@@ -4,9 +4,12 @@ namespace App\Http\Controllers\applicant;
 
 use App\Http\Controllers\Controller;
 use App\Models\contract;
+use App\Models\favorite;
 use App\Models\jenis_perusahaan;
+use App\Models\lamaran;
 use App\Models\loker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
 {
@@ -110,4 +113,50 @@ class JobsController extends Controller
         return [$data, $contracts, $industry];
         return view('', ['data' => $data, 'contract' => $contracts, 'industry' => $industry]);
     }
+
+    public function showHistory()
+    {
+        $data = lamaran::select('users.name as company_name'
+                                , 'pekerjaans.pekerjaan as position'
+                                , 'lamarans.status', 'lamarans.id')
+                        ->join('lokers','lokers.id','=','lamarans.id_loker')
+                        ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
+                        ->join('users','users.id','=','perusahaans.id_owner')
+                        ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')
+                        ->where('lamarans.id_pelamar','=',Auth::user()->id)
+                        ->where('lamarans.status','!=','0')
+                        ->get();
+        return view('applicant.myjobshistory', ['lamaran'=>$data]);
+    }
+    public function showCurrently()
+    {
+        $data = lamaran::select(
+            'users.name as company_name',
+            'pekerjaans.pekerjaan as position',
+            'lamarans.status',
+            'lamarans.id'
+        )
+        ->join('lokers', 'lokers.id', '=', 'lamarans.id_loker')
+        ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
+        ->join('users', 'users.id', '=', 'perusahaans.id_owner')
+        ->join('pekerjaans', 'pekerjaans.id', '=', 'lokers.id_pekerjaan')
+        ->where('lamarans.id_pelamar', '=', Auth::user()->id)
+            ->where('lamarans.status', '=', '0')
+            ->get();
+        return view('applicant.myjobscurrently', ['lamaran' => $data]);
+    }
+    public function showFavorite()
+    {
+        $data = favorite::select('users.name as company_name'
+                                , 'pekerjaans.pekerjaan as position'
+                                , 'lokers.id')
+                ->join('lokers','lokers.id','=','favorites.id_loker')
+                ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
+                ->join('users','users.id','=','perusahaans.id_owner')
+                ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')
+                ->where('favorites.id_pelamar','=',Auth::user()->id)
+                ->get();
+        return view('applicant.myjobsFavorite',['loker'=>$data]);
+    }
+
 }

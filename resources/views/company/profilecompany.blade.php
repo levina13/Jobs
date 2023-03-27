@@ -11,7 +11,7 @@
           <img width="20%" src="{{ asset('uploads/profil_image/'.$company->photo)}}" alt="image"  />
           <br>
           <h2>{{$company->name}}
-            <a href="{{route('editprofilecompany',['id'=>$company->id_company])}}">
+            <a href="{{route('editprofilecompany',['id'=>$company->id])}}">
               <button type="button" class="btn btn-gradient-primary btn-rounded btn-icon btn-lg">
                 <i class="mdi mdi mdi-pencil"></i>
               </button>

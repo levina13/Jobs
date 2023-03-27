@@ -45,7 +45,7 @@ class CompanyController extends Controller
                     ->join('jenis_perusahaans','jenis_perusahaans.id','=','perusahaans.id_jenis_perusahaan')
                     ->leftJoin('cities','cities.id','=','users.id_city')
                     ->leftJoin('provinces','provinces.id','=','cities.id_province')
-                    ->where('perusahaans.id','=',$id)
+                    ->where('users.id','=',$id)
                     ->first();
         // return $data;
         

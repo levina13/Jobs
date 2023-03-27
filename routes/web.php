@@ -41,9 +41,6 @@ Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{com
 Route::view('applyform', 'applicant.applyform')->name('applyform');
 Route::view('detail-jobs', 'applicant.detailjobs')->name('detailjobs');
 Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
-Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
-Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
-Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
 Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
 Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
 
@@ -75,8 +72,13 @@ Route::middleware(['guest'])->group(function(){
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    Route::middleware(['applicant'])->group(function(){
+        Route::get('myjobshistory', [JobsController::class,'showHistory'])->name('myjobshistory');
+        Route::get('myjobscurrently', [JobsController::class, 'showCurrently'])->name('myjobscurrently');
+        Route::get('myjobsfavorite', [JobsController::class, 'showFavorite'])->name('myjobsfavorite');
+    });
     // Route::view('cv-form', 'cv.form');
-
     // Route untuk verifikasi Email & telepon
     // Melamar pekerjaan
     // Membuat CV
@@ -110,11 +112,14 @@ Route::middleware(['auth'])->group(function(){
             // Edit Profil
             // Route::view('profilecompany', 'company.profilecompany')->name('profilecompany');
             Route::get('my-profilecompany', [CompanyController::class, 'viewMyProfile'])->name('company.myProfile');
-            Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
+            Route::middleware(['own'])->group(function () {
+                Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
+            });
             Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
             Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region.company');
             Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City.company');
             Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector.company');
+            
         // });
     });
 

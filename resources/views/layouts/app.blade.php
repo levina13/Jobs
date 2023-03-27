@@ -51,9 +51,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link " href="{{route('home')}}">Home</a></li>
           <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
-          <li><a class="nav-link scrollto" href="#myjobs">My Jobs</a></li>
+          @auth
+            @if(Auth::user()->role=='A')
+              <li><a class="nav-link " href="{{route('myjobshistory')}}">My Jobs</a></li>
+            @endif
+          @endauth
           <li><a class="nav-link" href="{{route('cvawal')}}">CV</a></li>
           <!--
           <li><a class="nav-link scrollto" href="#team">Login</a></li>
@@ -66,8 +70,9 @@
             <button class="getstarted dropdown-toggle btn" type="button" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
               Hi, {{Auth::user()->name}}</button>
             <ul class="dropdown-menu" aria-labelledby="dropdownButton">
-                <a href=""  class="dropdown-item"><i class="bi bi-person-fill mr-2"></i>Edit Profile</a>
-                @if(Auth::user()->role=='B')
+                @if(Auth::user()->role=='A')
+                <a href="{{route('profileapplicant',['id'=>Auth::user()->id])}}"  class="dropdown-item"><i class="bi bi-person-fill mr-2"></i>My{{route('profileapplicant',['id'=>Auth::user()->id])}} Profile</a>
+                @elseif(Auth::user()->role=='B')
 								<a href="{{route('view.company.dashboard')}}"  class="dropdown-item"><i class="bi bi-building-fill-check mr-2"></i>Company Page</a>
                 @endif
                 <a class="dropdown-item "  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" ><i class="bi bi-box-arrow-right"></i>{{ __('Logout') }}</a>
