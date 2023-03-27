@@ -61,6 +61,7 @@ class CompanyController extends Controller
             'address' => 'required',
             'description' => 'required',
             'id_company' => 'required',
+            'image'=>'image'
         ]);
 
         if ($validator->fails()) {
@@ -73,7 +74,6 @@ class CompanyController extends Controller
         $input=$request->all();
 
         // Tabel User
-        $user = User::where('id',$input['id_user'])->first();
         $owner = User::join('perusahaans','perusahaans.id_owner','=','users.id')
                     ->where('perusahaans.id','=',$input['id_company'])
                     ->first();

@@ -40,7 +40,7 @@
                           <ul>
                             @if(!is_null($item->additional1))
                               <li>
-                                <a href="{{asset('uploads/applyJobDocument/addtitional1/'.$item->addtitional1)}}" target="_blank">
+                                <a href="{{asset('uploads/applyJobDocument/additional1/'.$item->additional1)}}" target="_blank">
                                   Additional Document 1
                                 </a>
                               </li>

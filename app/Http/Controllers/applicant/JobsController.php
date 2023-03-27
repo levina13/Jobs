@@ -197,14 +197,14 @@ class JobsController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('uploads/applyJobDocument/additional1/', $filename);
-            $lamaran->cv = $filename;
+            $lamaran->additional1 = $filename;
         };
         if ($request->hasFile('additional2')) {
             $file = $request->file('additional2');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('uploads/applyJobDocument/additional2/', $filename);
-            $lamaran->cv = $filename;
+            $lamaran->additional2 = $filename;
         };
         $lamaran->save();
         return response()->json([

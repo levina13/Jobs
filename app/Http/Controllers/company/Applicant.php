@@ -13,7 +13,7 @@ class Applicant extends Controller
 {
     public function showApplicant()
     {
-        $data = User::select('users.*','lamarans.cv','lamarans.additional2','lamarans.additional2', 'lamarans.id as id_lamaran','pekerjaans.pekerjaan')
+        $data = User::select('users.*','lamarans.cv','lamarans.additional1','lamarans.additional2', 'lamarans.id as id_lamaran','pekerjaans.pekerjaan')
                 ->join('lamarans','lamarans.id_pelamar','=','users.id')
                 ->join('lokers','lokers.id','=','lamarans.id_loker')
                 ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')

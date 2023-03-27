@@ -75,17 +75,20 @@
                   </div>
 
                   <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <div class="form-group row">
-                          <div style="text-align: left;"><h4>About</h4></div>
+                          <div style="text-align: center;"><h4>About</h4></div>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
                         <div class="form-group row">
-                          <div style="text-align: right;"><h5>{{$company->description}}</h5></div>
+                          <div style="text-align: left;"><h5>{{$company->description}}</h5></div>
                         </div>
                       </div>
-                  </div>
+
+                    </div>
 
                 </div>
               </div>

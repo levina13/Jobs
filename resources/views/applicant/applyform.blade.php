@@ -16,6 +16,7 @@
                 <input type="hidden" name="id_loker" value="{{$id_loker}}">
                 <div class="form-group">
                   <label for="exampleTextarea1">Upload CV</label>
+                  <br>
                   <span class="d-none text text-danger" errorFor="cv"><br></span>
                   <input class="form-control" type="file" name="cv" id="">
                 </div>
