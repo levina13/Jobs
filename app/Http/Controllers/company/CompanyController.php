@@ -9,11 +9,33 @@ use App\Models\perusahaan;
 use App\Models\province;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
+    public function viewMyProfile()
+    {
+        $data = User::select(
+            'users.*',
+            'jenis_perusahaans.jenis_perusahaan as sector',
+            'perusahaans.id_jenis_perusahaan',
+            'cities.city',
+            'cities.id_province',
+            'provinces.province',
+            'perusahaans.address',
+            'perusahaans.description',
+            'perusahaans.id as id_company'
+        )
+        ->join('perusahaans', 'perusahaans.id_owner', '=', 'users.id')
+        ->join('jenis_perusahaans', 'jenis_perusahaans.id', '=', 'perusahaans.id_jenis_perusahaan')
+        ->leftJoin('cities', 'cities.id', '=', 'users.id_city')
+        ->leftJoin('provinces', 'provinces.id', '=', 'cities.id_province')
+        ->where('users.id', '=', Auth::user()->id)
+            ->first();
+        return view('company.profilecompany',['company'=>$data]);
+    }
     public function viewEditProfile($id)
     {
         $data = User::select('users.*','jenis_perusahaans.jenis_perusahaan as sector','perusahaans.id_jenis_perusahaan'
@@ -23,7 +45,7 @@ class CompanyController extends Controller
                     ->join('jenis_perusahaans','jenis_perusahaans.id','=','perusahaans.id_jenis_perusahaan')
                     ->leftJoin('cities','cities.id','=','users.id_city')
                     ->leftJoin('provinces','provinces.id','=','cities.id_province')
-                    ->where('perusahaans.id','=',$id)
+                    ->where('users.id','=',$id)
                     ->first();
         // return $data;
         
@@ -39,6 +61,7 @@ class CompanyController extends Controller
             'address' => 'required',
             'description' => 'required',
             'id_company' => 'required',
+            'image'=>'image'
         ]);
 
         if ($validator->fails()) {
@@ -51,7 +74,6 @@ class CompanyController extends Controller
         $input=$request->all();
 
         // Tabel User
-        $user = User::where('id',$input['id_user'])->first();
         $owner = User::join('perusahaans','perusahaans.id_owner','=','users.id')
                     ->where('perusahaans.id','=',$input['id_company'])
                     ->first();

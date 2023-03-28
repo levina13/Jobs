@@ -16,7 +16,7 @@
                 </center>
                 <br>
                 <form class="editData" id="editData">
-                  <input type="hidden" name="id_company" value="{{$company->id_company}}">
+                  <input type="hidden" name="id_company" value="{{$company->id}}">
                     <div class="col-md-6">
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Company name</label>
@@ -231,7 +231,7 @@
                       icon: 'success',
                       showConfirmButton: true,
                   }).then(function(){
-                    window.location="{{route('profilecompany')}}";
+                    window.location="{{route('company.myProfile')}}";
                   });
                 }
                 else if(data.status=='failed'){
@@ -272,7 +272,7 @@
           }
         }).then((result) => {
           if (result.isConfirmed) {
-              window.location="{{route('profilecompany')}}";
+              window.location="{{route('company.myProfile')}}";
           } 
         })
       })

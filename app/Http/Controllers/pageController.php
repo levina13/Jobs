@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\loker;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -34,5 +35,18 @@ class pageController extends Controller
             ->first();
 
         return view('applicant.profileapplicant',['applicant'=>$data]);
+    }
+    public function detailLoker($id)
+    {
+        $data = loker::select('lokers.judul_loker as title'
+                            , 'users.photo','users.name'
+                            , 'pekerjaans.pekerjaan as position'
+                            , 'lokers.deskripsi as description', 'lokers.id')
+                    ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
+                    ->join('users','users.id','=','perusahaans.id_owner')
+                    ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')
+                    ->where('lokers.id','=',$id)
+                    ->first();
+        return view('applicant.detailjobs', ['loker'=>$data]);
     }
 }
