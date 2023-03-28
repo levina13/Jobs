@@ -140,7 +140,7 @@ Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
 Route::view('/cvawal', 'applicant.cvawal')->name('cvawal');
-Route::view('/cvform', 'auth.cvform')->name('cvform');
+Route::view('/cvform', 'cv.form')->name('cvform');
 Route::post('/alert', function () {
 
 });
