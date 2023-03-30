@@ -8,12 +8,20 @@
 <div class="main-panel">
     <div class="page-header"></div>
     <center>
-    <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
+    <img width="20%"  src="{{ asset('uploads/profil_image/'.$applicant->photo) }}" alt="image" />
         <br>
-        <h2>Name <button type="button" class="btn btn-gradient-primary btn-rounded btn-icon btn-lg">
-            <i class="mdi mdi mdi-pencil"></i>
-          </button></h2>
-            <h3>Headline (Programmer)</h3>
+        <h2>{{$applicant->name}} 
+          @auth
+            @if(Auth::user()->id==$applicant->id)
+            <a href="{{route('editprofileapplicant',['id'=>$applicant->id])}}">
+              <button type="button" class="btn btn-gradient-primary btn-rounded btn-icon btn-lg">
+                <i class="mdi mdi mdi-pencil"></i>
+              </button>
+            </a>
+            @endif
+          @endauth
+        </h2>
+            <h3>{{$applicant->headline}}</h3>
 
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -26,7 +34,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <div style="text-align: right;"><h4>example@gmail.com</h4></div>
+                            <div style="text-align: right;"><h4>{{$applicant->email}}</h4></div>
                           </div>
                         </div>
                     </div>
@@ -39,7 +47,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <div style="text-align: right;"><h4>Malang, Indonesia</h4></div>
+                            <div style="text-align: right;"><h4>{{$applicant->city}}, {{$applicant->province}}</h4></div>
                           </div>
                         </div>
                     </div>
@@ -52,7 +60,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <div style="text-align: right;"><h4>S1 Teknik Lingkungan</h4></div>
+                            <div style="text-align: right;"><h4>{{$applicant->education}}</h4></div>
                           </div>
                         </div>
                     </div>

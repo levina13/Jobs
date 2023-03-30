@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- partial -->
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
 <div class="main-panel">
     <div class="page-header"></div>
             <center>
@@ -13,8 +13,8 @@
                       <div class="card-body">
                         <h4 class="card-title">Edit Profile</h4>
                         <br>
-                        <form class="editData">
-                          <input type="hidden" name="id_user"/>
+                        <form class="editData" id="editData">
+                          <input type="hidden" value="{{$user->id}}" name="id_user"/>
                           <div class="form-group row">
                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
@@ -51,7 +51,7 @@
                           <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Region</label>
                             <div class="col-sm-9">
-                              <select class="province form-control" style="width:500px;" name="province">
+                              <select class="region form-control" style="width:500px;" name="province">
                                 <option value="{{$user->id_province}}" selected="selected">{{$user->province}}</option>
                                 <span class="d-none text text-danger" errorFor="user_region"><br></span>
                               </select>
@@ -87,7 +87,7 @@
                                   type="file"
                                   name="image"
                                   id="image"
-                                  class="form_controle"/>
+                                  class="form_control"/>
                                 </div>
                             </div>
                           </div>
@@ -130,7 +130,7 @@
   $('.region').select2({
           placeholder: 'Select an region',
           ajax: {
-            url: "{{route('select.Region.user')}}",
+            url: "{{route('select.Region')}}",
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
@@ -178,7 +178,7 @@
 
 {{-- education --}}
 <script type="text/javascript">
-  $('.region').select2({
+  $('.education').select2({
           placeholder: 'Select an education',
           ajax: {
             url: "{{route('select.Education.user')}}",
@@ -201,11 +201,10 @@
 
   {{-- Sweet Alert --}}
   <script>
-
-    $("form[name='editData']").on("submit",fungtion(e){
-      e.preventDefault();
-      var formData = new formData(this);
-      $(`[errorFor=user_name]`).html('');
+      $(document).on('click', '.btn-submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(document.getElementById("editData"));
+          $(`[errorFor=user_name]`).html('');
           $(`[errorFor=user_headline]`).html('');
           $(`[errorFor=user_email]`).html('');
           $(`[errorFor=user_mobile]`).html('');
@@ -214,52 +213,54 @@
           $(`[errorFor=user_education]`).html('');
           $(`[errorFor=user_uploadfoto]`).html('');
 
-          $.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              }
-          });
-          $.ajax({
-              url: "{{route('updateprofileapplicant')}}",
-              type: 'POST',
-              method:"POST",
-              data: formData,
-
-              success: function(data) {
-                console.log(data);
-                console.log(data.message);
-                  if (data.status == 'success') {
-                    Swal.fire({
-                        title: 'Successfully Edit your Provile!!',
-                        text:data.message,
-                        icon: 'success',
-                        showConfirmButton: true,
-                    }).then(function(){
-                      window.location="{{route('home')}}";
-                    });
-                  }
-                  else if(data.status=='failed'){
-                    let dataError = JSON.parse(data.error)
-                    for (const key in dataError) {
-                      $(`[errorFor="${key}"]`).html(dataError[key][0]).removeClass('d-none')
-                    }
-
-                    Swal.fire({
-                      title: 'Failed to Edit your Profile!',
-                      icon: 'error',
-                      showConfirmButton: true,
-                    });
-                  }
-              },
-              error: function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{route('updateprofileapplicant')}}",
+            type: 'POST',
+            method:"POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+              console.log(data);
+              console.log(data.message);
+                if (data.status == 'success') {
                   Swal.fire({
-                      title: 'Failed to Edit your Profile!',
-                      icon: 'error',
+                      title: 'Successfully Edit your Profile!!',
+                      text:data.message,
+                      icon: 'success',
                       showConfirmButton: true,
+                  }).then(function(){
+                    window.location="{{route('applicant.myProfile')}}";
                   });
-              }
-          });
-    })
+                }
+                else if(data.status=='failed'){
+                  let dataError = JSON.parse(data.error)
+                  for (const key in dataError) {
+                    $(`[errorFor="${key}"]`).html(dataError[key][0]).removeClass('d-none')
+                  }
+
+                  Swal.fire({
+                    title: 'Failed to Edit your Profile!',
+                    icon: 'error',
+                    showConfirmButton: true,
+                  });
+                }
+            },
+            error: function(){
+                Swal.fire({
+                    title: 'Failed to Edit your Profile!',
+                    icon: 'error',
+                    showConfirmButton: true,
+                });
+            }
+        });
+      });
+
   </script>
 
   <script>
@@ -276,7 +277,7 @@
         }
       }).then((result) => {
         if (result.isConfirmed) {
-            window.location="{{route('home')}}";
+            window.location="{{route('applicant.myProfile')}}";
         } 
       })
     })

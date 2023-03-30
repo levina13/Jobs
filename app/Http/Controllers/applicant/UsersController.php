@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use illuminate\support\facades\Validator;
+use Illuminate\support\facades\Validator;
 
 class UsersController extends Controller
 {
@@ -26,10 +26,10 @@ class UsersController extends Controller
             ->where('users.id','=',Auth::user()->id)
             ->first();
 
-        return $data;
+        return view('applicant.profileapplicant',['applicant'=>$data]);
     }
     public function viewEditProfile($id){
-        $data = User::select('users.*','cities.city','cities.id_province','provinces.province','education.education')
+        $data = User::select('users.*','cities.city','cities.id as id_city','cities.id_province','provinces.province','education.education' )
                 ->leftJoin('cities','cities.id','=','users.id_city')
                 ->leftJoin('provinces','provinces.id','=','cities.id_province')
                 ->leftJoin('education','education.id','=','users.id_education')
@@ -38,16 +38,19 @@ class UsersController extends Controller
         return view('applicant.editprofileapplicant',['user'=>$data]);
     }
     public function updateProfile(Request $request){
+        // Model untuk tabel user (hapus email dan telepon dulu)
+        
         $validator = Validator::make($request->all(), [
             'user_name' => 'required',
-            'user_headline' => 'required|numeric|min:1',
-            'user_email' => 'required|numeric|min:1',
-            'user_mobile' => 'required',
+            'user_headline' => 'required',
+            'user_email' => 'required|email',
+            'user_mobile' => 'required|numeric|digits_between:9,12',
             // 'province' => 'required',
             // 'city' => 'required',
             // 'education'=>'required|numeric|digits_between:1,10'
             'id_user' => 'required',
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'failed',
@@ -57,9 +60,11 @@ class UsersController extends Controller
         $input=$request->all();
 
         //tabel user
-        $user = User::where('id',$input['id_user']->first());
+        $user = User::where('id', $input['id_user'])->first();
         $user->name=$input['user_name'];
         $user->headline=$input['user_headline'];
+        $user->email = $input['user_email'];
+        $user->telepon = $input['user_mobile'];
         $user->id_city=$input['city'];
         $user->id_education=$input['education'];
 
