@@ -20,7 +20,7 @@
 
                     <div class="col-md-6">
                       <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Job name</label>
+                        <label class="col-sm-3 col-form-label">JobVacancies Title</Title></label>
                         <div class="col-sm-9">
                           <input type="text" class="form-control" name="job_name" id="job_name"/>
                           <span class="d-none text text-danger" errorFor="job_name"><br></span>

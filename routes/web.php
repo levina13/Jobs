@@ -24,6 +24,21 @@ use Illuminate\Support\Facades\Route;
 // Coba
     Route::view('cv-form', 'cv.form');
 
+//Route applicant
+    Route::view('applyform', 'applicant.applyform')->name('applyform');
+    Route::view('detailjobs', 'applicant.detailjobs')->name('detailjobs');
+    Route::view('companyprofile', 'applicant.companyprofile')->name('companyprofile');
+    Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
+    Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
+    Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
+    Route::view('profileapplicant', 'applicant.profileapplicant')->name('profileapplicant');
+    Route::get('editprofileapplicant/{id}', [UsersController::class,'viewEditProfile'])->name('editprofileapplicant');
+    Route::post('editprofileapplicant', [UsersController::class,'updateProfile'])->name('updateprofileapplicant');
+    Route::get('getRegion',[UsersController::class,'getRegion'])->name('select.Region.user');
+    Route::get('getCity/{id}',[UsersController::class,'getCity'])->name('select.City.user');
+    Route::get('getEducation',[UsersController::class,'getEducation'])->name('select.Education.user');
+    
+
 //Route coba company
 
 
