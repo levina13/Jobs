@@ -16,11 +16,14 @@
 		</div>
 		<div class="resume_bottom">
 			<div class="resume_item resume_namerole">
-				<div class="name">Rosie Jackson</div>
-				<div class="role">UI Designer</div>
+				<div class="name">
+					{{$user->first_name}}</div>
+				<div class="role">
+					{{$user->last_name}}
+				</div>
 			</div>
 			<div class="resume_item resume_profile">
-				<div class="resume_title">Profile</div>
+				<div class="resume_title">Profile <br>{{$user->prifile}}</div>
 				<div class="resume_info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -29,7 +32,7 @@
 				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 			</div>
 			<div class="resume_item resume_address">
-				<div class="resume_title">Address</div>
+				<div class="resume_title">{{$user->address}}</div>
 				<div class="resume_info">
 					18th home,<br/>
 					woods street,<br/>
@@ -88,7 +91,10 @@
 	</div>
 	<div class="resume_right">
 		<div class="resume_item resume_namerole">
-			<div class="name">Rosie Jackson</div>
+			<div class="name">
+			{{$user->first_name}} <br>
+			<span>{{$user->last_name}}</span>
+			</div>
 			<div class="role">UI Designer</div>
 		</div>
 		<div class="resume_item resume_education">

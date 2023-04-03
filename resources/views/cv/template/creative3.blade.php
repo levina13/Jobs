@@ -34,7 +34,10 @@
 		<div class="box-2">
 
 			<div class="intro">
-				<h1>Manoj Adhikari</h1>
+				<h1>
+				{{$user->first_name}} <br>
+            <span>{{$user->last_name}}</span>
+				</h1>
 				<hr class="hr" />
 				<div class="clearfix"></div>
 				<p class="intro-p">2132 London (All Airports)-LON,United Kingdom </p>

@@ -92,7 +92,10 @@
 
 	<div class="right">
 		<div class="name-div">
-			<h1>MANOJ ADHIKARI</h1>
+			<h1>
+			{{$user->first_name}} <br>
+            <span>{{$user->last_name}}</span>
+			</h1>
 			<p>WEBSITE DESIGNER</p>
 		</div>
 
