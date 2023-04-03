@@ -31,6 +31,9 @@
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('assets/css/cvform.css')}}" rel="stylesheet">
 
+  {{-- csrf token --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <!-- =======================================================
   * Template Name: Ninestars - v4.10.0
   * Template URL: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/
@@ -62,8 +65,12 @@
       <!-- Template Main JS File -->
       <script src="{{asset('assets/js/main.js')}}"></script>
 
-
-    @yield('layout_script')
+      <!-- CKEditor -->
+      <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <!-- Sweet Alert -->
+      <script  src="{{ asset('js/sweetalert2@11.js') }}"></script>
+    
+      @yield('layout_script')
 </body>
 
 </html>

@@ -42,39 +42,8 @@
 
 <body>
 
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-        <a href="{{route('home')}}"><img src="{{asset('assets/img/logojobs.png')}}" alt="Image" class="img-fluid" style="width: auto;height:50px;"></a>
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link" href="{{route('home')}}">Home</a></li>
-          <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
-          <li><a class="nav-link scrollto" href="#myjobs">My Jobs</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">CV</a></li>
-          <!--
-          <li><a class="nav-link scrollto" href="#team">Login</a></li>
-          -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          @guest
-          <li><a class="getstarted scrollto" href="{{route('loginView')}}">Get Started</a></li>
-          @else
-          <li>
-            <a class="getstarted scrollto"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >{{ __('Logout') }}</a>
-            <form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">@csrf</form>
-          </li>
-          @endguest
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-    </header><!-- End Header -->
-<body>
+    @include('layouts.header')
+    <body>
     <div class="section">
         <span class="section-title">Free CV Template</span>
         <div class="text">
@@ -84,7 +53,7 @@
                 <h4>Curious how this template can help you? Check out the various examples of CVs below that will give you inspiration.</h4>
             </center>
         </div>
-        <a href="{{route('cvform')}}"
+        <a href="{{route('cvform',['id'=>1])}}"
         style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6); width: 188px; height: 76px; border-radius: 15px; overflow: hidden; position: relative; top: 300px;
         transition: all 0.4s ease; font-weight:500; margin-top:35px; color:rgba(255,255,255,1); font-family: Poppins; font-weight: Medium; font-size: 18px; opacity: 1;
         text-align: center;padding: 22px 10px;display:inline-block;border-radius:15px;">
@@ -93,12 +62,13 @@
 
     <div class="container" id="CV">
         <div class="image-container">
-
-            <div class="image">
-                <a href="assets/img/CVtemplate/creative-cv-template-1.png" data-lightbox="models" data-title="Creative-1">
-                    <img src="assets/img/CVtemplate/creative-cv-template-1.png" alt="">
-                </a>
-            </div>
+            @foreach ($cv as $item)
+                <div class="image">
+                    <a href="{{route('cvform',['id'=>$item->id])}}" >
+                        <img src="{{asset("/templateCV/$item->source/preview.png")}}" alt="creative1">
+                    </a>
+                </div>
+            @endforeach
             <div class="image">
                 <a href="assets/img/CVtemplate/creative-cv-template-2.png" data-lightbox="models" data-title="Creative-2">
                     <img src="assets/img/CVtemplate/creative-cv-template-2.png" alt="">

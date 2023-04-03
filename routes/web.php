@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\applicant\CVController;
 use App\Http\Controllers\applicant\JobsController;
 use App\Http\Controllers\applicant\UsersController;
 use App\Http\Controllers\company\Applicant;
@@ -22,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Coba
-    Route::view('cv-form', 'cv.form');
+    // Route::view('cv-form', 'cv.form')->name('cvForm');
+    Route::view('creative1','cv.template.creative1');
 
 //Route applicant
     Route::view('applyform', 'applicant.applyform')->name('applyform');
@@ -157,8 +159,10 @@ Route::middleware(['auth'])->group(function(){
 Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
-Route::view('/cvawal', 'applicant.cvawal')->name('cvawal');
-Route::view('/cvform', 'cv.form')->name('cvform');
+Route::get('/cvawal', [CVController::class,'indexCV'])->name('cvawal');
+Route::get('/cvform/{id}', [CVController::class,'showForm'])->name('cvform');
+Route::post('submitPDF', [CVController::class, 'submitCVProfile'])->name('submitCV');
+Route::get('pdfCV/{id}', [CVController::class, 'generatePDF'])->name('downloadPDF');
 Route::post('/alert', function () {
 
 });
