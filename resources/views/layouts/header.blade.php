@@ -28,7 +28,7 @@
               Hi, {{Auth::user()->name}}</button>
             <ul class="dropdown-menu" aria-labelledby="dropdownButton">
                 @if(Auth::user()->role=='A')
-                <a href="{{route('profileapplicant',['id'=>Auth::user()->id])}}"  class="dropdown-item"><i class="bi bi-person-fill mr-2"></i>My Profile</a>
+                <a href="{{route('applicant.myProfile')}}"  class="dropdown-item"><i class="bi bi-person-fill mr-2"></i>My Profile</a>
                 @elseif(Auth::user()->role=='B')
 								<a href="{{route('view.company.dashboard')}}"  class="dropdown-item"><i class="bi bi-building-fill-check mr-2"></i>Company Page</a>
                 @endif

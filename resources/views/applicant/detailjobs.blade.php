@@ -32,7 +32,7 @@
                     <center>
                         <div class="col-md-4">
                             <div class="template-demo">
-                                <a href="">
+                                <a href="{{route('cvawal')}}">
                                     <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
                                 </a>
                                 <a href="{{route('applyform',['id'=>$loker->id])}}">

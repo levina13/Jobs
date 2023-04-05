@@ -18,7 +18,7 @@ class JobsController extends Controller
     public function SearchFindJobs(Request $request)
     {
         $keyword=$request->input('keyword');
-        $data = loker::select('lokers.judul_loker','lokers.tanggal_awal',
+        $data = loker::select('lokers.judul_loker','lokers.tanggal_awal', 'lokers.id as id_loker',
                                 'lokers.tanggal_akhir', 'lokers.salary',
                                 'users.name','users.photo','pekerjaans.pekerjaan',
                                 'contracts.contract','cities.city', 'provinces.province')
@@ -36,8 +36,8 @@ class JobsController extends Controller
         $industry = jenis_perusahaan::select('*')->get();
 
 
-        return [$data, $contracts, $industry];
-        return view('',['data'=>$data,'contract'=>$contracts,'industry'=>$industry]);
+        // return [$data, $contracts, $industry];
+        return view('applicant.findJobs',['data'=>$data,'contract'=>$contracts,'industry'=>$industry]);
 
 
     }

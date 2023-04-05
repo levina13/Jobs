@@ -30,6 +30,7 @@ div#CV.container
     position: relative;
     top: 350px;
     min-height: 100vh;
+    margin-bottom: 400px;
 }
 
 div#CV.container .image-container{

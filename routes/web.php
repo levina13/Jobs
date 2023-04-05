@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\applicant\CVController;
 use App\Http\Controllers\applicant\JobsController;
 use App\Http\Controllers\applicant\UsersController;
 use App\Http\Controllers\company\Applicant;
@@ -22,7 +23,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Coba
-    Route::view('cv-form', 'cv.form');
+    // Route::view('cv-form', 'cv.form')->name('cvForm');
+    Route::view('creative1','cv.template.creative1');
+    Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('findJobs');
+
+//Route applicant
+    Route::view('applyform', 'applicant.applyform')->name('applyform');
+    Route::view('detailjobs', 'applicant.detailjobs')->name('detailjobs');
+    Route::view('companyprofile', 'applicant.companyprofile')->name('companyprofile');
+    Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
+    Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
+    Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
+    Route::get('my-profile', [UsersController::class,'showProfile'])->name('applicant.myProfile');
+    Route::get('editprofileapplicant/{id}', [UsersController::class,'viewEditProfile'])->name('editprofileapplicant');
+    Route::post('editprofileapplicant', [UsersController::class,'updateProfile'])->name('updateprofileapplicant');
+    Route::get('getRegion',[UsersController::class,'getRegion'])->name('select.Region.user');
+    Route::get('getCity/{id}',[UsersController::class,'getCity'])->name('select.City.user');
+    Route::get('getEducation',[UsersController::class,'getEducation'])->name('select.Education.user');
+
 
 //Route coba company
 
@@ -34,15 +52,21 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 // Find JObs
-Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
-Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
+// Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
+// Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
+// Route untuk data select
+Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region');
+Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City');
+Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector');
+
+
 
 //Route applicant
 Route::view('applyform', 'applicant.applyform')->name('applyform');
 Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('detailjobs');
 Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
 Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
-Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
+// Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
 Route::view('indexapplicant', 'applicant.indexapplicant')->name('indexapplicant');
 
 
@@ -119,9 +143,6 @@ Route::middleware(['auth'])->group(function(){
                 Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
             });
             Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
-            Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region.company');
-            Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City.company');
-            Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector.company');
 
         // });
     });
@@ -140,8 +161,10 @@ Route::middleware(['auth'])->group(function(){
 Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
-Route::view('/cvawal', 'applicant.cvawal')->name('cvawal');
-Route::view('/cvform', 'auth.cvform')->name('cvform');
+Route::get('/cvawal', [CVController::class,'indexCV'])->name('cvawal');
+Route::get('/cvform/{id}', [CVController::class,'showForm'])->name('cvform');
+Route::post('submitPDF', [CVController::class, 'submitCVProfile'])->name('submitCV');
+Route::get('pdfCV/{id}', [CVController::class, 'generatePDF'])->name('downloadPDF');
 Route::post('/alert', function () {
 
 });

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\city;
 use App\Models\contract;
+use App\Models\cv;
 use App\Models\education;
 use App\Models\jenis_perusahaan;
 use App\Models\pekerjaan;
@@ -94,6 +95,16 @@ class MainSeeder extends Seeder
             ]);
         }
         fclose($PekerjaanCsvFile);
+
+        // Tambah cv
+        $cvCsvFile = fopen(base_path("database/data/cv.csv"), 'r');
+        while (($data = fgetcsv($cvCsvFile, 2000, ",")) !== FALSE) {
+            cv::create([
+                "source" => $data['0'],
+                "title" => $data['1'],
+            ]);
+        }
+        fclose($cvCsvFile);
 
     }
 }
