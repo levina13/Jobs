@@ -43,6 +43,7 @@ Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('det
 Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
 Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
 Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
+Route::view('indexapplicant', 'applicant.indexapplicant')->name('indexapplicant');
 
 
 // Profil User
@@ -72,7 +73,7 @@ Route::middleware(['guest'])->group(function(){
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
+
     Route::middleware(['applicant'])->group(function(){
         Route::get('myjobshistory', [JobsController::class,'showHistory'])->name('myjobshistory');
         Route::get('myjobscurrently', [JobsController::class, 'showCurrently'])->name('myjobscurrently');
@@ -121,7 +122,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region.company');
             Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City.company');
             Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector.company');
-            
+
         // });
     });
 
