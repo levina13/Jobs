@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Creative 2</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="creative2.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('templateCV/creative2/creative2.css')}}">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
@@ -12,113 +12,56 @@
 <div class="resume_wrapper">
 	<div class="resume_left">
 		<div class="resume_image">
-			<img src="pic.jpg" alt="Resume_image">
+			<img src="{{asset('uploads/profil_image/'.$user->photo)}}" alt="Resume_image">
 		</div>
 		<div class="resume_bottom">
 			<div class="resume_item resume_namerole">
 				<div class="name">
-					{{$user->first_name}}</div>
+					{{$user->first_name}} {{$user->last_name}}</div>
 				<div class="role">
-					{{$user->last_name}}
+					{{$user->headline}}
 				</div>
 			</div>
 			<div class="resume_item resume_profile">
-				<div class="resume_title">Profile <br>{{$user->prifile}}</div>
-				<div class="resume_info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+				<div class="resume_title">Profile <br></div>
+				<div class="resume_info">{!!$user->profile!!}</div>
 			</div>
 			<div class="resume_item resume_address">
-				<div class="resume_title">{{$user->address}}</div>
+				<div class="resume_title">Address</div>
 				<div class="resume_info">
-					18th home,<br/>
-					woods street,<br/>
-					New York City, United States
+					{{$user->address}}
 				</div>
 			</div>
 			<div class="resume_item resume_contact">
 				<div class="resume_title">Contact</div>
 				<div class="resume_info">
 					<div class="resume_subtitle">Phone</div>
-					<div class="resume_subinfo">+62 000 222 333</div>
+					<div class="resume_subinfo">{{$user->phone_number}}</div>
 				</div>
 				<div class="resume_info">
 					<div class="resume_subtitle">Email</div>
-					<div class="resume_subinfo">rosiejack@gmail.com</div>
+					<div class="resume_subinfo">{{$user->email}}</div>
 				</div>
 			</div>
 			<div class="resume_item resume_skills">
 				<div class="resume_title">Skills</div>
 				<div class="resume_info">
-					<div class="skills_list">
-						<div class="skills_left">HTML</div>
-						<div class="skills_bar">
-							<p>
-								<span style="width: 90%"></span>
-							</p>
-						</div>
-					</div>
-					<div class="skills_list">
-						<div class="skills_left">CSS</div>
-						<div class="skills_bar">
-							<p>
-								<span style="width: 80%"></span>
-							</p>
-						</div>
-					</div>
-					<div class="skills_list">
-						<div class="skills_left">Javascript</div>
-						<div class="skills_bar">
-							<p>
-								<span style="width: 50%"></span>
-							</p>
-						</div>
-					</div>
-					<div class="skills_list">
-						<div class="skills_left">Photoshop</div>
-						<div class="skills_bar">
-							<p>
-								<span style="width: 95%"></span>
-							</p>
-						</div>
-					</div>
+					{!!$user->skill!!}
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="resume_right">
 		<div class="resume_item resume_namerole">
-			<div class="name">
-			{{$user->first_name}} <br>
-			<span>{{$user->last_name}}</span>
-			</div>
-			<div class="role">UI Designer</div>
+			<div class="name">{{$user->first_name}} {{$user->last_name}}</div>
+			<div class="role">{{$user->headline}}</div>
 		</div>
 		<div class="resume_item resume_education">
 			<div class="resume_title">Education</div>
 			<div class="resume_info">
 				<div class="resume_data">
-					<div class="year">2000 - 2010</div>
 					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-				<div class="resume_data">
-					<div class="year">2010 - 2013</div>
-					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-				<div class="resume_data">
-					<div class="year">2013 - 2015</div>
-					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						{!!$user->education!!}
 					</div>
 				</div>
 			</div>
@@ -127,43 +70,13 @@
 			<div class="resume_title">Experience</div>
 			<div class="resume_info">
 				<div class="resume_data">
-					<div class="year">2000 - 2010</div>
 					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-				<div class="resume_data">
-					<div class="year">2010 - 2013</div>
-					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-				<div class="resume_data">
-					<div class="year">2013 - 2015</div>
-					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-				<div class="resume_data">
-					<div class="year">2013 - 2015</div>
-					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-				</div>
-				<div class="resume_data">
-					<div class="year">2013 - 2015</div>
-					<div class="content">
-						<p>Title</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						{!!$user->working_experience!!}
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="resume_item resmue_interests">
+		{{-- <div class="resume_item resmue_interests">
 			<div class="resume_title">Interests</div>
 			<div class="resume_info">
 				<div class="interests">
@@ -191,7 +104,7 @@
 					<div class="int_data">Riding</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 	</div>
 </div>
 

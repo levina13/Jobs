@@ -126,7 +126,7 @@
       $('.region').select2({
         placeholder: 'Select an region',
         ajax: {
-          url: "{{route('select.Region.company')}}",
+          url: "{{route('select.Region')}}",
           dataType: 'json',
           delay: 250,
           processResults: function (data) {

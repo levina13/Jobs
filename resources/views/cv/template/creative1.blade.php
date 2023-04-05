@@ -17,7 +17,7 @@
             {{$user->first_name}} <br>
             <span>{{$user->last_name}}</span>
         </h2>
-		<p class="n-p">Graphic & Web Designer</p>
+		<p class="n-p">{{$user->headline}}</p>
 
 
 		<div class="info">

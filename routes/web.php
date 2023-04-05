@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 // Coba
     // Route::view('cv-form', 'cv.form')->name('cvForm');
     Route::view('creative1','cv.template.creative1');
+    Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('findJobs');
 
 //Route applicant
     Route::view('applyform', 'applicant.applyform')->name('applyform');
@@ -51,8 +52,8 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 // Find JObs
-Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
-Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
+// Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
+// Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
 // Route untuk data select
 Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region');
 Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City');

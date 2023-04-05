@@ -65,56 +65,17 @@
             @foreach ($cv as $item)
                 <div class="image">
                     <a href="{{route('cvform',['id'=>$item->id])}}" >
-                        <img src="{{asset("/templateCV/$item->source/preview.png")}}" alt="creative1">
+                        <img src="{{asset("/templateCV/$item->source/preview.png")}}" alt="{{$item->title}}">
                     </a>
                 </div>
             @endforeach
-            <div class="image">
-                <a href="assets/img/CVtemplate/creative-cv-template-2.png" data-lightbox="models" data-title="Creative-2">
-                    <img src="assets/img/CVtemplate/creative-cv-template-2.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/creative-cv-template-3.png" data-lightbox="models" data-title="Creative-3">
-                    <img src="assets/img/CVtemplate/creative-cv-template-3.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/modern-cv-template-1.png" data-lightbox="models" data-title="Modern-1">
-                    <img src="assets/img/CVtemplate/modern-cv-template-1.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/moder-cv-template-2.png" data-lightbox="models" data-title="Modern-2">
-                    <img src="assets/img/CVtemplate/moder-cv-template-2.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/modern-cv-template-3.png" data-lightbox="models" data-title="Modern-3">
-                    <img src="assets/img/CVtemplate/modern-cv-template-3.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/simple-cv-template-1.png" data-lightbox="models" data-title="Simple-1">
-                    <img src="assets/img/CVtemplate/simple-cv-template-1.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/simple-cv-template-2.png" data-lightbox="models" data-title="Simple-2">
-                    <img src="assets/img/CVtemplate/simple-cv-template-2.png" alt="">
-                </a>
-            </div>
-            <div class="image">
-                <a href="assets/img/CVtemplate/simple-cv-template-3.png" data-lightbox="models" data-title="Simple-3">
-                    <img src="assets/img/CVtemplate/simple-cv-template-3.png" alt="">
-                </a>
-            </div>
         </div>
 
 
     </div>
     <script src="assets/js/lightbox-plus-jquery.js"></script>
 </body>
+@include('layouts.footer')
 <footer>
     <div class="container py-4">
         <div class="copyright">

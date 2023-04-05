@@ -72,7 +72,7 @@
                         }
                     });
                     $.ajax({
-                        url: "/company/job-vacancies/delete/"+id,
+                        url: "/job-vacancies/delete/"+id,
                         type: 'POST',
                         method:"POST",
                         data: {submit: true},

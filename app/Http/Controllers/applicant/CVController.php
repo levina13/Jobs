@@ -82,8 +82,9 @@ class CVController extends Controller
 
     public function generatePDF($id)
     {
-        $data=cvHistory::select('*')
-                        ->where('id','=',$id)
+        $data=cvHistory::select('*','users.headline')
+                        ->join('users', 'users.id','=','cv_histories.id_user')
+                        ->where('cv_histories.id','=',$id)
                         ->first();
         $id_cv=$data->id_cv;
         $cv=cv::select('*')
