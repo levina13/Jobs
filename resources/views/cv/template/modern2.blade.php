@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Modern 2</title>
-	<link rel="stylesheet" href="modern2.css">
+	<link rel="stylesheet" href="{{asset('templateCV/modern2/modern2.css')}}">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
@@ -11,7 +11,7 @@
 		<div class="resume">
 			<div class="left">
 				<div class="img_holder">
-					<img src="pic.png" alt="picture">
+					<img src="{{asset('uploads/profil_image/'.$user->photo)}}" alt="picture">
 				</div>
 				<div class="contact_wrap pb">
 					<div class="title">
@@ -22,25 +22,19 @@
 							<li>
 								<div class="li_wrap">
 									<div class="icon"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
-									<div class="text">972 9838485</div>
+									<div class="text">{{$user->phone_number}}</div>
 								</div>
 							</li>
 							<li>
 								<div class="li_wrap">
 									<div class="icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
-									<div class="text">aniabukstein@gmail.com</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fab fa-weebly" aria-hidden="true"></i></div>
-									<div class="text">www.aniabukstein.com</div>
+									<div class="text">{{$user->email}}</div>
 								</div>
 							</li>
 							<li>
 								<div class="li_wrap">
 									<div class="icon"><i class="fas fa-map-signs" aria-hidden="true"></i></div>
-									<div class="text">17 street, jerusalem, Israel</div>
+									<div class="text">{{$user->address}}</div>
 								</div>
 							</li>
 						</ul>
@@ -51,65 +45,7 @@
 						Skills
 					</div>
 					<div class="skills">
-						<ul>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fab fa-html5"></i></div>
-									<div class="text">HTML</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fab fa-css3-alt"></i></div>
-									<div class="text">CSS</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fab fa-js"></i></div>
-									<div class="text">Javascript</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fab fa-react"></i></div>
-									<div class="text">React.JS</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="hobbies_wrap pb">
-					<div class="title">
-						hobbies
-					</div>
-					<div class="hobbies">
-						<ul>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fas fa-book"></i></div>
-									<div class="text">Reading</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fas fa-music"></i></div>
-									<div class="text">Music</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fas fa-gamepad"></i></div>
-									<div class="text">Gaming</div>
-								</div>
-							</li>
-							<li>
-								<div class="li_wrap">
-									<div class="icon"><i class="fas fa-tree"></i></div>
-									<div class="text">Gardening</div>
-								</div>
-							</li>
-						</ul>
+						{!!$user->skill!!}
 					</div>
 				</div>
 			</div>
@@ -117,14 +53,14 @@
 				<div class="header">
 					<div class="name_role">
 						<div class="name">
-							Ania Bukstein
+							{{$user->first_name}} {{$user->last_name}}
 						</div>
 						<div class="role">
-							UI UX Developer
+							{{$user->headline}}
 						</div>
 					</div>
 					<div class="about">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta beatae optio, corporis fugit accusantium debitis laborum tenetur, quisquam distinctio nihil quam eum. Laudantium saepe, sunt, esse laboriosam dolores distinctio?
+						{!!$user->profile!!}
 					</div>
 				</div>
 				<div class="right_inner">
@@ -133,62 +69,7 @@
 							experience
 						</div>
 						<div class="exp_wrap">
-							<ul>
-								<li>
-									<div class="li_wrap">
-										<div class="date">
-											2018 - Present
-										</div>
-										<div class="info">
-											<p class="info_title">
-												UI Team Lead
-											</p>
-											<p class="info_com">
-												Facebook
-											</p>
-											<p class="info_cont">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptatibus consequatur rem nostrum omnis! Architecto.
-											</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="li_wrap">
-										<div class="date">
-											2015 - 2018
-										</div>
-										<div class="info">
-											<p class="info_title">
-												UI Developer
-											</p>
-											<p class="info_com">
-												Amazon
-											</p>
-											<p class="info_cont">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptatibus consequatur rem nostrum omnis! Architecto.
-											</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="li_wrap">
-										<div class="date">
-											2014 - 2015
-										</div>
-										<div class="info">
-											<p class="info_title">
-												Junior UI Developer
-											</p>
-											<p class="info_com">
-												Coding Power
-											</p>
-											<p class="info_cont">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptatibus consequatur rem nostrum omnis! Architecto.
-											</p>
-										</div>
-									</div>
-								</li>
-							</ul>
+							{!!$user->working_experience!!}
 						</div>
 					</div>
 					<div class="education">
@@ -196,62 +77,7 @@
 							Education
 						</div>
 						<div class="education_wrap">
-							<ul>
-								<li>
-									<div class="li_wrap">
-										<div class="date">
-											2010 - 2014
-										</div>
-										<div class="info">
-											<p class="info_title">
-												Computer Science
-											</p>
-											<p class="info_com">
-												Israel University
-											</p>
-											<p class="info_cont">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptatibus consequatur rem nostrum omnis! Architecto.
-											</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="li_wrap">
-										<div class="date">
-											2008 - 2010
-										</div>
-										<div class="info">
-											<p class="info_title">
-												Computer Science
-											</p>
-											<p class="info_com">
-												Israel Junior College
-											</p>
-											<p class="info_cont">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptatibus consequatur rem nostrum omnis! Architecto.
-											</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="li_wrap">
-										<div class="date">
-											1998 - 2008
-										</div>
-										<div class="info">
-											<p class="info_title">
-												Schooling
-											</p>
-											<p class="info_com">
-												Israel School
-											</p>
-											<p class="info_cont">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga voluptatibus consequatur rem nostrum omnis! Architecto.
-											</p>
-										</div>
-									</div>
-								</li>
-							</ul>
+							{!!$user->education!!}
 						</div>
 					</div>
 				</div>
@@ -260,3 +86,4 @@
 	</div>
 </body>
 </html>
+@include('cv.template.print')

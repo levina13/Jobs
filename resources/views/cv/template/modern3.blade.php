@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Modern 3</title>
-	<link rel="stylesheet" type="text/css" href="modern3.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('templateCV/modern3/modern3.css')}}">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
@@ -12,84 +12,26 @@
 			<div class="resume_left">
 				<div class="about_sec">
 					<div class="button">About Me</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.</p>
-					<p> Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						{!!$user->profile!!}
 				</div>
 				<div class="exp_sec">
 					<div class="button">Experience</div>
-					<ul>
-						<li>
-							<div class="item">
-								<div class="item_grp">
-									<p class="title">Experience_1</p>
-									<p class="sub_title">Sub_Experience_1</p>
-									<span class="timeline">2020 - Present</span>
-								</div>
-								<p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</li>
-						<li>
-							<div class="item">
-								<div class="item_grp">
-									<p class="title">Experience_2</p>
-									<p class="sub_title">Sub_Experience_2</p>
-									<span class="timeline">2017 - 2020</span>
-								</div>
-								<p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</li>
-						<li>
-							<div class="item">
-								<div class="item_grp">
-									<p class="title">Experience_3</p>
-									<p class="sub_title">Sub_Experience_3</p>
-									<span class="timeline">2015 - 2017</span>
-								</div>
-								<p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</li>
-					</ul>
+					{!!$user->working_experience!!}
 				</div>
 				<div class="edu_sec">
 					<div class="button">Education</div>
-					<ul>
-						<li>
-							<div class="item">
-								<div class="item_grp">
-									<p class="title">Education_1</p>
-									<p class="sub_title">Sub_Education_1</p>
-									<span class="timeline">2011-2015</span>
-								</div>
-								<p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</li>
-						<li>
-							<div class="item">
-								<div class="item_grp">
-									<p class="title">Education_1</p>
-									<p class="sub_title">Sub_Education_1</p>
-									<span class="timeline">2009-2011</span>
-								</div>
-								<p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							</div>
-						</li>
-					</ul>
+					{!!$user->education!!}
 				</div>
 			</div>
 			<div class="resume_right">
 				<div class="profile_sec">
 					<div class="img_holder">
-						<img src="profile.png" alt="profile image">
+						<img src="{{asset('uploads/profil_image/'.$user->photo)}}" alt="profile image">
 					</div>
 					<div class="profile_info">
-						<p class="first_name">Mark</p>
-						<p class="last_name">levin peterwood</p>
-						<p class="role">Full Stack Developer</p>
+						<p class="first_name">{{$user->first_name}}</p>
+						<p class="last_name">{{$user->last_name}}</p>
+						<p class="role">{{$user->headline}}</p>
 					</div>
 				</div>
 				<div class="contact_sec">
@@ -101,7 +43,7 @@
 							</div>
 							<div class="content">
 								<p class="title">Phone</p>
-								<p class="subtitle">+123 45566688</p>
+								<p class="subtitle">{{$user->phone_number}}</p>
 							</div>
 						</li>
 						<li class="item">
@@ -110,7 +52,7 @@
 							</div>
 							<div class="content">
 								<p class="title">Email</p>
-								<p class="subtitle">Markwood@gmail.com</p>
+								<p class="subtitle">{{$user->email}}</p>
 							</div>
 						</li>
 						<li class="item">
@@ -119,45 +61,14 @@
 							</div>
 							<div class="content">
 								<p class="title">Address</p>
-								<p class="subtitle">12th cross, Townhall, NY, USA</p>
+								<p class="subtitle">{{$user->address}}</p>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div class="skills_sec">
 					<div class="button">Skills</div>
-					<ul>
-						<li class="item">
-							<div class="content">HTML/CSS</div>
-							<div class="bar_wrap">
-								<p class="bar" style="width: 100%"></p>
-							</div>
-						</li>
-						<li class="item">
-							<div class="content">Javascript</div>
-							<div class="bar_wrap">
-								<p class="bar" style="width: 70%"></p>
-							</div>
-						</li>
-						<li class="item">
-							<div class="content">PHP</div>
-							<div class="bar_wrap">
-								<p class="bar" style="width: 50%"></p>
-							</div>
-						</li>
-						<li class="item">
-							<div class="content">SQL</div>
-							<div class="bar_wrap">
-								<p class="bar" style="width: 80%"></p>
-							</div>
-						</li>
-						<li class="item">
-							<div class="content">Github</div>
-							<div class="bar_wrap">
-								<p class="bar" style="width: 100%"></p>
-							</div>
-						</li>
-					</ul>
+					{{!!$user->skill!!}}
 				</div>
 			</div>
 		</div>
@@ -165,3 +76,4 @@
 
 </body>
 </html>
+@include('cv.template.print')

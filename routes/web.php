@@ -103,6 +103,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('myjobsfavorite', [JobsController::class, 'showFavorite'])->name('myjobsfavorite');
         Route::get('applyform/{id}', [JobsController::class,'openApply'])->name('applyform');
         Route::post('applyform',[JobsController::class, 'applyJob'])->name('post.applyform');
+        Route::get('/cvform/{id}', [CVController::class, 'showForm'])->name('cvform');
+        Route::post('submitPDF', [CVController::class, 'submitCVProfile'])->name('submitCV');
+        Route::get('pdfCV/{id}', [CVController::class, 'generatePDF'])->name('downloadPDF');
     });
     // Route::view('cv-form', 'cv.form');
     // Route untuk verifikasi Email & telepon
@@ -161,9 +164,6 @@ Route::view('/coba', 'auth.logReg');
 Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
 Route::view('/cobalintang', 'coba.coba');
 Route::get('/cvawal', [CVController::class,'indexCV'])->name('cvawal');
-Route::get('/cvform/{id}', [CVController::class,'showForm'])->name('cvform');
-Route::post('submitPDF', [CVController::class, 'submitCVProfile'])->name('submitCV');
-Route::get('pdfCV/{id}', [CVController::class, 'generatePDF'])->name('downloadPDF');
 Route::post('/alert', function () {
 
 });

@@ -5,11 +5,10 @@ namespace App\Http\Controllers\applicant;
 use App\Http\Controllers\Controller;
 use App\Models\cv;
 use App\Models\cvHistory;
-use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\View;
 
 class CVController extends Controller
 {
@@ -82,6 +81,7 @@ class CVController extends Controller
 
     public function generatePDF($id)
     {
+        ini_set('max_execution_time', 3600);
         $data=cvHistory::select('*','users.headline')
                         ->join('users', 'users.id','=','cv_histories.id_user')
                         ->where('cv_histories.id','=',$id)
@@ -99,10 +99,8 @@ class CVController extends Controller
                 // 'date' => date('d/m/Y'),
                 'user' => $data
             ];
-            // return $dataArray;
-            return view("cv.template.".$cv->source."",$dataArray);            
-            $pdf = PDF::loadView('cv.template.creative1', $dataArray);
-            return $pdf->download('itsolutionstuff.pdf');        
+            $view = View::make('cv.template.' . $cv->source, $dataArray);
+            return $view;
         }else{
             return $data;
         }
