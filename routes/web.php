@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('getRegion',[UsersController::class,'getRegion'])->name('select.Region.user');
     Route::get('getCity/{id}',[UsersController::class,'getCity'])->name('select.City.user');
     Route::get('getEducation',[UsersController::class,'getEducation'])->name('select.Education.user');
-    
+
 
 //Route coba company
 
@@ -67,6 +67,7 @@ Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('det
 Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
 Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
 // Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
+Route::view('indexapplicant', 'applicant.indexapplicant')->name('indexapplicant');
 
 
 // Profil User
@@ -96,7 +97,7 @@ Route::middleware(['guest'])->group(function(){
 // Route untuk pencari loker yg sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
+
     Route::middleware(['applicant'])->group(function(){
         Route::get('myjobshistory', [JobsController::class,'showHistory'])->name('myjobshistory');
         Route::get('myjobscurrently', [JobsController::class, 'showCurrently'])->name('myjobscurrently');
@@ -145,7 +146,7 @@ Route::middleware(['auth'])->group(function(){
                 Route::get('editprofilecompany/{id}', [CompanyController::class, 'viewEditProfile'])->name('editprofilecompany');
             });
             Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
-            
+
         // });
     });
 
