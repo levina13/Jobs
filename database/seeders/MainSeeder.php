@@ -13,6 +13,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 use App\Models\province;
+use App\Models\salaryCategory;
 
 class MainSeeder extends Seeder
 {
@@ -106,5 +107,15 @@ class MainSeeder extends Seeder
         }
         fclose($cvCsvFile);
 
+        // Tambah jenis gaji
+        // Tambah cv
+        $salaryCsvFile = fopen(base_path("database/data/salary_category.csv"), 'r');
+        while (($data = fgetcsv($salaryCsvFile, 2000, ",")) !== FALSE) {
+            salaryCategory::create([
+                "start" => $data['0'],
+                "end" => $data['1'],
+            ]);
+        }
+        fclose($salaryCsvFile);
     }
 }

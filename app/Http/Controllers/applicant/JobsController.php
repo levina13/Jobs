@@ -8,6 +8,7 @@ use App\Models\favorite;
 use App\Models\jenis_perusahaan;
 use App\Models\lamaran;
 use App\Models\loker;
+use App\Models\salaryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -19,9 +20,11 @@ class JobsController extends Controller
     {
         $keyword=$request->input('keyword');
         $data = loker::select('lokers.judul_loker','lokers.tanggal_awal', 'lokers.id as id_loker',
-                                'lokers.tanggal_akhir', 'lokers.salary',
+                                'lokers.tanggal_akhir', 'lokers.salary','lokers.id_salary_category',
                                 'users.name','users.photo','pekerjaans.pekerjaan',
-                                'contracts.contract','cities.city', 'provinces.province')
+                                'contracts.contract','cities.city', 'provinces.province',
+                                'contracts.id as id_contract', 
+                                'perusahaans.id_jenis_perusahaan as id_industry')
                 ->join('perusahaans', 'perusahaans.id','=','lokers.id_perusahaan')
                 ->join('users','users.id','=','perusahaans.id_owner')
                 ->join('pekerjaans','pekerjaans.id','=','lokers.id_perusahaan')
@@ -34,10 +37,13 @@ class JobsController extends Controller
                 ->get();
         $contracts = contract::select('*')->get();
         $industry = jenis_perusahaan::select('*')->get();
+        $salary= salaryCategory::select('*')->get();
 
 
         // return [$data, $contracts, $industry];
-        return view('applicant.findJobs',['data'=>$data,'contract'=>$contracts,'industry'=>$industry]);
+        return view('applicant.findJobs',['data'=>$data,'contract'=>$contracts,
+                                        'industry'=>$industry, 'keyword'=>$keyword,
+                                        'salary'=>$salary]);
 
 
     }

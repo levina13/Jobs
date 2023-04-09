@@ -9,7 +9,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link  active" href="{{route('home')}}">Home</a></li>
-          <li><a class="nav-link scrollto" href="#findjobs">Find Jobs</a></li>
+          <li><a class="nav-link scrollto" href="{{route('findJobs')}}">Find Jobs</a></li>
           @auth
             @if(Auth::user()->role=='A')
               <li><a class="nav-link " href="{{route('myjobshistory')}}">My Jobs</a></li>

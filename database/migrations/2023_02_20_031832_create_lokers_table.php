@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedInteger('salary');
             $table->unsignedBigInteger('id_perusahaan');
             $table->unsignedBigInteger('id_pekerjaan');
+            $table->unsignedBigInteger('id_salary_category');
             $table->timestamps();
         });
     }

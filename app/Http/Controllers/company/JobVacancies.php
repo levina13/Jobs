@@ -7,6 +7,7 @@ use App\Models\contract;
 use App\Models\education;
 use App\Models\loker;
 use App\Models\perusahaan;
+use App\Models\salaryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,7 @@ class JobVacancies extends Controller
             'date_start' => 'required',
             'date_end' => 'required',
             'description' => 'required',
-            'salary'=>'required|numeric|digits_between:1,10'
+            'salary'=>'required|numeric|digits_between:1,9'
         ]);
         // return $request;
 
@@ -69,6 +70,13 @@ class JobVacancies extends Controller
                         ->first();
 
         $input = $request->all();
+
+        // Cari id_categori salary
+        $id_salary= salaryCategory::select('id')
+                    ->where('start','<=', $input['salary'])
+                    ->where('end','>=',$input['salary'])
+                    ->first();
+
         // Simpan user
         $loker = new loker;
         $loker->judul_loker = $input['job_name'];
@@ -79,6 +87,7 @@ class JobVacancies extends Controller
         $loker->id_pekerjaan= $input['position'];
         $loker->salary=$input['salary'];
         $loker->deskripsi = $input['description'];
+        $loker->id_salary_category=$id_salary->id;
         $loker->save();
 
         return response()->json([

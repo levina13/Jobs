@@ -47,9 +47,28 @@
     opacity: 1;
     text-align: center;
 	}
+	.form-inputs{
+    position:relative;
+}
+.form-inputs .form-control{
+    height:45px; 
+	min-width: 300px;
+	font-size: 18px;
+}
+
+.form-inputs .form-control:focus{
+    box-shadow:none;
+    border:1px solid #000;
+}
+
+.form-inputs i{
+    position:absolute;
+    right:10px;
+    top:15px;
+}
 </style>
 </head>
-<body>
+<body style="display: block">
 	<!-- ======= Header ======= -->
     @include('layouts.header')
     <!-- End Header -->
@@ -73,13 +92,33 @@
 	<main class="cd-main-content">
 		<div class="cd-tab-filter-wrapper bg-transparent">
 			<div class="cd-tab-filter">
+				<div class="row justify-content-center">
+					<div class="col-6 ">
+						<form action="{{route('findJobs')}}" method="GET">
+							<div class="d-flex form-inputs">
+								@if (is_null($keyword))
+									<input name="keyword" class="form-control" type="text" placeholder="Search any job vacancies...">
+								@else
+									<input name="keyword" class="form-control" type="text" value="{{$keyword}}">
+								@endif
+								<i class="bi bi-search"></i>
+								<input type="hidden" type="submit">
+							</div>						
+						</form>
+					</div>
+				</div>
 				<ul class="cd-filters">
 					<li class="placeholder"> 
 						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
 					</li> 
-					<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
-					<li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Color 1</a></li>
-					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Color 2</a></li>
+					<li class="filter">
+						{{-- All --}}
+						{{-- <a class="selected" href="" data-type="all">
+							All
+						</a> --}}
+					</li>
+					{{-- <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Color 1</a></li>
+					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Color 2</a></li> --}}
 				</ul> <!-- cd-filters -->
 			</div> <!-- cd-tab-filter -->
 		</div> <!-- cd-tab-filter-wrapper -->
@@ -87,56 +126,20 @@
 		<section class="cd-gallery">
 			<ul>
                 @foreach ($data as $item)
-                    <a href="{{route('detailjobs',['id'=>$item->id_loker])}}">
-                        <li class="mix color-1 check1 radio2 option3"><img src="{{asset('uploads/profil_image/'.$item->photo)}}" alt="Image 1">
-                        <center><h2>{{$item->judul_loker}}</h2>
-                        <p>{{$item->tanggal_awal}} - {{$item->tanggal_akhir}}</p></center>
-                        </li>
-                    </a>
+					{{-- <div class="p-2" style="background-color: aliceblue"> --}}
+						<a href="{{route('detailjobs',['id'=>$item->id_loker])}}" style="color:black">
+							
+							<li class="mix color-1 contract{{$item->id_contract}} industry{{$item->id_industry}} salary{{$item->id_salary_category}}"><img src="{{asset('uploads/profil_image/'.$item->photo)}}" alt="Image 1">
+							<center><h2>{{$item->judul_loker}}</h2>
+							<p >{{$item->tanggal_awal}} - {{$item->tanggal_akhir}}</p></center>
+							</li>
+						</a>
+					{{-- </div> --}}
                 @endforeach
-				<li class="mix color-2 check2 radio2 option2"><img src="{{asset('findJobs/img/img-2.jpg')}}" alt="Image 2">
+				{{-- <li class="mix color-2 check2 radio2 option2"><img src="{{asset('findJobs/img/img-2.jpg')}}" alt="Image 2">
 				<center><h2>Jobs 2</h2>
 					<p>Deskription</p></center>
-				</li>
-				<li class="mix color-1 check3 radio3 option1"><img src="{{asset('findJobs/img/img-3.jpg')}}" alt="Image 3">
-				<center><h2>Jobs 3</h2>
-					<p>Deskription</p></center>
-				</li>
-				<li class="mix color-1 check3 radio2 option4"><img src="{{asset('findJobs/img/img-4.jpg')}}" alt="Image 4">
-				<center><h2>Jobs 4</h2>
-					<p>Deskription</p></center>
-				</li>
-				<li class="mix color-1 check1 radio3 option2"><img src="{{asset('findJobs/img/img-5.jpg')}}" alt="Image 5">
-				<center><h2>Jobs 5</h2>
-					<p>Deskription</p></center>
-				</li>
-				<li class="mix color-2 check2 radio3 option3"><img src="{{asset('findJobs/img/img-6.jpg')}}" alt="Image 6">
-				<center><h2>Jobs 6</h2>
-					<p>Deskription</p></center>
-				</li>
-				<li class="mix color-2 check2 radio2 option1"><img src="{{asset('findJobs/img/img-7.jpg')}}" alt="Image 7">
-					<center><h2>Jobs 7</h2>
-						<p>Deskription</p></center>
-				</li>
-				<li class="mix color-1 check1 radio3 option4"><img src="{{asset('findJobs/img/img-8.jpg')}}" alt="Image 8">
-					<center><h2>Jobs 8</h2>
-						<p>Deskription</p></center></li>
-				<li class="mix color-2 check1 radio2 option3"><img src="{{asset('findJobs/img/img-9.jpg')}}" alt="Image 9">
-					<center><h2>Jobs 9</h2>
-						<p>Deskription</p></center>
-				</li>
-				<li class="mix color-1 check3 radio2 option4"><img src="{{asset('findJobs/img/img-10.jpg')}}" alt="Image 10">
-					<center><h2>Jobs 10</h2>
-						<p>Deskription</p></center>
-				</li>
-				<li class="mix color-1 check3 radio3 option2"><img src="{{asset('findJobs/img/img-11.jpg')}}" alt="Image 11">
-					<center><h2>Jobs 11</h2>
-						<p>Deskription</p></center>
-				</li>
-				<li class="mix color-2 check1 radio3 option1"><img src="{{asset('findJobs/img/img-12.jpg')}}" alt="Image 12">
-					<center><h2>Jobs 12</h2>
-						<p>Deskription</p></center>
-				</li>
+				</li> --}}
 				<li class="gap"></li>
 				<li class="gap"></li>
 				<li class="gap"></li>
@@ -147,32 +150,16 @@
 		<div class="cd-filter">
 			<form>
 				<div class="cd-filter-block">
-					<h4>Search</h4>
-					
-					<div class="cd-filter-content">
-						<input type="search" placeholder="Try color-1..." >
-
-					</div> <!-- cd-filter-content -->
-				</div> <!-- cd-filter-block -->
-
-				<div class="cd-filter-block">
 					<h4>Contract</h4>
 
 					<ul class="cd-filter-content cd-filters list">
-						<li>
-							<input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-			    			<label class="checkbox-label" for="checkbox1">Full Time</label>
-						</li>
+						@foreach ($contract as $key=>$item)
+							<li>
+								<input class="filter" data-filter=".contract{{$item->id}}" type="checkbox" id="checkbox{{$key+1}}">
+								<label class="checkbox-label" for="checkbox{{$key+1}}">{{$item->contract}}</label>
+							</li>
+						@endforeach
 
-						<li>
-							<input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-							<label class="checkbox-label" for="checkbox2">Part Time</label>
-						</li>
-
-						<li>
-							<input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-							<label class="checkbox-label" for="checkbox3">Freelance</label>
-						</li>
 					</ul> <!-- cd-filter-content -->
 				</div> <!-- cd-filter-block -->
 
@@ -182,11 +169,10 @@
 					<div class="cd-filter-content">
 						<div class="cd-select cd-filters">
 							<select class="filter" name="selectThis" id="selectThis">
-								<option value="">Choose an option</option>
-								<option value=".option1">Rp. 100.000 - Rp. 1.000.000</option>
-								<option value=".option2">Rp. 1.000.000 - Rp. 3.000.000</option>
-								<option value=".option3">Rp. 3.000.000 - Rp. 5.000.000</option>
-								<option value=".option4">Rp. 5.000.000 - Rp. 10.000.000</option>
+								<option value="">All</option>
+								@foreach ($salary as $key=>$item)
+									<option value=".salary{{$item->id}}">Rp. {{number_format($item->start,2,',','.')}} - Rp. {{number_format($item->end,2,',','.')}}</option>
+								@endforeach
 							</select>
 						</div> <!-- cd-select -->
 					</div> <!-- cd-filter-content -->
@@ -200,11 +186,14 @@
 							<input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
 							<label class="radio-label" for="radio1">All</label>
 						</li>
+						@foreach ($industry as $key=>$item)
+							<li>
+								<input class="filter" data-filter=".industry{{$item->id}}" type="radio" name="radioButton" id="radio{{$key+2}}">
+								<label class="radio-label" for="radio{{$key+2}}">{{$item->jenis_perusahaan}}</label>
+							</li>
+						@endforeach
 
-						<li>
-							<input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
-							<label class="radio-label" for="radio2">Service</label>
-						</li>
+
 
 						<li>
 							<input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">

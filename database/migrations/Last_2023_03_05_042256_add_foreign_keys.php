@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreign('id_contract')->references('id')->on('contracts');
             $table->foreign('id_perusahaan')->references('id')->on('perusahaans');
             $table->foreign('id_pekerjaan')->references('id')->on('pekerjaans');
+            $table->foreign('id_salary_category')->references('id')->on('salary_categories');
         });
         Schema::table('perusahaans', function (Blueprint $table) {
             // Foreign Key
