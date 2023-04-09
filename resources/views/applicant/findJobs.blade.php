@@ -73,12 +73,7 @@
     @include('layouts.header')
     <!-- End Header -->
 	<header class="cd-header">
-		<br>
-		<br>
-		<!-- <h1>Find Your Jobs</h1> -->
-		<div class="section">
-			<h1 style="width: 100%; top: 165px; left: 0px; font-weight: bolder; font-family: poppins; font-size: 34px; color: rgba(11,7,54,1); opacity: 1; text-align: center;"; class="section-title">Find Your Jobs</h1>
-		</div>
+		<h1 style="margin-top:20px;width: 100%; top: 165px; left: 0px; font-weight: bolder; font-family: poppins; font-size: 34px; color: rgba(11,7,54,1); opacity: 1; text-align: center;"; class="section-title">Find Your Jobs</h1>
 	</header>
 	<!--<div class="col-lg-5 col-5 text-left">
 		<form action="">
