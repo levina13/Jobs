@@ -40,6 +40,10 @@ return new class extends Migration
             $table->foreign('id_pelamar')->references('id')->on('users');
             $table->foreign('id_loker')->references('id')->on('lokers');
         });
+        Schema::table('cv_histories',function(Blueprint $table){
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_cv')->references('id')->on('cvs');
+        });
     }
 
     /**
