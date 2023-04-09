@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cvs', function (Blueprint $table) {
             $table->id();
             $table->string('source');
-            $table->string('photo');
+            $table->string('title');
             $table->timestamps();
         });
     }
