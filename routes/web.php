@@ -107,6 +107,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/cvform/{id}', [CVController::class, 'showForm'])->name('cvform');
         Route::post('submitPDF', [CVController::class, 'submitCVProfile'])->name('submitCV');
         Route::get('pdfCV/{id}', [CVController::class, 'generatePDF'])->name('downloadPDF');
+        Route::post('favorite/{id}',[JobsController::class,'favorite'])->name('favorite');
     });
     // Route::view('cv-form', 'cv.form');
     // Route untuk verifikasi Email & telepon

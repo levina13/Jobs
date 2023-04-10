@@ -202,6 +202,7 @@ cv-form
                   Swal.fire({
                     title: 'Failed to Create your CV!',
                     icon: 'error',
+					text:'Your data is not successfully validated',
                     showConfirmButton: true,
                   });
                 }
