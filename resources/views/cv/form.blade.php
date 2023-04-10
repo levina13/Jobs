@@ -170,7 +170,7 @@ cv-form
 				submit:true,
 				"first_name": $('#first_name').val(),
 				"last_name": $('#last_name').val(),
-				"email": $('#email').val(),	
+				"email": $('#email').val(),
 				"phone_number": $('#phone_number').val(),
 				"address": $('#address').val(),
 				"education":CKEDITOR.instances['education'].getData(),
@@ -206,7 +206,8 @@ cv-form
                   });
                 }
             },
-            error: function(){
+            error: function(data){
+                console.log(data);
                 Swal.fire({
                     title: 'Failed to Create your CV!',
                     icon: 'error',
