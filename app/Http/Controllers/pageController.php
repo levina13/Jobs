@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\loker;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class pageController extends Controller
 {
@@ -38,13 +39,22 @@ class pageController extends Controller
     }
     public function detailLoker($id)
     {
-        $data = loker::select('lokers.judul_loker as title'
-                            , 'users.photo','users.name'
-                            , 'pekerjaans.pekerjaan as position'
+        $id_user = 0;
+        if (Auth::check()) {
+            $id_user = Auth::user()->id;
+        };
+        $data = loker::select('lokers.judul_loker as title','favorites.id as id_favorite'
+                            , 'users.photo','users.name', 'lokers.salary'
+                            , 'pekerjaans.pekerjaan as position','contracts.contract'
                             , 'lokers.deskripsi as description', 'lokers.id')
                     ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
                     ->join('users','users.id','=','perusahaans.id_owner')
                     ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')
+                    ->join('contracts','contracts.id','=','lokers.id_contract')
+                    ->leftJoin('favorites', function ($q) use ($id_user) {
+                        $q->on('favorites.id_loker', '=', 'lokers.id')
+                            ->where('favorites.id_pelamar', '=', "$id_user");
+                    })
                     ->where('lokers.id','=',$id)
                     ->first();
         return view('applicant.detailjobs', ['loker'=>$data]);

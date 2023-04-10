@@ -19,11 +19,16 @@ class JobsController extends Controller
     public function SearchFindJobs(Request $request)
     {
         $keyword=$request->input('keyword');
+        $id_user=0;
+        if (Auth::check()) {
+            $id_user= Auth::user()->id;
+        };
+
         $data = loker::select('lokers.judul_loker','lokers.tanggal_awal', 'lokers.id as id_loker',
                                 'lokers.tanggal_akhir', 'lokers.salary','lokers.id_salary_category',
                                 'users.name','users.photo','pekerjaans.pekerjaan',
                                 'contracts.contract','cities.city', 'provinces.province',
-                                'contracts.id as id_contract', 
+                                'contracts.id as id_contract', 'favorites.id as id_favorite',
                                 'perusahaans.id_jenis_perusahaan as id_industry')
                 ->join('perusahaans', 'perusahaans.id','=','lokers.id_perusahaan')
                 ->join('users','users.id','=','perusahaans.id_owner')
@@ -31,6 +36,11 @@ class JobsController extends Controller
                 ->join('contracts','contracts.id','=','lokers.id_contract')
                 ->join('cities','cities.id','=','users.id_city')
                 ->join('provinces','provinces.id','=','cities.id_province')
+                ->leftJoin('favorites', function($q) use ($id_user)
+                    {
+                        $q->on('favorites.id_loker', '=', 'lokers.id')
+                            ->where('favorites.id_pelamar', '=', "$id_user");
+                    })
                 ->where('lokers.judul_loker','LIKE','%'.$keyword.'%')
                 ->orwhere('pekerjaans.pekerjaan','LIKE','%'.$keyword.'%')
                 ->orwhere('users.name','LIKE','%'.$keyword.'%')
@@ -46,80 +56,6 @@ class JobsController extends Controller
                                         'salary'=>$salary]);
 
 
-    }
-    public function FilterFindJobs($salary_start=null,$salary_end=null,$contract=null,$industry=null)
-    {
-        $contracts = contract::select('*')->get();
-        $industry = jenis_perusahaan::select('*')->get();
-
-        if(isset($salary_start)&&isset($salary_end)){
-            $data = loker::select(
-                'lokers.judul_loker',
-                'lokers.tanggal_awal',
-                'lokers.tanggal_akhir',
-                'lokers.salary',
-                'users.name',
-                'users.photo',
-                'pekerjaans.pekerjaan',
-                'contracts.contract',
-                'cities.city',
-                'provinces.province'
-            )
-                ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
-                ->join('users', 'users.id', '=', 'perusahaans.id_owner')
-                ->join('pekerjaans', 'pekerjaans.id', '=', 'lokers.id_perusahaan')
-                ->join('contracts', 'contracts.id', '=', 'lokers.id_contract')
-                ->join('cities', 'cities.id', '=', 'users.id_city')
-                ->join('provinces', 'provinces.id', '=', 'cities.id_province')
-                ->whereBetween('lokers.salary', [$salary_start,$salary_end])
-                ->get();
-        }elseif(isset($contract)){
-            $data = loker::select(
-                'lokers.judul_loker',
-                'lokers.tanggal_awal',
-                'lokers.tanggal_akhir',
-                'lokers.salary',
-                'users.name',
-                'users.photo',
-                'pekerjaans.pekerjaan',
-                'contracts.contract',
-                'cities.city',
-                'provinces.province'
-            )
-                ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
-                ->join('users', 'users.id', '=', 'perusahaans.id_owner')
-                ->join('pekerjaans', 'pekerjaans.id', '=', 'lokers.id_perusahaan')
-                ->join('contracts', 'contracts.id', '=', 'lokers.id_contract')
-                ->join('cities', 'cities.id', '=', 'users.id_city')
-                ->join('provinces', 'provinces.id', '=', 'cities.id_province')
-                ->where('contracts.id', '=',$contract)
-                ->get();
-
-        }elseif(isset($industry)){
-            $data = loker::select(
-                'lokers.judul_loker',
-                'lokers.tanggal_awal',
-                'lokers.tanggal_akhir',
-                'lokers.salary',
-                'users.name',
-                'users.photo',
-                'pekerjaans.pekerjaan',
-                'contracts.contract',
-                'cities.city',
-                'provinces.province'
-            )
-                ->join('perusahaans', 'perusahaans.id', '=', 'lokers.id_perusahaan')
-                ->join('users', 'users.id', '=', 'perusahaans.id_owner')
-                ->join('pekerjaans', 'pekerjaans.id', '=', 'lokers.id_perusahaan')
-                ->join('contracts', 'contracts.id', '=', 'lokers.id_contract')
-                ->join('cities', 'cities.id', '=', 'users.id_city')
-                ->join('provinces', 'provinces.id', '=', 'cities.id_province')
-                ->join('jenis_perusahaans','jenis_perusahaans.id','=','perusahaans.id_jenis_perusahaan')
-                ->where('jenis_perusahaans.id', '=', $industry)
-                ->get();
-        }
-        return [$data, $contracts, $industry];
-        return view('', ['data' => $data, 'contract' => $contracts, 'industry' => $industry]);
     }
 
     public function showHistory()
@@ -219,5 +155,35 @@ class JobsController extends Controller
         return $validator;
 
 
+    }
+
+    public function favorite($id){
+        // id = id_loker
+        // Cari kalo ada
+        $favourite= favorite::where('id_loker','=',$id)
+                    ->where('id_pelamar','=',Auth::user()->id)
+                    ->first();
+
+        // cek kalo ada atau tidak
+        if(is_null($favourite)){
+            $newFavourite = new favorite;
+            $newFavourite->id_loker=$id;
+            $newFavourite->id_pelamar=Auth::user()->id;
+            $newFavourite->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'successfully add to Favourite'
+            ]);
+        }else{
+            $favourite->delete();
+            // $favourite->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'successfully remove from your Favourites'
+            ]);
+        }
+        return response()->json([
+            'status'=>'failed'
+        ]);
     }
 }

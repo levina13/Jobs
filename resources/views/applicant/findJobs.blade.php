@@ -14,6 +14,10 @@
 	<!-- Favicons -->
     <link rel="shortcut icon" href="{{asset('assets/img/jobsicon.png')}}"/>
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	
+	{{-- icon heart --}}
   
 	<!-- Google Fonts -->
 	<link
@@ -33,7 +37,7 @@
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('assets/css/cv.css')}}" rel="stylesheet">
   <link href="{{asset('assets/css/lightbox.css')}}" rel="stylesheet">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 	h1 .section-title{
 		width: 100%;
@@ -66,6 +70,10 @@
     right:10px;
     top:15px;
 }
+.judul:hover{
+	color: blue;
+	text-decoration: underline;
+}
 </style>
 </head>
 <body style="display: block">
@@ -75,7 +83,7 @@
 	<header class="cd-header">
 		<h1 style="margin-top:20px;width: 100%; top: 165px; left: 0px; font-weight: bolder; font-family: poppins; font-size: 34px; color: rgba(11,7,54,1); opacity: 1; text-align: center;"; class="section-title">Find Your Jobs</h1>
 	</header>
-	<!--<div class="col-lg-5 col-5 text-left">
+	<!--<div class="col-lg-5 col-5 /text-left">
 		<form action="">
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="Search for jobs">
@@ -96,7 +104,9 @@
 								@else
 									<input name="keyword" class="form-control" type="text" value="{{$keyword}}">
 								@endif
-								<i class="bi bi-search"></i>
+								<button type="submit">
+									<i class="bi bi-search"></i>
+								</button>
 								<input type="hidden" type="submit">
 							</div>						
 						</form>
@@ -122,13 +132,27 @@
 			<ul>
                 @foreach ($data as $item)
 					{{-- <div class="p-2" style="background-color: aliceblue"> --}}
-						<a href="{{route('detailjobs',['id'=>$item->id_loker])}}" style="color:black">
 							
-							<li class="mix color-1 contract{{$item->id_contract}} industry{{$item->id_industry}} salary{{$item->id_salary_category}}"><img src="{{asset('uploads/profil_image/'.$item->photo)}}" alt="Image 1">
-							<center><h2>{{$item->judul_loker}}</h2>
-							<p >{{$item->tanggal_awal}} - {{$item->tanggal_akhir}}</p></center>
+							<li class="mix color-1 contract{{$item->id_contract}} industry{{$item->id_industry}} salary{{$item->id_salary_category}}">
+								<a href="{{route('detailjobs',['id'=>$item->id_loker])}}" style="">
+									<img src="{{asset('uploads/profil_image/'.$item->photo)}}" alt="Image 1">
+								</a>
+								<a class="btn-favorite" href="#" data-id="{{$item->id_loker}}" >
+									@if (is_null($item->id_favorite))
+										<span class="fab fa-4x" style="color:grey;">&#9829;</span>
+									@else
+										<span class="fab fa-4x" style="color: #e25555;">&#9829;</span>
+									@endif
+								</a>
+								<center>
+								<a class="judul" href="{{route('detailjobs',['id'=>$item->id_loker])}}" style="">
+									<h2>{{$item->judul_loker}}</h2>
+								</a>
+								<p >{{$item->tanggal_awal}} - {{$item->tanggal_akhir}}</p>
+								<p>Rp. {{number_format($item->salary,2,',','.')}}</p>
+								<p>{{$item->contract}}</p>
+							</center>
 							</li>
-						</a>
 					{{-- </div> --}}
                 @endforeach
 				{{-- <li class="mix color-2 check2 radio2 option2"><img src="{{asset('findJobs/img/img-2.jpg')}}" alt="Image 2">
@@ -217,5 +241,54 @@
 
 <!-- Template Main JS File -->
       <script src="{{asset('assets/js/main.js')}}"></script>
+	<!-- Sweet Alert -->
+      <script  src="{{ asset('js/sweetalert2@11.js') }}"></script>
+
+	<script>
+      $(document).on('click', '.btn-favorite', function (e) {
+        var id = $(this).data('id');
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		$.ajax({
+			url: "/favorite/"+id,
+			type: 'POST',
+			method:"POST",
+			data: {submit: true},
+
+			success: function(data) {
+				if (data.status == 'success') {
+					Swal.fire({
+						title: 'Success!!',
+						text:data.message,
+						icon: 'success',
+						showConfirmButton: true,
+					}).then(function(){
+						location.reload();
+					});
+				}
+				else if(data.status=='failed'){
+					Swal.fire({
+						title: 'Failed!!',
+						icon: 'error',
+						showConfirmButton: true,
+					});
+				}
+			},
+			error: function(){
+				Swal.fire({
+					title: 'Failed',
+					icon: 'error',
+					showConfirmButton: true,
+				});
+			}
+		});
+      });
+
+    </script>
+
+	  
 </body>
 </html>
