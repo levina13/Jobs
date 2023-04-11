@@ -53,6 +53,8 @@ class AuthController extends BaseController
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['photo']='profileapplicant.png';
+        // return $input;
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
@@ -92,6 +94,7 @@ class AuthController extends BaseController
         $user->password=$input['password'];
         $user->telepon=$input['telepon'];
         $user->role=$input['role'];
+        $user->photo='company.jpg';
         $user->save();
         
         // cari id_user
