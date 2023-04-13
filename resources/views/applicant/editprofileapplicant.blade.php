@@ -14,7 +14,6 @@
                         <h4 class="card-title">Edit Profile</h4>
                         <br>
                         <form class="editData" id="editData">
-                          <input type="hidden" value="{{$user->id}}" name="id_user"/>
                           <div class="form-group row">
                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">

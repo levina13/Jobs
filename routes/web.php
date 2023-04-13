@@ -22,21 +22,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Coba
-    // Route::view('cv-form', 'cv.form')->name('cvForm');
-    Route::view('creative1','cv.template.creative1');
-    Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('findJobs');
 
 //Route applicant
-    Route::view('applyform', 'applicant.applyform')->name('applyform');
-    Route::view('detailjobs', 'applicant.detailjobs')->name('detailjobs');
-    Route::view('companyprofile', 'applicant.companyprofile')->name('companyprofile');
-    Route::view('myjobshistory', 'applicant.myjobshistory')->name('myjobshistory');
-    Route::view('myjobscurrently', 'applicant.myjobscurrently')->name('myjobscurrently');
-    Route::view('myjobsfavorite', 'applicant.myjobsfavorite')->name('myjobsfavorite');
-    Route::get('my-profile', [UsersController::class,'showProfile'])->name('applicant.myProfile');
-    Route::get('editprofileapplicant/{id}', [UsersController::class,'viewEditProfile'])->name('editprofileapplicant');
-    Route::post('editprofileapplicant', [UsersController::class,'updateProfile'])->name('updateprofileapplicant');
     Route::get('getRegion',[UsersController::class,'getRegion'])->name('select.Region.user');
     Route::get('getCity/{id}',[UsersController::class,'getCity'])->name('select.City.user');
     Route::get('getEducation',[UsersController::class,'getEducation'])->name('select.Education.user');
@@ -46,41 +33,27 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route Global
-
-// Route untuk Halaman Home
 Route::get('/', function () {
     return view('index');
 })->name('home');
-// Find JObs
-// Route::get('find-jobs',[JobsController::class,'SearchFindJobs'])->name('search.find.jobs');
-// Route::get('find-jobs/{salary_start?}/{salary_end?}/{contract?}/{industry?}/{company}',[])->name('filter.find.jobs');
-// Route untuk data select
+Route::get('find-jobs', [JobsController::class, 'SearchFindJobs'])->name('findJobs');
 Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region');
 Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City');
 Route::get('getSector', [CompanyController::class, 'getSector'])->name('select.Sector');
+Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('detailjobs');
+Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
+Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
+Route::get('/cvawal', [CVController::class, 'indexCV'])->name('cvawal');
 
 
 
 //Route applicant
-Route::view('applyform', 'applicant.applyform')->name('applyform');
-Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('detailjobs');
-Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
-Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
-// Route::view('editprofileapplicant', 'applicant.editprofileapplicant')->name('editprofileapplicant');
 Route::view('indexapplicant', 'applicant.indexapplicant')->name('indexapplicant');
 
 
-// Profil User
-Route::get('profil/{id}',[UsersController::class,'showProfile'])->name('show.profile');
 
 
 // Route untuk halaman Forget Password
-Route::controller(ForgotPasswordController::class)->group(function () {
-    Route::delete('forget-password', 'submitEmailForm')->name('forget.password.post');
-    Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
-    Route::get('forget-password', 'showEmailForm')->name('forget.password.get');
-    Route::get('reset-password/{token}', 'showResetPasswordForm')->name('reset.password.get');
-});
 
 
 // Route untuk autentikasi
@@ -92,6 +65,13 @@ Route::middleware(['guest'])->group(function(){
         Route::get('login', 'loginView')->name('loginView');
         Route::get('register', 'RegisView')->name('regisView');
     });
+    Route::controller(ForgotPasswordController::class)->group(function () {
+        Route::delete('forget-password', 'submitEmailForm')->name('forget.password.post');
+        Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
+        Route::get('forget-password', 'showEmailForm')->name('forget.password.get');
+        Route::get('reset-password/{token}', 'showResetPasswordForm')->name('reset.password.get');
+    });
+
 });
 
 // Route untuk pencari loker yg sudah login
@@ -108,6 +88,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('submitPDF', [CVController::class, 'submitCVProfile'])->name('submitCV');
         Route::get('pdfCV/{id}', [CVController::class, 'generatePDF'])->name('downloadPDF');
         Route::post('favorite/{id}',[JobsController::class,'favorite'])->name('favorite');
+        Route::get('my-profile', [UsersController::class, 'showProfile'])->name('applicant.myProfile');
+        Route::get('editprofileapplicant', [UsersController::class, 'viewEditProfile'])->name('editprofileapplicant');
+        Route::post('editprofileapplicant', [UsersController::class, 'updateProfile'])->name('updateprofileapplicant');
     });
     // Route::view('cv-form', 'cv.form');
     // Route untuk verifikasi Email & telepon
@@ -120,7 +103,6 @@ Route::middleware(['auth'])->group(function(){
 
     // Pembuat Loker
     Route::middleware(['company'])->group(function(){
-        // Route::prefix('company')->group(function () {
             Route::get('dashboard', [dashboard::class,'getDashboard'])->name('view.company.dashboard');
             // CRUD Job Vacancies
             Route::get('job-vacancies', [JobVacancies::class,'index'])->name('view.company.jobVacancies');
@@ -148,40 +130,8 @@ Route::middleware(['auth'])->group(function(){
             });
             Route::post('editprofilecompany', [CompanyController::class, 'updateProfile'])->name('updateprofilecompany');
 
-        // });
     });
 
-        // CRUD loker
-        // Menerima/menolak pelamar
-        // Edit profil perusahaan
-
 });
 
 
-
-
-// Route untuk pembuat loker
-
-Route::view('/coba', 'auth.logReg');
-Route::view('/registrasiUserView', 'auth.registrasiUser')->name('page.registrasiUser');
-Route::view('/cobalintang', 'coba.coba');
-Route::get('/cvawal', [CVController::class,'indexCV'])->name('cvawal');
-Route::post('/alert', function () {
-
-});
-
-
-
-Route::get('/coba-alert',function(){
-    redirect()->route('alert')->with('success', 'alhamdulillah');
-});
-
-// Route::prefix('auth')->group(function(){
-//     Route::controller()
-// });
-
-
-// Route::controller(ForgotPasswordController::class)->group(function(){
-//     Route::get('/forget-password','showEmailForm')->name('forget.password.get');
-//     Route::get('/reset-password/{token}', 'showResetPasswordForm')->name('reset.password.get');
-// });

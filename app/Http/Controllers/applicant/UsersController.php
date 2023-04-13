@@ -28,7 +28,8 @@ class UsersController extends Controller
 
         return view('applicant.profileapplicant',['applicant'=>$data]);
     }
-    public function viewEditProfile($id){
+    public function viewEditProfile(){
+        $id = Auth::user()->id;
         $data = User::select('users.*','cities.city','cities.id as id_city','cities.id_province','provinces.province','education.education' )
                 ->leftJoin('cities','cities.id','=','users.id_city')
                 ->leftJoin('provinces','provinces.id','=','cities.id_province')
@@ -48,7 +49,6 @@ class UsersController extends Controller
             // 'province' => 'required',
             // 'city' => 'required',
             // 'education'=>'required|numeric|digits_between:1,10'
-            'id_user' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -58,9 +58,10 @@ class UsersController extends Controller
             ]);
         }
         $input=$request->all();
+        $id= Auth::user()->id;
 
         //tabel user
-        $user = User::where('id', $input['id_user'])->first();
+        $user = User::where('id', $id)->first();
         $user->name=$input['user_name'];
         $user->headline=$input['user_headline'];
         $user->email = $input['user_email'];

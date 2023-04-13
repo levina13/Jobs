@@ -13,7 +13,7 @@
         <h2>{{$applicant->name}} 
           @auth
             @if(Auth::user()->id==$applicant->id)
-            <a href="{{route('editprofileapplicant',['id'=>$applicant->id])}}">
+            <a href="{{route('editprofileapplicant')}}">
               <button type="button" class="btn btn-gradient-primary btn-rounded btn-icon btn-lg">
                 <i class="mdi mdi mdi-pencil"></i>
               </button>
