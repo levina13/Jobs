@@ -34,8 +34,8 @@ class JobsController extends Controller
                 ->join('users','users.id','=','perusahaans.id_owner')
                 ->join('pekerjaans','pekerjaans.id','=','lokers.id_perusahaan')
                 ->join('contracts','contracts.id','=','lokers.id_contract')
-                ->join('cities','cities.id','=','users.id_city')
-                ->join('provinces','provinces.id','=','cities.id_province')
+                ->leftJoin('cities','cities.id','=','users.id_city')
+                ->leftJoin('provinces','provinces.id','=','cities.id_province')
                 ->leftJoin('favorites', function($q) use ($id_user)
                     {
                         $q->on('favorites.id_loker', '=', 'lokers.id')
