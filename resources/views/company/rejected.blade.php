@@ -17,7 +17,6 @@
                       <th>Profile Photos</th>
                       <th>Applicant's Name</th>
                       <th>Position</th>
-                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -29,9 +28,6 @@
                         </td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->pekerjaan}}</td>
-                        <td>
-                          <label class="badge badge-danger">Rejected</label>
-                        </td>
                           
                       </tr>
                     @endforeach
