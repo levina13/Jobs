@@ -34,7 +34,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Sector</label>
                           <div class="col-sm-9">
-                            <select class="sector form-control" style="width:500px;" name="sector">
+                            <select class="sector form-control"  name="sector">
                               <option value="{{$company->id_jenis_perusahaan}}" selected="selected">{{$company->sector}}</option>
                             </select>
                             <span class="d-none text text-danger" errorFor="sector"><br></span>
@@ -51,7 +51,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Region</label>
                         <div class="col-sm-9">
-                          <select class="region form-control" style="width:500px;" name="region">
+                          <select class="region form-control"  name="region">
                             <option value="{{$company->id_province}}" selected="selected">{{$company->province}}</option>
                           </select>
                           <span class="d-none text text-danger" errorFor="region"><br></span>
@@ -62,7 +62,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">City</label>
                         <div class="col-sm-9">
-                          <select class="city form-control" style="width:500px;" name="city">
+                          <select class="city form-control"  name="city">
                             <option value="{{$company->id_city}}" selected="selected">{{$company->city}}</option>
                           </select>
                           <span class="d-none text text-danger" errorFor="city"><br></span>

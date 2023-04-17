@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- partial -->
-<br><br><br><br><br>
+<br><br><br>
 <div class="main-panel">
     <div class="page-header"></div>
             <center>
@@ -50,7 +50,7 @@
                           <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Region</label>
                             <div class="col-sm-9">
-                              <select class="region form-control" style="width:500px;" name="province">
+                              <select class="region form-control"  name="province">
                                 <option value="{{$user->id_province}}" selected="selected">{{$user->province}}</option>
                                 <span class="d-none text text-danger" errorFor="user_region"><br></span>
                               </select>
@@ -60,7 +60,7 @@
                           <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">City</label>
                             <div class="col-sm-9">
-                              <select class="city form-control" style="width:500px;" name="city">
+                              <select class="city form-control"  name="city">
                                 <option value="{{$user->id_city}}" selected="selected">{{$user->city}}</option>
                                 <span class="d-none text text-danger" errorFor="user_city"><br></span>
                               </select>
@@ -70,7 +70,7 @@
                           <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Education</label>
                             <div class="col-sm-9">
-                              <select class="education form-control" style="width:500px;" name="education">
+                              <select class="education form-control"  name="education">
                                 <option value="{{$user->id_education}}" selected="selected">{{$user->education}}</option>
                                 <span class="d-none text text-danger" errorFor="user_education"><br></span>
                               </select>
