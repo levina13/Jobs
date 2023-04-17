@@ -28,7 +28,7 @@
 		
 					<div class="intro">
 						<h1>
-						{{$user->first_name}} <br>
+						{{$user->first_name}} 
 					<span>{{$user->last_name}}</span>
 						</h1>
 						<hr class="hr" />

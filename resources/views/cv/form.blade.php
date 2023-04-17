@@ -33,34 +33,36 @@ cv-form
 				<div class="form_container">
                     <div class="input_wrap">
 						<label for="first_name">First Name*</label>
-						<input type="text"  class="input" id="first_name">
+						<input type="text"  class="input" id="first_name" value="{{$history->first_name??''}}">
 						<span class="d-none text text-danger" errorFor="first_name"><br></span>
 					</div>
                     <div class="input_wrap">
 						<label for="last_name">Last Name*</label>
-						<input type="text" name="Last Name" class="input" id="last_name">
+						<input type="text" name="Last Name" class="input" id="last_name" value="{{$history->last_name??''}}">
 						<span class="d-none text text-danger" errorFor="last_name"><br></span>
 					</div>
 					<div class="input_wrap">
 						<label for="email">Email</label>
-						<input type="text" name="Email" class="input" id="email">
+						<input type="text" name="Email" class="input" id="email" value="{{$history->email??''}}">
 						<span class="d-none text text-danger" errorFor="email"><br></span>
 					</div>
 					<div class="input_wrap">
 						<label for="phone_number">Phone Number</label>
-						<input type="phone_number" name="phone_number" class="input" id="phone_number">
+						<input type="phone_number" name="phone_number" class="input" id="phone_number"value="{{$history->phone_number??''}}">
 						<span class="d-none text text-danger" errorFor="phone_number"><br></span>
 					</div>
 					<div class="input_wrap">
 						<label for="Address">Address</label>
-						<input type="address" name="address" class="input" id="address">
+						<input type="address" name="address" class="input" id="address" value="{{$history->address??''}}">
 						<span class="d-none text text-danger" errorFor="address"><br></span>
 					</div>
 					<div class="input_wrap">
 						<label for="profile">Your Profile</label>
 						<span class="d-none text text-danger" errorFor="profile"><br></span>
 						{{-- <input type="text" name="Education" class="input" id="education"> --}}
-						<textarea name="" id="profile"></textarea>
+						<textarea name="" id="profile">
+							{!!$history->profile??''!!}
+						</textarea>
 					</div>
 				</div>
 		</div>
@@ -71,19 +73,25 @@ cv-form
 						<label for="education">Education*</label>
 						<span class="d-none text text-danger" errorFor="education"><br></span>
 						{{-- <input type="text" name="Education" class="input" id="education"> --}}
-						<textarea name="" id="education"></textarea>
+						<textarea name="" id="education">
+							{!!$history->education??''!!}
+						</textarea>
 					</div>
 					<div class="input_wrap">
 						<label for="working_experience">Working Experience</label>
 						<span class="d-none text text-danger" errorFor="working_experience"><br></span>
 						{{-- <input type="text" name="Working Experience" class="input" id="working_experience"> --}}
-						<textarea name="" id="working_experience"></textarea>
+						<textarea name="" id="working_experience">
+							{!!$history->working_experience??''!!}
+						</textarea>
 					</div>
 					<div class="input_wrap">
 						<label for="skill">Skill</label>
 						<span class="d-none text text-danger" errorFor="skill"><br></span>
 						{{-- <input type="text" name="Skill" class="input" id="skill"> --}}
-						<textarea name="" id="skill"></textarea>
+						<textarea name="" id="skill">
+							{!!$history->skill??''!!}
+						</textarea>
 					</div>
 				</div>
 			</form>
@@ -191,6 +199,8 @@ cv-form
 					  timer:3000,
                   }).then(function(){
                     window.open("/pdfCV/"+data.id,'_blank');
+					window.location="{{route('cvawal')}}";
+
                   });
                 }
                 else if(data.status=='failed'){
