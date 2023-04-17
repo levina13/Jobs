@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\lamaran;
 use App\Models\loker;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,8 +50,15 @@ class pageController extends Controller
     public function detailLoker($id)
     {
         $id_user = 0;
+        $applyButton='';
         if (Auth::check()) {
             $id_user = Auth::user()->id;
+            $applied=lamaran::where('id_loker','=',$id)
+                            ->where('id_pelamar','=',$id_user)
+                            ->first();
+            if(!is_null($applied)){
+                $applyButton='disabled';
+            };
         };
         $data = loker::select('lokers.judul_loker as title','favorites.id as id_favorite'
                             , 'users.photo','users.name', 'lokers.salary'
@@ -66,6 +74,7 @@ class pageController extends Controller
                     })
                     ->where('lokers.id','=',$id)
                     ->first();
-        return view('applicant.detailjobs', ['loker'=>$data]);
+        
+        return view('applicant.detailjobs', ['loker'=>$data,'applyButton'=>$applyButton]);
     }
 }

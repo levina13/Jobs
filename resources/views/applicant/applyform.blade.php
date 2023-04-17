@@ -95,14 +95,17 @@
                   });
                 }
                 else if(data.status=='failed'){
-                  let dataError = JSON.parse(data.error)
-                  for (const key in dataError) {
-                    $(`[errorFor="${key}"]`).html(dataError[key][0]).removeClass('d-none')
+                  if (data.cause=='input') {
+                    let dataError = JSON.parse(data.error)
+                    for (const key in dataError) {
+                      $(`[errorFor="${key}"]`).html(dataError[key][0]).removeClass('d-none')
+                    }
                   }
 
                   Swal.fire({
                     title: 'Failed to Apply a Job!',
                     icon: 'error',
+                    text:data.message,
                     showConfirmButton: true,
                   });
                 }
