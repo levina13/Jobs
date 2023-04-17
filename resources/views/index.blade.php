@@ -123,7 +123,7 @@
 
           <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             @foreach ($cv as $item)
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="col-lg-4 col-md-5 col-sm-6 portfolio-item filter-app">
               <div class="portfolio-wrap">
                 <img src="{{asset("/templateCV/$item->source/preview.png")}}" class="img-fluid" alt="">
                 <div class="portfolio-links">

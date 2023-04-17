@@ -471,7 +471,7 @@ section {
 
 .section-bg {
   background-color: #fef8f5;
-  width: 1348px;
+  /* width: 1348px; */
   /* height: 768px; */
 }
 
@@ -561,7 +561,7 @@ section {
 # About
 --------------------------------------------------------------*/
 section#findjobs.about.section{
-    width: 1348px;
+    /* width: 1348px; */
     height : 768px;
 }
 
@@ -1235,7 +1235,7 @@ section#findjobs.about.section{
 
 section#footer.footer{
     background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-    width: 1348px;
+    /* width: 1348px; */
 }
 
 #footer .footer-newsletter {

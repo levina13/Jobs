@@ -19,7 +19,7 @@
           <!--
           <li><a class="nav-link scrollto" href="#team">Login</a></li>
           -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
           @guest
           <li><a class="getstarted scrollto" href="{{route('loginView')}}">Get Started</a></li>
           @else

@@ -118,7 +118,6 @@ xtab-filter
   /* tabbed navigation style on mobile - dropdown */
   position: relative;
   height: 50px;
-  width: 140px;
   margin: 0 auto;
   z-index: 1;
 }
