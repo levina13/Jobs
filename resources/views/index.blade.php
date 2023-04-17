@@ -120,153 +120,25 @@
             <p>Choose a template and build your CV in minutes.</p>
           </div>
 
-          <div class="row" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-12">
-              <ul id="portfolio-flters">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-app">Creative</li>
-                <li data-filter=".filter-card">Modern</li>
-                <li data-filter=".filter-web">Simple</li>
-              </ul>
-            </div>
-          </div>
 
           <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
+            @foreach ($cv as $item)
             <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <div class="portfolio-wrap">
-                <img src="{{asset('assets/img/CVtemplate/creative-cv-template-1.png')}}" class="img-fluid" alt="">
+                <img src="{{asset("/templateCV/$item->source/preview.png")}}" class="img-fluid" alt="">
                 <div class="portfolio-links">
-                  <a href="{{asset('assets/img/CVtemplate/creative-cv-template-1.png')}}" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+                  <a href="{{route('cvform',['id'=>$item->id])}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox btn" title="App 1">
+                    <i class="bi bi-plus">Create</i>
+                  </a>
                 </div>
                 <div class="portfolio-info">
-                  <h4>Creative 1</h4>
-                  <p>Creative</p>
+                  <h4>{{$item->title}}</h4>
                 </div>
               </div>
             </div>
+            @endforeach
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/simple-cv-template-1.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/simple-cv-template-1.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Simple 1</h4>
-                  <p>Simple</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/creative-cv-template-2.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/creative-cv-template-2.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="App 2"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Creative 2</h4>
-                  <p>Creative</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/modern-cv-template-1.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/modern-cv-template-1.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="Card 2"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Modern 1</h4>
-                  <p>Modern</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/simple-cv-template-2.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/simple-cv-template-2.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="Web 2"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Simple 2</h4>
-                  <p>Simple</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/creative-cv-template-3.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/creative-cv-template-3.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="App 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Creative 3</h4>
-                  <p>Creative</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/moder-cv-template-2.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/moder-cv-template-2.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="Card 1"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Modern 2</h4>
-                  <p>Modern</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/modern-cv-template-3.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/modern-cv-template-3.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="Card 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Modern 3</h4>
-                  <p>Modern</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-              <div class="portfolio-wrap">
-                <img src="assets/img/CVtemplate/simple-cv-template-3.png" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                  <a href="assets/img/CVtemplate/simple-cv-template-3.png" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-                <div class="portfolio-info">
-                  <h4>Simple 3</h4>
-                  <p>Simple</p>
-                </div>
-              </div>
-            </div>
 
           </div>
 

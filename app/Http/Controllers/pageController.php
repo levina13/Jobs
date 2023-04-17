@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cv;
 use App\Models\lamaran;
 use App\Models\loker;
 use App\Models\User;
@@ -17,7 +18,8 @@ class pageController extends Controller
             $email = Auth::user()->email;
             $name=Auth::user()->name;
         };
-        return view('index',['email'=>$email,'name'=>$name]);
+        $cv = cv::select('*')->take(9)->get();
+        return view('index',['email'=>$email,'name'=>$name,'cv'=>$cv]);
     }
     public function companyProfile($id)
     {
