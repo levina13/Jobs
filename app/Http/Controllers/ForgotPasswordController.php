@@ -30,7 +30,11 @@ class ForgotPasswordController extends Controller
         ]);
 
         if($validator->fails()){
-            return false;
+            return response()->json([
+                'status' => 'failed',
+                'cause'=>'input',
+                'error' => $validator->errors()->toJson(),
+            ]);        
         }
         $token = Str::random(64);
 
@@ -45,22 +49,30 @@ class ForgotPasswordController extends Controller
                     $message->to($request->email);
                     $message->subject('Reset Password');
                 });
-                return true;
+                return response()->json([
+                    'status'=>'success',
+                ]);
             } catch (\Throwable $th) {
                 // return Response::send(['data' => true]);
 
-                return false;
+                return response()->json([
+                    'status' => 'failed',
+                ]);        
 
             }
         } catch (\Throwable $th) {
             // return Response::send(['data' => true]);
-
-            return false;
+            return $th;
+            return response()->json([
+                'status' => 'failed',
+            ]);        
         }
         // return Response::send(['data' => true]);
 
 
-        return false;
+        return response()->json([
+            'status' => 'failed',
+        ]);        
         
     }
 
