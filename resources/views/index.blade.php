@@ -280,7 +280,7 @@
 
         <div class="section-title">
           <h2>Contact Us</h2>
-          <p>Contact us the get started</p>
+          <p>Send us a message</p>
         </div>
 
         <div class="row">
@@ -290,13 +290,13 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>Jl. Semarang No.5, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>jobs@gmail.com</p>
               </div>
 
               <div class="phone">
@@ -304,40 +304,47 @@
                 <h4>Call:</h4>
                 <p>+1 5589 55488 55s</p>
               </div>
-
               <iframe
-                src="https://www.google.com/maps/embed/v1/place?q=Universitas+Negeri+Malang,+Jalan+Ambarawa,+Sumbersari,+Malang+City,+East+Java,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                src="https://www.google.com/maps/embed/v1/place?q=Universitas+Negeri+Malang,+Jalan+Semarang,+Sumbersari,+Malang+City,+East+Java,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
                 frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
             </div>
 
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form  method="post" id="contactForm" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <br>
+                  <span class="d-none text text-danger" errorFor="name"><br></span>
+                  <input type="text" name="name" value="{{$name}}" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group col-md-6 mt-3 mt-md-0">
                   <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <br>
+                  <span class="d-none text text-danger" errorFor="email"><br></span>
+                  <input type="email" class="form-control" value="{{$email}}" name="email" id="email" placeholder="Your Email" required>
                 </div>
               </div>
               <div class="form-group mt-3">
                 <label for="name">Subject</label>
+                <br>
+                <span class="d-none text text-danger" errorFor="subject"><br></span>
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
                 <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
+                <br>
+                <span class="d-none text text-danger" errorFor="message"><br></span>
+                <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="btn-submit">Send Message</button></div>
             </form>
           </div>
 
@@ -348,5 +355,74 @@
 
   </main><!-- End #main -->
   @include('layouts.footer')  
+@endsection
+
+@section('layout_script')
+  {{-- Sweet Alert --}}
+  <script>
+      $(document).on('click', '.btn-submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(document.getElementById("contactForm"));
+          $(`[errorFor=name]`).html('');
+          $(`[errorFor=email]`).html('');
+          $(`[errorFor=subject]`).html('');
+          $(`[errorFor=message]`).html('');
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{route('sendEmail')}}",
+            type: 'POST',
+            method:"POST",
+            data: {
+              submit:true,
+              'name':$('#name').val() ,
+              'email':$('#email').val(),
+              'subject':$('#subject').val(),
+              'message': $('textarea#message').val(),
+            },
+            success: function(data) {
+              console.log(data);
+              console.log($('#name').val());
+                if (data.status == 'success') {
+                  Swal.fire({
+                      title: 'Successfully send a message!!',
+                      text: data.message,
+                      icon: 'success',
+                      showConfirmButton: true,
+                  }).then(function(){
+                    window.location="{{route('home')}}";
+                  });
+                }
+                else if(data.status=='failed'){
+                  let dataError = JSON.parse(data.error)
+                  for (const key in dataError) {
+                    $(`[errorFor="${key}"]`).html(dataError[key][0]).removeClass('d-none')
+                  }
+
+                  Swal.fire({
+                    title: 'Failed to send a message!',
+                    icon: 'error',
+                    text:'status failed',
+                    showConfirmButton: true,
+                  });
+                }
+            },
+            error: function(){
+                Swal.fire({
+                    title: 'Failed ajax!',
+                    // text:data.error,   
+                    icon: 'error',
+                    showConfirmButton: true,
+                });
+            }
+        });
+      });
+
+  </script>
+
 @endsection
 

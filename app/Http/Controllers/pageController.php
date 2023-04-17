@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class pageController extends Controller
 {
+    public function index(){
+        $email='';
+        $name='';
+        if (Auth::check()) {
+            $email = Auth::user()->email;
+            $name=Auth::user()->name;
+        };
+        return view('index',['email'=>$email,'name'=>$name]);
+    }
     public function companyProfile($id)
     {
         $data = User::select('users.*','jenis_perusahaans.jenis_perusahaan as sector'

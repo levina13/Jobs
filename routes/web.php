@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\applicant\ContactController;
 use App\Http\Controllers\applicant\CVController;
 use App\Http\Controllers\applicant\JobsController;
 use App\Http\Controllers\applicant\UsersController;
@@ -33,9 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route Global
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [pageController::class,'index'])->name('home');
 Route::get('find-jobs', [JobsController::class, 'SearchFindJobs'])->name('findJobs');
 Route::get('getRegion', [CompanyController::class, 'getRegion'])->name('select.Region');
 Route::get('getCity/{id}', [CompanyController::class, 'getCity'])->name('select.City');
@@ -44,7 +43,7 @@ Route::get('detail-jobs/{id}', [pageController::class,'detailLoker'])->name('det
 Route::get('company/{id}', [pageController::class,'companyProfile'])->name('companyProfile');
 Route::get('profileapplicant/{id}', [pageController::class,'applicantProfile'])->name('profileapplicant');
 Route::get('/cvawal', [CVController::class, 'indexCV'])->name('cvawal');
-
+Route::post('send-message',[ContactController::class,'sendEmail'])->name('sendEmail');
 
 
 //Route applicant
