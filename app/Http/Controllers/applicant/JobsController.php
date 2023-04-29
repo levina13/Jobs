@@ -34,8 +34,8 @@ class JobsController extends Controller
                 ->join('users','users.id','=','perusahaans.id_owner')
                 ->join('pekerjaans','pekerjaans.id','=','lokers.id_perusahaan')
                 ->join('contracts','contracts.id','=','lokers.id_contract')
-                ->join('cities','cities.id','=','users.id_city')
-                ->join('provinces','provinces.id','=','cities.id_province')
+                ->leftJoin('cities','cities.id','=','users.id_city')
+                ->leftJoin('provinces','provinces.id','=','cities.id_province')
                 ->leftJoin('favorites', function($q) use ($id_user)
                     {
                         $q->on('favorites.id_loker', '=', 'lokers.id')
@@ -110,49 +110,61 @@ class JobsController extends Controller
     public function applyJob(Request $request)
     {
         // Validate
-        $validator=Validator::make($request->all(),[
-            'cv'=>'required|mimes:pdf'
-        ]);
+        $input=$request->all();
+        $id_user= Auth::user()->id;
+        $history=lamaran::where('id_loker','=', $input['id_loker'])
+                        ->where('id_pelamar','=',$id_user)
+                        ->first();
+        if(is_null($history)){
+            $validator = Validator::make($request->all(), [
+                'cv' => 'required|mimes:pdf'
+            ]);
 
-        if ($validator->fails()) {
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'failed',
+                    'cause' => 'input',
+                    'error' => $validator->errors()->toJson()
+                ]);
+            }
+
+            // Insert to Lamarans table
+            $lamaran = new lamaran;
+            $lamaran->id_loker = $input['id_loker'];
+            $lamaran->id_pelamar = $id_user;
+
+            // Insert CV
+            $file = $request->file('cv');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/applyJobDocument/cv/', $filename);
+            $lamaran->cv = $filename;
+
+            if ($request->hasFile('additional1')) {
+                $file = $request->file('additional1');
+                $ext = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $file->move('uploads/applyJobDocument/additional1/', $filename);
+                $lamaran->additional1 = $filename;
+            };
+            if ($request->hasFile('additional2')) {
+                $file = $request->file('additional2');
+                $ext = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $file->move('uploads/applyJobDocument/additional2/', $filename);
+                $lamaran->additional2 = $filename;
+            };
+            $lamaran->save();
+            return response()->json([
+                'status' => 'success',
+            ]);
+        }else{
             return response()->json([
                 'status' => 'failed',
-                'error' => $validator->errors()->toJson()
+                'message'=>'you have applied the job'
             ]);
         }
 
-        $input=$request->all();
-        // Insert to Lamarans table
-        $lamaran = new lamaran;
-        $lamaran->id_loker=$input['id_loker'];
-        $lamaran->id_pelamar=Auth::user()->id;
-
-        // Insert CV
-        $file = $request->file('cv');
-        $ext = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $ext;
-        $file->move('uploads/applyJobDocument/cv/', $filename);
-        $lamaran->cv = $filename;
-
-        if($request->hasFile('additional1')){
-            $file = $request->file('additional1');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-            $file->move('uploads/applyJobDocument/additional1/', $filename);
-            $lamaran->additional1 = $filename;
-        };
-        if ($request->hasFile('additional2')) {
-            $file = $request->file('additional2');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-            $file->move('uploads/applyJobDocument/additional2/', $filename);
-            $lamaran->additional2 = $filename;
-        };
-        $lamaran->save();
-        return response()->json([
-            'status' => 'success',
-        ]);
-        return $validator;
 
 
     }

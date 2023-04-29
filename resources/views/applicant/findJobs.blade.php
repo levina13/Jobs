@@ -95,8 +95,8 @@
 	<main class="cd-main-content">
 		<div class="cd-tab-filter-wrapper bg-transparent">
 			<div class="cd-tab-filter">
-				<div class="row justify-content-center">
-					<div class="col-6 ">
+				<div class="row justify-content-center" style="margin-right:0;margin-left:0">
+					<div class="col-lg-4 col-md-6 col-sm-10 ">
 						<form action="{{route('findJobs')}}" method="GET">
 							<div class="d-flex form-inputs">
 								@if (is_null($keyword))
@@ -113,9 +113,6 @@
 					</div>
 				</div>
 				<ul class="cd-filters">
-					<li class="placeholder"> 
-						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
-					</li> 
 					<li class="filter">
 						{{-- All --}}
 						{{-- <a class="selected" href="" data-type="all">

@@ -51,9 +51,14 @@
                                 <a href="{{route('cvawal')}}">
                                     <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
                                 </a>
-                                <a href="{{route('applyform',['id'=>$loker->id])}}">
-                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg"> Apply </button>
+                                @if ($applyButton=='disabled')
+                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg" disabled> Applied </button>
+
+                                @else
+                                <a href="{{route('applyform',['id'=>$loker->id])}}" >
+                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg" > Apply </button>
                                 </a>
+                                @endif
                             </div>
                         </div>
                     </center>

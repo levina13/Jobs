@@ -50,9 +50,12 @@
             <center>
                 <h4>
                     Increase your chances of getting a job and create a CV with one of our professional CV templates.</h4>
-                <h4>Curious how this template can help you? Check out the various examples of CVs below that will give you inspiration.</h4>
+                {{-- <h4>Curious how this template can help you? Check out the various examples of CVs below that will give you inspiration.</h4> --}}
             </center>
         </div>
+    </div>
+    <div class="section">
+        <span class="section-title"></span>
         <a href="{{route('cvform',['id'=>1])}}"
         style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6); width: 188px; height: 76px; border-radius: 15px; overflow: hidden; position: relative; top: 300px;
         transition: all 0.4s ease; font-weight:500; margin-top:35px; color:rgba(255,255,255,1); font-family: Poppins; font-weight: Medium; font-size: 18px; opacity: 1;
@@ -63,7 +66,7 @@
     <div class="container" id="CV">
         <div class="image-container">
             @foreach ($cv as $item)
-                <div class="image">
+                <div class="image ">
                     <a href="{{route('cvform',['id'=>$item->id])}}" >
                         <img src="{{asset("/templateCV/$item->source/preview.png")}}" alt="{{$item->title}}">
                     </a>

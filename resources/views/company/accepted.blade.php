@@ -18,7 +18,6 @@
                       <th>Profile Photos</th>
                       <th>Applicant's Name</th>
                       <th>Position</th>
-                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -31,9 +30,6 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->pekerjaan}}</td>
 
-                        <td>
-                          <label class="badge badge-info">Accepted</label>
-                        </td>
                           
                       </tr>
                     @endforeach

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cv;
+use App\Models\lamaran;
 use App\Models\loker;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class pageController extends Controller
 {
+    public function index(){
+        $email='';
+        $name='';
+        if (Auth::check()) {
+            $email = Auth::user()->email;
+            $name=Auth::user()->name;
+        };
+        $cv = cv::select('*')->take(9)->get();
+        return view('index',['email'=>$email,'name'=>$name,'cv'=>$cv]);
+    }
     public function companyProfile($id)
     {
         $data = User::select('users.*','jenis_perusahaans.jenis_perusahaan as sector'
@@ -40,8 +52,15 @@ class pageController extends Controller
     public function detailLoker($id)
     {
         $id_user = 0;
+        $applyButton='';
         if (Auth::check()) {
             $id_user = Auth::user()->id;
+            $applied=lamaran::where('id_loker','=',$id)
+                            ->where('id_pelamar','=',$id_user)
+                            ->first();
+            if(!is_null($applied)){
+                $applyButton='disabled';
+            };
         };
         $data = loker::select('lokers.judul_loker as title','favorites.id as id_favorite'
                             , 'users.photo','users.name', 'lokers.salary'
@@ -57,6 +76,7 @@ class pageController extends Controller
                     })
                     ->where('lokers.id','=',$id)
                     ->first();
-        return view('applicant.detailjobs', ['loker'=>$data]);
+        
+        return view('applicant.detailjobs', ['loker'=>$data,'applyButton'=>$applyButton]);
     }
 }

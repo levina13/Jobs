@@ -18,7 +18,9 @@ class CVController extends Controller
         return view('applicant.cvawal',['cv'=>$data]);
     }
     public function showForm($id){
-        return view('cv.form',['id'=>$id]);
+        $id_user=Auth::user()->id;
+        $history = cvHistory::where('id_user', '=', $id_user)->first();        
+        return view('cv.form',['id'=>$id, 'history'=>$history]);
     }
     public function submitCVProfile(Request $request){
         $validator = Validator::make($request->all(),[
@@ -43,6 +45,8 @@ class CVController extends Controller
         $photo = Auth::user()->photo;
         $id_user=Auth::user()->id;
         $id=time().'cv';
+
+
         // $this->dataPDF = [
         //     'first_name' => $request->first_name,
         //     'last_name' => $request->last_name,
@@ -54,27 +58,56 @@ class CVController extends Controller
         //     'skill' => $request->skill,
         //     'photo' => $photo,
         // ];
-        $cvHistory=new cvHistory;
-        $cvHistory->id=$id;
-        $cvHistory->id_user=$id_user;
-        $cvHistory->first_name= $request->first_name;
-        $cvHistory->last_name = $request->last_name;
-        $cvHistory->email = $request->email;
-        $cvHistory->phone_number = $request->phone_number;
-        $cvHistory->education = $request->education;
-        $cvHistory->address = $request->address;
-        $cvHistory->working_experience = $request->working_experience;
-        $cvHistory->skill = $request->skill;
-        $cvHistory->photo = $photo;
-        $cvHistory->profile=$request->profile;
-        $cvHistory->id_cv=$request->id_cv;
-        $cvHistory->save();
 
-        return response()->json([
-            'status' => 'success',
-            'id'=>$id,
-            // '' => $validator->errors()->toJson(),
-        ]);
+        $history = cvHistory::where('id_user', '=', $id_user)->first();
+        if (is_null($history)) {
+            $cvHistory = new cvHistory;
+            $cvHistory->id = $id;
+            $cvHistory->id_user = $id_user;
+            $cvHistory->first_name = $request->first_name;
+            $cvHistory->last_name = $request->last_name;
+            $cvHistory->email = $request->email;
+            $cvHistory->phone_number = $request->phone_number;
+            $cvHistory->education = $request->education;
+            $cvHistory->address = $request->address;
+            $cvHistory->working_experience = $request->working_experience;
+            $cvHistory->skill = $request->skill;
+            $cvHistory->photo = $photo;
+            $cvHistory->profile = $request->profile;
+            $cvHistory->id_cv = $request->id_cv;
+            $cvHistory->save();
+
+            return response()->json([
+                'status' => 'success',
+                'id' => $id,
+                // '' => $validator->errors()->toJson(),
+            ]);
+        } else {
+            $history->id = $id;
+            $history->id_user = $id_user;
+            $history->first_name = $request->first_name;
+            $history->last_name = $request->last_name;
+            $history->email = $request->email;
+            $history->phone_number = $request->phone_number;
+            $history->education = $request->education;
+            $history->address = $request->address;
+            $history->working_experience = $request->working_experience;
+            $history->skill = $request->skill;
+            $history->photo = $photo;
+            $history->profile = $request->profile;
+            $history->id_cv = $request->id_cv;
+            $history->save();
+
+            return response()->json([
+                'status' => 'success',
+                'id' => $id,
+                // '' => $validator->errors()->toJson(),
+            ]);
+
+        }
+
+
+
 
         
     }

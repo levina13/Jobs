@@ -48,7 +48,10 @@ margin: 100px;
                           font-size: 17px;
                           transition: all 0.3s ease;" 
                           required>
+                          
                         </div>
+                        <br>
+                        <span class="d-none text text-danger" errorFor="email"><br></span>
                         <p style="margin:20px;"></p>
                       <div class="form-group">
                         <button name="recover-submit" class="btn-sendEmail btn btn-lg btn-primary btn-block" style="background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6);
@@ -78,7 +81,6 @@ margin: 100px;
             $.ajax({
                 url: "{{route('forget.password.post')}}",
                 type: 'DELETE',
-                dataType: 'html',
                 data: {
                   method: '_DELETE', 
                   submit: true,
@@ -86,7 +88,8 @@ margin: 100px;
                 },
 
                 success: function(data) {
-                    if (data == true) {
+                    console.log(data);
+                    if (data.status == 'success') {
                         Swal.fire({
                             title: 'Email is sent successfully!',
                             text: 'Open your email to get the reset password link.',
@@ -96,9 +99,15 @@ margin: 100px;
                           window.location="{{route('home')}}";
                         });
                     } else {
+                        if(data.cause=='input'){
+                          let dataError = JSON.parse(data.error)
+                          for (const key in dataError) {
+                            $(`[errorFor="${key}"]`).html(dataError[key][0]).removeClass('d-none')
+                          }
+                        }
                         Swal.fire({
                             title: 'Email is not sent!',
-                            text: 'Failed to send the email',
+                            text: data.message,
                             icon: 'error',
                             showConfirmButton: true,
                         });
