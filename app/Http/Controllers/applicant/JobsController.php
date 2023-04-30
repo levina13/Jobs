@@ -41,13 +41,18 @@ class JobsController extends Controller
                         $q->on('favorites.id_loker', '=', 'lokers.id')
                             ->where('favorites.id_pelamar', '=', "$id_user");
                     })
-                ->where('lokers.judul_loker','LIKE','%'.$keyword.'%')
-                ->orwhere('pekerjaans.pekerjaan','LIKE','%'.$keyword.'%')
-                ->orwhere('users.name','LIKE','%'.$keyword.'%')
+                ->where(function($q) use ($keyword){
+                        $q->where('lokers.judul_loker','LIKE','%'.$keyword.'%')
+                        ->orwhere('pekerjaans.pekerjaan','LIKE','%'.$keyword.'%')
+                        ->orwhere('users.name','LIKE','%'.$keyword.'%');
+                    })
+                ->whereDate('lokers.tanggal_awal', '<', now())
+                ->whereDate('lokers.tanggal_akhir','>',now())
                 ->get();
         $contracts = contract::select('*')->get();
         $industry = jenis_perusahaan::select('*')->get();
         $salary= salaryCategory::select('*')->get();
+
 
 
         // return [$data, $contracts, $industry];
