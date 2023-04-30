@@ -54,7 +54,7 @@
                                     <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
                                 </a>
                                 @if ($applyButton=='disabled')
-                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg" disabled> Applied </button>
+                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg" disabled> Apply</button>
 
                                 @else
                                 <a href="{{route('applyform',['id'=>$loker->id])}}" >
