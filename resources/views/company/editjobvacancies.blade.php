@@ -32,7 +32,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Position</label>
                         <div class="col-sm-9">
-                          <select class="position form-control" style="width:500px;" name="position">
+                          <select class="position form-control" name="position">
                             <option value="{{$jobVacancy->id_pekerjaan}}" selected="selected">{{$jobVacancy->pekerjaan}}</option>
                           </select>
                           <br>

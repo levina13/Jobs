@@ -119,16 +119,14 @@
             <h2>Create a professional CV</h2>
             <p>Choose a template and build your CV in minutes.</p>
           </div>
-
-
           <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             @foreach ($cv as $item)
             <div class="col-lg-4 col-md-5 col-sm-6 portfolio-item filter-app">
               <div class="portfolio-wrap">
                 <img src="{{asset("/templateCV/$item->source/preview.png")}}" class="img-fluid" alt="">
                 <div class="portfolio-links">
-                  <a href="{{route('cvform',['id'=>$item->id])}}" data-gallery="portfolioGallery"
-                    class="portfolio-lightbox btn" title="App 1">
+                  <a href="{{route('cvform',['id'=>$item->id])}}" 
+                    class=" btn" title="App 1">
                     <i class="bi bi-plus">Create</i>
                   </a>
                 </div>
@@ -138,8 +136,6 @@
               </div>
             </div>
             @endforeach
-
-
           </div>
 
         </div>

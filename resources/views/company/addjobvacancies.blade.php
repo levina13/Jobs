@@ -32,7 +32,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Position</label>
                         <div class="col-sm-9">
-                          <select class="position form-control" style="width:500px;" name="position"></select>
+                          <select class="position form-control" name="position"></select>
                           <br>
                           <span class="d-none text text-danger" errorFor="position"><br></span>
                         </div>
