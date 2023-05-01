@@ -29,14 +29,16 @@
                     </a>
                 </center>
                     <br>
-                    <h2>{{$loker->name}}</h2>
+                    <a href="{{route('companyProfile',['id'=>$loker->id_perusahaan])}}">
+                        <h2>{{$loker->name}}</h2>
+                    </a>
                     <br>
                     <h2>{{$loker->position}}</h2>
                     <br>
                     <h3>Salary</h3>
                     <h4>Rp. {{number_format($loker->salary,2,',','.')}}</h4>
                     <br>
-                    <h3>Contrack</h3>
+                    <h3>Contract</h3>
                     <h4>{{$loker->contract}}</h4>
                     <br>
                     <h2>Job Vacancy Description</h2>
@@ -52,7 +54,7 @@
                                     <button type="button" class="btn btn-gradient-info btn-lg btn-block btn-lg" >Build CV </button>
                                 </a>
                                 @if ($applyButton=='disabled')
-                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg" disabled> Applied </button>
+                                    <button type="button" class="btn btn-gradient-primary btn-lg btn-block btn-lg" disabled> Apply</button>
 
                                 @else
                                 <a href="{{route('applyform',['id'=>$loker->id])}}" >

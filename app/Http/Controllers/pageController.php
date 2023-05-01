@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isNull;
+
 class pageController extends Controller
 {
     public function index(){
@@ -58,14 +60,18 @@ class pageController extends Controller
             $applied=lamaran::where('id_loker','=',$id)
                             ->where('id_pelamar','=',$id_user)
                             ->first();
-            if(!is_null($applied)){
+            $notExpired=loker::where('id','=',$id)
+                        ->whereDate('lokers.tanggal_awal', '<', now())
+                        ->whereDate('lokers.tanggal_akhir','>',now())
+                        ->first();
+            if(!is_null($applied) or is_null($notExpired)){
                 $applyButton='disabled';
             };
         };
         $data = loker::select('lokers.judul_loker as title','favorites.id as id_favorite'
                             , 'users.photo','users.name', 'lokers.salary'
                             , 'pekerjaans.pekerjaan as position','contracts.contract'
-                            , 'lokers.deskripsi as description', 'lokers.id')
+                            , 'lokers.deskripsi as description', 'lokers.id','perusahaans.id as id_perusahaan')
                     ->join('perusahaans','perusahaans.id','=','lokers.id_perusahaan')
                     ->join('users','users.id','=','perusahaans.id_owner')
                     ->join('pekerjaans','pekerjaans.id','=','lokers.id_pekerjaan')

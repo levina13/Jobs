@@ -8,7 +8,8 @@
 <div class="main-panel">
     <div class="page-header"></div>
     <center>
-    <img src="{{ asset('uploads/profil_image/'.$company->photo) }}" alt="image" />
+
+    <img width="20%" src="{{ asset('uploads/profil_image/'.$company->photo) }}" alt="image" />
         <br>
         <h2>{{$company->name}}</h2>
         {{-- <h5>Founded Year</h5> --}}
