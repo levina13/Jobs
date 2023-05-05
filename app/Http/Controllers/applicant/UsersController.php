@@ -71,9 +71,7 @@ class UsersController extends Controller
 
         if ($request->hasFile('image')) {
             $path = 'uploads/profile_image/'. $user->photo;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
+
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;

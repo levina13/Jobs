@@ -83,9 +83,7 @@ class CompanyController extends Controller
 
         if ($request->hasFile('image')) {
             $path = 'uploads/profil_image/' . $owner->photo;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
+
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
